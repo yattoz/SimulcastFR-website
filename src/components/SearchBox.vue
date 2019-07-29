@@ -11,11 +11,7 @@
 </template>
 
 <script>
-    /*
-    let caught =  app4.search === "";
-    caught = caught || unit.title.toLowerCase().indexOf(app4.search.toLowerCase()) > -1;
-    return caught;
-    */
+    import StoreFilter from '@/components/StoreFilter';
     export default {
         name: "SearchBox",
         data() {
@@ -25,9 +21,9 @@
         },
         methods: {
             processInput(){
-                let typedText = document.getElementById('searchBoxAnime').value;
-                this.search = typedText;
-                console.log(this.search);
+                var typedText = document.getElementById('searchBoxAnime').value;
+                StoreFilter.setSearch(typedText);
+
                 /*
                 var search = document.querySelector('.search-term .uk-search-input');
                 var searchVal = document.querySelector('.search-filter');

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <SearchBox/>
     <AnimeLineup/>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -13,13 +14,15 @@ import Icons from '@/uikit/js/uikit-icons';
 import HelloWorld from './components/HelloWorld.vue'
 import AnimeLineup from "@/components/AnimeLineup";
 import SearchBox from "@/components/SearchBox";
+import StoreFilter from '@/components/StoreFilter'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     AnimeLineup,
-    SearchBox
+    SearchBox,
+    StoreFilter
   }
 }
 
