@@ -1,8 +1,8 @@
 <template>
     <form class="uk-search">
         <div class="search-term">
-            <form class="uk-search uk-search-default">
-                <span uk-search-icon></span>
+            <form class="uk-search uk-search-default uk-flex-1">
+                <a class="uk-form-icon uk-form-icon-flip" uk-icon="icon: close" v-on:click="clearInput()"></a>
                 <input id="searchBoxAnime" class="uk-search-input" type="search" placeholder="Rechercher..." v-on:input="processInput()">
             </form>
             <a href="#" id="hiddenSearchText" class="search-filter" uk-filter-control="[data-tags*='']" hidden>Search</a>
@@ -23,20 +23,10 @@
             processInput(){
                 var typedText = document.getElementById('searchBoxAnime').value;
                 StoreFilter.setSearch(typedText);
-
-                /*
-                var search = document.querySelector('.search-term .uk-search-input');
-                var searchVal = document.querySelector('.search-filter');
-                var value = search.value.toLowerCase();
-                var searchTerm = '';
-
-                if(value.length) searchTerm = '[data-tags*="' + search.value.toLowerCase() + '"]';
-
-                searchVal.setAttribute('uk-filter-control', searchTerm);
-                searchVal.click();
-
-                 /**/
-
+            },
+            clearInput() {
+                document.getElementById('searchBoxAnime').value = "";
+                StoreFilter.setSearch("");
             }
         }
     }

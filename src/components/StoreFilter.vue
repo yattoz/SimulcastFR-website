@@ -6,15 +6,46 @@
     export default {
         name: "StoreFilter",
         state: {
-            search: ""
+            search: "",
+            isTitleShown: false,
+            cardScaling: 1.0,
+            serviceSort: false,
+            tableServices: ['crunchyroll', 'adn', 'wakanim'],
+
+            forceRedraw: false
         },
         setSearch: function(str) {
             this.state.search = str;
-            console.log(this.state.search);
+            console.log("StoreFilter.search = " + this.state.search);
         },
-        getSearch: function() {
-            console.log("getter called : " + this.state.search);
-            return this.state.search.toLowerCase();
+        toggleTitle: function() {
+            this.state.isTitleShown = !this.state.isTitleShown;
+            console.log("StoreFilter.isTitleShown = " + this.state.isTitleShown)
+        },
+        updateScaling: function(value) {
+            this.state.cardScaling = value;
+            console.log("StoreFilter.cardScaling = " + this.state.cardScaling)
+        },
+        forceRedraw: function() {
+            this.state.forceRedraw = !this.state.forceRedraw;
+            console.log("Force redraw")
+        },
+        setServiceSort: function(type) {
+            this.state.serviceSort = type;
+            console.log("StoreFilter.serviceSort = " + this.state.serviceSort)
+        },
+        toggleServices: function(service) {
+            if (this.state.tableServices.includes(service))
+            {
+                this.state.tableServices = this.state.tableServices.filter(function (s) {
+                    return !s.match(service);
+                });
+            } else {
+                this.state.tableServices.push(service);
+            }
+
+            console.log(service + " toggled");
         }
+
     }
 </script>

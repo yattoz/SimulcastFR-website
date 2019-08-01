@@ -1,9 +1,28 @@
 <template>
   <div id="app">
-    <SearchBox/>
-    <AnimeLineup/>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div uk-grid>
+      <div class="uk-width-1-6@m">
+        <div uk-sticky="media:@m">
+          <div align="left" class="uk-background-muted uk-padding-small">
+            <SearchBox/>
+            <CheckboxFilters/>
+          </div>
+        </div>
+
+      </div>
+      <div class="uk-width-5-6@m">
+        <div class=" uk-align-center">
+
+          <AnimeLineup/>
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
+
 </template>
 
 <script>
@@ -11,18 +30,17 @@
 import UIkit from '@/uikit/js/uikit';
 import Icons from '@/uikit/js/uikit-icons';
 
-import HelloWorld from './components/HelloWorld.vue'
 import AnimeLineup from "@/components/AnimeLineup";
 import SearchBox from "@/components/SearchBox";
 import StoreFilter from '@/components/StoreFilter'
+import CheckboxFilters  from "@/components/CheckboxFilters"
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     AnimeLineup,
     SearchBox,
-    StoreFilter
+    CheckboxFilters
   }
 }
 
