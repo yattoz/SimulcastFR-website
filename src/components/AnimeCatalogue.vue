@@ -1,15 +1,16 @@
 <template>
-
-    <div class=" uk-align-center">
+    <div class="uk-align-left">
         <!-- Layout items -->
 
-        <div uk-grid class="uk-flex-wrap uk-flex-center uk-grid-medium uk-padding-small uk-background-secondary" tabindex="0">
-            <!--
-            <AnimeCard v-for="unit in cr_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-            <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-            <AnimeCard v-for="unit in waka_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/> -->
-                <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
-        </div>
+            <div id="native">
+                <ul class="uk-list uk-list-striped cols_auto">
+                    <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
+                        <a :href="unit.link" :style="{ 'color': badgeColor(unit.service) }">
+                            {{unit.title}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
     </div>
 </template>
 
@@ -76,6 +77,18 @@
                 console.log(self.full_lineup);
             })
         },
+        methods:{
+            badgeColor(service) {
+                //let service = this.anime.service;
+                service = service.toLowerCase();
+                if (service === "crunchyroll")
+                    return "#ff7500";
+                if (service === "adn")
+                    return "#2140ed";
+                if (service === "wakanim")
+                    return "#e0000a";
+            }
+        },
         computed: {
             computedLineup(){
                 var typedText = this.FilterResults.search;
@@ -93,6 +106,7 @@
                 return tmp.filter(unit => {
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
+                    caught = caught && this.FilterResults.tableServices.includes(unit.service);
                     return caught;
                 });
             }
@@ -101,5 +115,30 @@
 </script>
 
 <style scoped>
+    ul{margin:0; padding:0;}
 
+    .cols_s{
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+    .cols_m{
+        -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+    }
+    .cols_l{
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+    }
+    .cols_auto{
+        column-count: 3;
+        column-width: 300px;
+    }
+    .textoverflow{
+        overflow: hidden;
+        white-space: nowrap; /* Don't forget this one */
+        text-overflow: ellipsis;
+    }
 </style>
