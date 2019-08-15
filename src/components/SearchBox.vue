@@ -2,8 +2,8 @@
     <form class="uk-search">
         <div class="search-term">
             <form class="uk-search uk-search-default uk-flex-1">
-                <a class="uk-form-icon uk-form-icon-flip" uk-icon="icon: close" v-on:click="clearInput()"></a>
-                <input id="searchBoxAnime" class="uk-search-input" type="search" placeholder="Rechercher..." v-on:input="processInput()">
+                <a class="uk-form-icon uk-form-icon-flip " uk-icon="icon: close" v-on:click="clearInput()"></a>
+                <input id="searchBoxAnime" class="uk-search-input uk-form-width-small" type="text" placeholder="Rechercher..." v-on:input="processInput()">
             </form>
             <a href="#" id="hiddenSearchText" class="search-filter" uk-filter-control="[data-tags*='']" hidden>Search</a>
         </div>

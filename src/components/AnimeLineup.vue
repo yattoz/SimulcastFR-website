@@ -3,7 +3,7 @@
     <div class=" uk-align-center">
         <!-- Layout items -->
 
-        <div uk-grid class="uk-flex-wrap uk-flex-center uk-grid-medium uk-padding-small uk-background-secondary" tabindex="0">
+        <div uk-grid class="uk-flex-wrap uk-flex-center uk-grid-medium uk-padding-small" tabindex="0">
             <!--
             <AnimeCard v-for="unit in cr_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
             <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>

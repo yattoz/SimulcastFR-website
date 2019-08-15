@@ -1,30 +1,36 @@
 <template>
   <div id="app">
 
-    <div uk-grid>
-      <div class="uk-width-1-6@m">
-        <div uk-sticky="media:@m" class="uk-background-muted">
-          <div align="left" class="uk-padding-small">
-            <SearchBox/>
-            <CheckboxFilters/>
+  <NavHead/>
+
+
+  <div class="uk-section uk-section-secondary uk-preserve-color uk-padding-remove-horizontal">
+    <div class="uk-container uk-container-expand uk-padding-remove-horizontal">
+      <div uk-grid>
+
+        <div class="uk-width-1-6@m">
+          <div uk-sticky="media:@m" class="uk-background-primary uk-light">
+            <div align="left" class="uk-padding-small">
+              <SearchBox/>
+              <CheckboxFilters/>
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-5-6@m">
+          <div class="uk-background-secondary">
+            <transition>
+              <keep-alive>
+                <!-- Component matched by the route will render here-->
+                <router-view class="uk-light"></router-view>
+              </keep-alive>
+            </transition>
           </div>
         </div>
       </div>
-
-      <div class="uk-width-5-6@m">
-        <div class="uk-background-muted">
-          <ul uk-tab>
-            <li class="uk-active"><router-link to="/">Simulcasts de la saison</router-link></li>
-            <li><router-link to="/full-lineup">Catalogue</router-link></li>
-            <li><router-link to="/about">A propos</router-link></li>
-          </ul>
-        </div>
-        <!-- Component matched by the route will render here-->
-        <router-view></router-view>
+      </div>
+</div>
 
       </div>
-    </div>
-  </div>
 
 </template>
 
@@ -35,21 +41,25 @@ import Icons from '@/uikit/js/uikit-icons';
 
 import Router from 'vue-router';
 
-import AnimeLineup from "@/components/AnimeLineup";
 import SearchBox from "@/components/SearchBox";
 import StoreFilter from '@/components/StoreFilter';
 import CheckboxFilters  from "@/components/CheckboxFilters";
 import CalendarExample from "@/components/CalendarExample";
-import APropos from "@/components/APropos";
+import NavHead from "@/components/NavHead";
+
 
 export default {
   name: 'app',
+  data() {
+    return {
+      loading: true
+    }
+  },
   components: {
-    AnimeLineup,
+    NavHead,
     SearchBox,
     CheckboxFilters,
     CalendarExample,
-    APropos
   },
   methods: {
     goBack () {
@@ -71,4 +81,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>

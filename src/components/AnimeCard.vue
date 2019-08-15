@@ -14,18 +14,20 @@
                     <div class="uk-overlay uk-overlay-primary uk-position-bottom "
                          :style="{ 'background-color': badgeColor, opacity: 0.85 }"
                          v-if="FilterResults.isTitleShown">
-                        <div class="uk-text-small uk-position-center ellipsisimple uk-text-uppercase uk-text-bold uk-text-emphasis" style="opacity: 1">
+                        <div class="uk-text-small uk-position-center ellipsisimple uk-text-uppercase uk-text-bold uk-text-emphasis" style="opacity: 1"
+                             :uk-tooltip="'title: ' + anime.title + '; pos: bottom; delay: 100'">
                             {{anime.title.trunc(30, true)}}
                         </div>
                     </div>
                 </transition>
-                <div class="uk-badge uk-label uk-position-top-right" :style="{ 'background-color': badgeColor }">
+                <div class="uk-badge uk-label uk-position-top-right" :style="{ 'background-color': badgeColor, 'color': '#ffffff' }">
                     <small>
                         {{anime.service}}
                     </small>
                 </div>
             </div>
-            <div class="uk-light uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom uk-text-small uk-text-uppercase uk-text-bold uk-text-middle ellipsisimple uk-text-left" v-if="!FilterResults.isTitleShown">
+            <div class="uk-light uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom uk-text-small uk-text-uppercase uk-text-bold uk-text-middle ellipsisimple uk-text-left" v-if="!FilterResults.isTitleShown"
+                 :uk-tooltip="'title: ' + anime.title + '; pos: top; delay: 100'">
                 <p>{{anime.title}}</p>
             </div>
             </a>

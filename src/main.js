@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
-import APropos from "@/components/APropos"
 import AnimeCatalogue from "@/components/AnimeCatalogue"
+import APropos from "@/components/APropos"
+
 
 Vue.use(VueRouter)
 
@@ -16,17 +17,35 @@ const routes = [
     path: '/',
     name: 'Full Lineup',
     component: AnimeLineup,
-    props:  { full_lineup_url: "json/full_lineup.json"}
+    props:  { full_lineup_url: "json/full_lineup.json"},
+      beforeEnter: (to, from, next) => {
+          // called before the route that renders this component is confirmed.
+          // does NOT have access to `this` component instance,
+          // because it has not been created yet when this guard is called
+          next()
+      },
   },
   {
     path: '/about',
     name: "A Propos",
-    component: APropos
+    component: APropos,
+      beforeEnter: (to, from, next) => {
+          // called before the route that renders this component is confirmed.
+          // does NOT have access to `this` component instance,
+          // because it has not been created yet when this guard is called
+          next()
+      },
   },
   {
     path: '/full-lineup',
     component: AnimeCatalogue,
-    props: { full_lineup_url: "json/full_catalogue.json"}
+    props: { full_lineup_url: "json/full_catalogue.json"},
+    beforeEnter: (to, from, next) => {
+        // called before the route that renders this component is confirmed.
+        // does NOT have access to `this` component instance,
+        // because it has not been created yet when this guard is called
+        next()
+    },
   },
 
 ]
@@ -36,22 +55,7 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
-new Vue({
+const app = new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-
-/*
-new Vue({
-  el: '#app',
-  data: {
-    currentRoute: window.location.pathname
-  },
-  computed: {
-    ViewComponent () {
-      return routes[this.currentRoute]
-    }
-  },
-  render (h) { return h(this.ViewComponent) }
-})
-*/
