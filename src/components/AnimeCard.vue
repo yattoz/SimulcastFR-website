@@ -175,17 +175,18 @@
             position: relative;
             display: flex;
             width: 100%;
-            height: auto; /* */
-            min-height: 2.8em;
+            height: 17%; /* */
+            /* min-height: 2.8em; */
             z-index: 100;
             
         }
 
         .extendview span {
-            
             color: #121212;
             text-align: left;
-            margin: 2px 4px 2px 4px;
+            margin-left: 4px;
+            margin-right: 4px;
+            margin-bottom: auto;
         }
 
         .card-image span{
@@ -219,7 +220,7 @@
 
 
         .card-expand{
-            height: 80%;
+            height: 83%;
             z-index: 1;
         }
 
