@@ -5,7 +5,7 @@ import App from './App.vue'
 import AnimeLineup from '@/components/AnimeLineup'
 import AnimeCatalogue from "@/components/AnimeCatalogue"
 import APropos from "@/components/APropos"
-import CalendarExample from "@/components/CalendarExample"
+import Calendar from "@/components/Calendar"
 
 
 Vue.use(VueRouter)
@@ -50,7 +50,7 @@ const routes = [
   },
   {
     path: '/calendar',
-    component: CalendarExample,
+    component: Calendar,
     beforeEnter: (to, from, next) => {
         // called before the route that renders this component is confirmed.
         // does NOT have access to `this` component instance,

@@ -8,15 +8,15 @@
     <div class="">
       <div class="row">
 
-        <div class="col m12 l2">
-          <div class="">
+        <div class="col s12 m12 l3">
+          <div class="container">
             <div align="left" class="">
-              <SearchBox/>
+                <SearchBox/>              
               <CheckboxFilters/>
             </div>
           </div>
         </div>
-        <div class="col m12 l10">
+        <div class="col s12 m12 l9">
           <div class="" >
             <transition>
               <keep-alive>
@@ -41,7 +41,6 @@ import Router from 'vue-router';
 import SearchBox from "@/components/SearchBox";
 import StoreFilter from '@/components/StoreFilter';
 import CheckboxFilters  from "@/components/CheckboxFilters";
-import CalendarExample from "@/components/CalendarExample";
 import NavHead from "@/components/NavHead";
 
 
@@ -56,7 +55,6 @@ export default {
     NavHead,
     SearchBox,
     CheckboxFilters,
-    CalendarExample,
   },
   methods: {
     goBack () {

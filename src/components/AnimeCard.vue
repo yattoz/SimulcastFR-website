@@ -4,22 +4,17 @@
 
 
         <div class="card-image" :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
-
             <span class="badge z-depth-1" :style="{ 'background-color': badgeColor}">
                 {{anime.service}}
             </span>
-
             <img :src="anime.image" :alt="anime.title" 
             :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
         </div>
         
-        <div class="extendview" 
-            :style="{'background-color': 'fefefe'}"
-            v-if="!FilterResults.isTitleShown">
+        <div class="extendview" :style="{'background-color': 'fefefe'}" v-if="!FilterResults.isTitleShown">
                 <span class="adn-text">
                     {{anime.title}}
                 </span>
-               
         </div>
 
         <transition name="slide">
@@ -90,6 +85,8 @@
                     return "#0066ff";
                 if (service === "wakanim")
                     return "#e0000a";
+                // catch-all
+                return "#fefefe";
             }
         }
     }
