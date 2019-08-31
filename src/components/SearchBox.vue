@@ -25,7 +25,6 @@
         },
         watch: {
             search() {
-                console.log("search changed");
                 this.processInput();
             }
         },

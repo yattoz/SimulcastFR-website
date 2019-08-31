@@ -1,4 +1,5 @@
 <template>
+    <!--
     <div class="">
         <ul class="uk-nav uk-nav-default">
             <li class="uk-active"><a href="#">Active</a></li>
@@ -43,6 +44,37 @@
 
         </ul>
     </div>
+    -->
+    <div>
+    <div class="switch">
+        <label>
+        Crunchyroll
+        <input type="checkbox">
+        <span class="lever"></span>
+        </label>
+    </div>
+    <div class="switch">
+        <label>
+        ADN
+        <input type="checkbox">
+        <span class="lever"></span>
+        </label>
+    </div>
+    <div class="switch">
+        <label>
+        Wakanim
+        <input type="checkbox">
+        <span class="lever"></span>
+        </label>
+    </div>
+    <div class="switch">
+        <label>
+        Vue compacte
+        <input type="checkbox" v-on:click="toggleTitle()">
+        <span class="lever"></span>
+        </label>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -52,6 +84,9 @@
         data() {
             return {
                 Filter: StoreFilter,
+                crunchyrollActive: true,
+                adnActive: true,
+                wakanimActive: true,
                 sliderValue: 1.0
             }
         },
@@ -78,5 +113,13 @@
 </script>
 
 <style scoped>
+
+    .switch label{
+        color: #121212;
+    }
+
+    .switch input{
+        margin-right: 0em;
+    }
 
 </style>

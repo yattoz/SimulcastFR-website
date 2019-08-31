@@ -8,15 +8,16 @@
     <div class="">
       <div class="row">
 
-        <div class="col s12 m12 l3">
-          <div class="container">
+        <div class="col s12 m3 l3">
+          <div class="container" style="margin-bottom: 3em">
             <div align="left" class="">
-                <SearchBox/>              
+                <SearchBox/>
               <CheckboxFilters/>
+
             </div>
           </div>
         </div>
-        <div class="col s12 m12 l9">
+        <div class="col s12 m9 l9">
           <div class="" >
             <transition>
               <keep-alive>
@@ -36,10 +37,7 @@
 
 <script>
 
-import Router from 'vue-router';
-
 import SearchBox from "@/components/SearchBox";
-import StoreFilter from '@/components/StoreFilter';
 import CheckboxFilters  from "@/components/CheckboxFilters";
 import NavHead from "@/components/NavHead";
 

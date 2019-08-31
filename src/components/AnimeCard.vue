@@ -1,21 +1,19 @@
 <template>
-    <div class="card z-depth-1 inner hoverable"  :style="{width: cardWidth + 'px'}">
-        <a :href="anime.link" >
+    <a :href="anime.link" >
+    <div class="card z-depth-1 inner hoverable">
 
-
-        <div class="card-image" :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
+        <div class="card-image inner" :class="titleView">
             <span class="badge z-depth-1" :style="{ 'background-color': badgeColor}">
                 {{anime.service}}
             </span>
-            <img :src="anime.image" :alt="anime.title" 
-            :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
+            <img :src="anime.image" :alt="anime.title">
+
         </div>
-        
         <div class="extendview" :style="{'background-color': 'fefefe'}" v-if="!FilterResults.isTitleShown">
-                <span class="adn-text">
-                    {{anime.title}}
-                </span>
-        </div>
+            <span class="adn-text">
+                {{anime.title}}
+            </span>
+        </div>   
 
         <transition name="slide">
             <div class="compactview z-depth-1"
@@ -26,9 +24,10 @@
                     </span>
             </div>
         </transition> 
-        
-        </a>
+     
     </div>
+ 
+    </a>
 </template>
 
 <script>
@@ -76,6 +75,9 @@
             cardWidth() {
                 return this.cardWidthDef * this.FilterResults.cardScaling;
             },
+            titleView(){
+                return this.FilterResults.isTitleShown ? "card-compact" : "card-expand"
+            },
             badgeColor() {
                 let service = this.anime.service;
                 service = service.toLowerCase();
@@ -110,12 +112,6 @@
     }
 
 
-    .card{
-        margin: 0.4em;
-        border: solid 1px grey;
-    }
-
-
     .adn-text{
          /* margin:5.33333333px 0 0 0;*/
         max-height:2.3em;
@@ -126,7 +122,7 @@
         -webkit-box-orient:vertical;
         line-clamp:2;
 
-        color: black;
+        color: #000000;
         opacity: 87%;
 
         margin: 4px 4px 4px 4px;
@@ -159,9 +155,11 @@
         .compactview{
             position: absolute;
             display: flex;
-            bottom: 0em;
+            bottom: 0px;
             width: 100%;
-            height: 20%;
+            height: auto; /* */
+            min-height: 2.8em;
+            z-index: 10;
         }
 
         .compactview span{
@@ -172,23 +170,22 @@
             margin-right: auto;
         }
 
+
         .extendview{
             position: relative;
             display: flex;
             width: 100%;
-            height: 2.8em;
-        }
-        .extendview span {
-            color: #121212;
-            text-align: left;
-            margin-top: 4px;
-            margin-bottom: auto;
-            margin-left: 4px;
+            height: auto; /* */
+            min-height: 2.8em;
+            z-index: 100;
+            
         }
 
-        .card-image img{
-            position: absolute;
-            top: 0px;
+        .extendview span {
+            
+            color: #121212;
+            text-align: left;
+            margin: 2px 4px 2px 4px;
         }
 
         .card-image span{
@@ -199,19 +196,43 @@
             /* border: solid 1px #121212; */
         }
 
-        .btn-small{
-            padding: 4px 4px 4px 4px;
-        }
-
         span.badge{
             text-transform:uppercase;
             font-weight: 500; 
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #fff;
             border-radius: 2px;
             padding: auto;
             /* padding: 0 6px;*/
             margin-left: 14px;
+        }
+        
+        .card{
+            /* border-radius: 10px; */
+            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
+            padding: 0em 0em 0em 0em;
+            width: auto;
+            height: 100%;
+            border: solid 1px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+
+        .card-expand{
+            height: 80%;
+            z-index: 1;
+        }
+
+        .card-compact{
+            height: 100%;
+            top: 0px;
+            z-index: 1;
+        }
+        
+        img{
+            object-fit: cover;
+            height: 100%;
+            z-index: 1;
         }
 
 
