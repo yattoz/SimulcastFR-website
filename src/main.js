@@ -5,6 +5,7 @@ import App from './App.vue'
 import AnimeLineup from '@/components/AnimeLineup'
 import AnimeCatalogue from "@/components/AnimeCatalogue"
 import APropos from "@/components/APropos"
+import CalendarExample from "@/components/CalendarExample"
 
 
 Vue.use(VueRouter)
@@ -47,6 +48,17 @@ const routes = [
         next()
     },
   },
+  {
+    path: '/calendar',
+    component: CalendarExample,
+    beforeEnter: (to, from, next) => {
+        // called before the route that renders this component is confirmed.
+        // does NOT have access to `this` component instance,
+        // because it has not been created yet when this guard is called
+        next()
+    },
+  },
+
 
 ]
 

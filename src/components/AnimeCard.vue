@@ -1,38 +1,39 @@
 <template>
-    <transition name="fade">
-        <div class="uk-panel uk-card"
-             :style="{width: cardWidth + 'px'}"
-             :data-tags="anime.service.toLowerCase()"
-             :data-title="anime.title.toLowerCase()"
-             v-if="FilterResults.tableServices.includes(anime.service)" >
-            <a :href="anime.link">
-            <div class="uk-inline-clip uk-transition-toggle uk-cover-container" tabindex="0">
-                <canvas :key="FilterResults.forceRedraw" :width="cardWidth" :height="cardWidth*1.5"></canvas>
-                <img uk-cover uk-img class="uk-position-top-left uk-transition-scale-up uk-transition-opaque"
-                     :data-src="anime.image" :alt="anime.title">
-                <transition name="slide">
-                    <div class="uk-overlay uk-overlay-primary uk-position-bottom "
-                         :style="{ 'background-color': badgeColor, opacity: 0.85 }"
-                         v-if="FilterResults.isTitleShown">
-                        <div class="uk-text-small uk-position-center ellipsisimple uk-text-uppercase uk-text-bold uk-text-emphasis" style="opacity: 1"
-                             :uk-tooltip="'title: ' + anime.title + '; pos: bottom; delay: 100'">
-                            {{anime.title.trunc(30, true)}}
-                        </div>
-                    </div>
-                </transition>
-                <div class="uk-badge uk-label uk-position-top-right" :style="{ 'background-color': badgeColor, 'color': '#ffffff' }">
-                    <small>
-                        {{anime.service}}
-                    </small>
-                </div>
-            </div>
-            <div class="uk-light uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom uk-text-small uk-text-uppercase uk-text-bold uk-text-middle ellipsisimple uk-text-left" v-if="!FilterResults.isTitleShown"
-                 :uk-tooltip="'title: ' + anime.title + '; pos: top; delay: 100'">
-                <p>{{anime.title}}</p>
-            </div>
-            </a>
+    <div class="card z-depth-1 inner hoverable"  :style="{width: cardWidth + 'px'}">
+        <a :href="anime.link" >
+
+
+        <div class="card-image" :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
+
+            <span class="badge z-depth-1" :style="{ 'background-color': badgeColor}">
+                {{anime.service}}
+            </span>
+
+            <img :src="anime.image" :alt="anime.title" 
+            :style="{width: cardWidth + 'px', height: cardWidth*1.5 + 'px'}">
         </div>
-    </transition>
+        
+        <div class="extendview" 
+            :style="{'background-color': 'fefefe'}"
+            v-if="!FilterResults.isTitleShown">
+                <span class="adn-text">
+                    {{anime.title}}
+                </span>
+               
+        </div>
+
+        <transition name="slide">
+            <div class="compactview z-depth-1"
+                :style="{ 'background-color': badgeColor, opacity: 0.95 }"
+                v-if="FilterResults.isTitleShown">
+                    <span class="adn-text center-align" style="color: #ffffff, opacity: 0" >
+                    {{anime.title}}
+                    </span>
+            </div>
+        </transition> 
+        
+        </a>
+    </div>
 </template>
 
 <script>
@@ -46,7 +47,8 @@
                 : subString) + "...";
         };
 
-    import StoreFilter from "@/components/StoreFilter"
+    import StoreFilter from "@/components/StoreFilter";
+    import M from "materialize-css";
 
     export default {
         name: "AnimeCard",
@@ -64,8 +66,16 @@
         data() {
             return {
                 FilterResults: StoreFilter.state,
-                cardWidthDef: 200,
+                cardWidthDef: 150,
             }
+        },
+        mounted() {
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.tooltipped');
+                var options = {enterDelay: 200};
+                var instances = M.Tooltip.init(elems, options);
+                console.log("tooltip initialized");
+            });
         },
         computed: {
             cardWidth() {
@@ -75,9 +85,9 @@
                 let service = this.anime.service;
                 service = service.toLowerCase();
                 if (service === "crunchyroll")
-                    return "#ff7500";
+                    return "#df6300";
                 if (service === "adn")
-                    return "#2140ed";
+                    return "#0066ff";
                 if (service === "wakanim")
                     return "#e0000a";
             }
@@ -86,68 +96,127 @@
 </script>
 
 <style scoped>
-
-    .slide-enter-active {
-        transition: all .3s ease;
-    }
-    .slide-leave-active {
-        transition: all .3s;
-    }
-    .slide-enter, .slide-leave-to {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    .fade-enter-active {
-        transition: all .4s;
-    }
-    .fade-leave-active {
-        transition: all .4s;
-    }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-
-
-    .ellipsisimple {
-        height: 2.8em;
-        line-height: 1.4em;
-        display: flex;
+    .inner{
         overflow: hidden;
-        text-overflow: ellipsis;
     }
-    .ellipsis {
+    
+    .inner div{
         overflow: hidden;
-        height: 50px;
-        line-height: 25px;
-        margin: 10px;
-        border: 5px #AAA;
     }
-    .ellipsis::before {
-        content: "";
-        float: left;
-        width: 5px;
-        height: 50px;
+
+    .inner img{
+        transition: all 0.2s ease;
     }
-    .ellipsis > *:first-child {
-        float: right;
-        width: 100%;
-        margin-left: -5px;
+    
+    .inner:hover img{
+         transform: scale(1.06); 
     }
-    .ellipsis:after {
-        content:"\02026";
-        box-sizing: content-box;
-        -webkit-box-sizing: content-box;
-        -moz-box-sizing: content-box;
-        float: right;
-        position: relative;
-        top: -25px;
-        left: 100%;
-        width: 3em;
-        margin-left: -3em;
-        padding-right: 5px;
-        text-align: right;
+
+
+    .card{
+        margin: 0.4em;
+        border: solid 1px grey;
     }
+
+
+    .adn-text{
+         /* margin:5.33333333px 0 0 0;*/
+        max-height:2.3em;
+        font-size:0.9em;
+        overflow:hidden;
+        display:-webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient:vertical;
+        line-clamp:2;
+
+        color: black;
+        opacity: 87%;
+
+        margin: 4px 4px 4px 4px;
+        text-transform:uppercase;
+        font-weight:bold;
+        line-height:1.2em
+    }
+
+        .slide-enter-active {
+            transition: all .3s ease;
+        }
+        .slide-leave-active {
+            transition: all .3s;
+        }
+        .slide-enter, .slide-leave-to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .fade-enter-active {
+            transition: all .4s;
+        }
+        .fade-leave-active {
+            transition: all .4s;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+
+        .compactview{
+            position: absolute;
+            display: flex;
+            bottom: 0em;
+            width: 100%;
+            height: 20%;
+        }
+
+        .compactview span{
+            color: #fefefe;
+            margin-top: 4px;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .extendview{
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 2.8em;
+        }
+        .extendview span {
+            color: #121212;
+            text-align: left;
+            margin-top: 4px;
+            margin-bottom: auto;
+            margin-left: 4px;
+        }
+
+        .card-image img{
+            position: absolute;
+            top: 0px;
+        }
+
+        .card-image span{
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            z-index: 100;
+            /* border: solid 1px #121212; */
+        }
+
+        .btn-small{
+            padding: 4px 4px 4px 4px;
+        }
+
+        span.badge{
+            text-transform:uppercase;
+            font-weight: 500; 
+            font-size: 0.7rem;
+            color: #fff;
+            border-radius: 2px;
+            padding: auto;
+            /* padding: 0 6px;*/
+            margin-left: 14px;
+        }
+
 
 
 </style>

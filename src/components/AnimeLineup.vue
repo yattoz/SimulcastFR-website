@@ -1,15 +1,13 @@
 <template>
-
-    <div class=" uk-align-center">
+    <div class="box" tabindex="0">
         <!-- Layout items -->
 
-        <div uk-grid class="uk-flex-wrap uk-flex-center uk-grid-medium uk-padding-small" tabindex="0">
-            <!--
-            <AnimeCard v-for="unit in cr_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-            <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-            <AnimeCard v-for="unit in waka_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/> -->
-                <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
-        </div>
+        <!--
+        <AnimeCard v-for="unit in cr_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
+        <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
+        <AnimeCard v-for="unit in waka_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/> -->
+        <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
+
     </div>
 </template>
 
@@ -19,6 +17,7 @@
     import AnimeCard from "@/components/AnimeCard";
     import CheckboxFilters from "@/components/CheckboxFilters"
     import StoreFilter from '@/components/StoreFilter';
+    
     /*
     const cr_lineup_url = "json/cr_lineup.json";
     const adn_lineup_url = ".son/adn_lineup.json";
@@ -93,6 +92,7 @@
                 return tmp.filter(unit => {
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
+                    caught = caught && this.FilterResults.tableServices.includes(unit.service);
                     return caught;
                 });
             }
@@ -101,5 +101,9 @@
 </script>
 
 <style scoped>
-
+      .box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 </style>

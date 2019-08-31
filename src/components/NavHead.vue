@@ -1,68 +1,71 @@
 <template>
-    <!-- <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"> -->
-    <div>
-        <div class=" uk-position-top uk-navbar-container tm-navbar-container" >
-            <div class="uk-container uk-container-expand uk-background-primary uk-light ">
-                <nav class="uk-navbar" uk-navbar="mode: click; dropbar: true">
-                    <div class="uk-navbar-left">
-                        <ul class="uk-navbar-nav ">
-                            <li><router-link class=" uk-active" to="/">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: tv"></span>
-                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: arrow-right"></span>
-                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: laptop"></span>
-                                SimulcastFR</router-link>
-                            </li>
-                        </ul>
-
-                        <ul uk-tab class="uk-flex-center uk-visible@m uk-margin-large-left">
-                            <li><router-link class="uk-active " to="/">Simulcasts de la saison</router-link></li>
-                            <li><router-link class="" to="/full-lineup">Catalogue</router-link></li>
-                            <li><router-link class="" to="/about">A propos</router-link></li>
-                        </ul>
-                    </div>
-                    <div class="uk-navbar-center">
-
-                    </div>
-                    <div class="uk-navbar-right uk-hidden@m">
-                        <a href="#offcanvas-slide" class="uk-button uk-button-default uk-margin-small" uk-toggle>Menu <span class="uk-light uk-icon " uk-icon="icon: menu">
-                        </span></a>
-
-                    </div>
-                </nav>
-            </div>
-        </div>
-
-        <div id="offcanvas-slide" uk-offcanvas="" class="uk-offcanvas" style="display: block;">
-
-            <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-text-center uk-offcanvas-bar-animation uk-offcanvas-slide">
-                <button class="uk-offcanvas-close uk-icon uk-close" type="button" uk-close="">
-                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon">
-                        <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                        <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                <ul class="uk-nav uk-nav-default">
-                    <li class="uk-nav-header" uk-toggle="target: #offcanvas-slide"><router-link class="uk-active" to="/">Simulcasts de la saison</router-link></li>
-                    <li class="uk-nav-header" uk-toggle="target: #offcanvas-slide"><router-link class="" to="/full-lineup">Catalogue</router-link></li>
-                    <li class="uk-nav-header" uk-toggle="target: #offcanvas-slide"><router-link class="" to="/about">A propos</router-link></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- </div> -->
-
+  <!-- <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"> -->
+  <div>
+    <nav>
+      <div class="nav-wrapper purple">
+        <router-link class="brand-logo" to="/">SimulcastFR</router-link>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li class="waves-effect" :class="pathname === '/' ? 'active' : ''">
+            <router-link class="" to="/"  @click="pathname='/'">Simulcasts de la saison</router-link>
+          </li>
+            <li class="waves-effect" :class="pathname === '/calendar' ? 'active' : ''">
+            <router-link class="" to="/calendar" @click="pathname='/calendar'">Calendrier</router-link>
+          </li>
+          <li class="waves-effect" :class="pathname === '/full-lineup' ? 'active' : ''">
+            <router-link class="" to="/full-lineup" @click="pathname='/full-lineup'">Catalogue</router-link>
+          </li>
+          <li class="waves-effect"  :class="pathname === '/about' ? 'active' : ''">
+            <router-link class="" to="/about" @click="pathname='/about'">A propos</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <router-link class="waves-effect sidenav-close" to="/">Simulcasts de la saison</router-link>
+      </li>
+      <li>
+      <router-link class="waves-effect sidenav-close" to="/calendar">Calendrier</router-link>
+          </li>
+      <li>
+        <router-link class="waves-effect sidenav-close" to="/full-lineup">Catalogue</router-link>
+      </li>
+      <li>
+        <router-link class="waves-effect sidenav-close" to="/about">A propos</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-    import Router from 'vue-router';
-    export default {
-        name: "NavHead"
-    }
+import Router from "vue-router";
+import M from "materialize-css";
+
+export default {
+  name: "NavHead",
+  data() {
+        return {
+            pathname: "/"
+        };
+  },
+  mounted() {
+    document.addEventListener("DOMContentLoaded", function() {
+      var elems = document.querySelectorAll(".sidenav");
+      var options = { edge: "left" };
+      var instances = M.Sidenav.init(elems, options);
+    });
+  }
+};
 </script>
 
 <style scoped>
-    . {
-        color: #FEFEFE
-    }
-    .:hover {
-        color: #E3E3E3
-    }
+. {
+  color: #fefefe;
+}
+.:hover {
+  color: #e3e3e3;
+}
 </style>

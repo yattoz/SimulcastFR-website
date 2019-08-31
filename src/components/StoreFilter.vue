@@ -1,5 +1,6 @@
 <template>
     <!-- empty -->
+    <div></div>
 </template>
 
 <script>

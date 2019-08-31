@@ -1,27 +1,27 @@
 <template>
   <div id="app">
 
-  <NavHead/>
+  <NavHead style="margin-bottom: 3em"></NavHead>
 
 
-  <div class="uk-section uk-section-secondary uk-preserve-color uk-padding-remove-horizontal">
-    <div class="uk-container uk-container-expand uk-padding-remove-horizontal">
-      <div uk-grid>
+  <div class="">
+    <div class="">
+      <div class="row">
 
-        <div class="uk-width-1-6@m">
-          <div uk-sticky="media:@m" class="uk-background-primary uk-light">
-            <div align="left" class="uk-padding-small">
+        <div class="col m12 l2">
+          <div class="">
+            <div align="left" class="">
               <SearchBox/>
               <CheckboxFilters/>
             </div>
           </div>
         </div>
-        <div class="uk-width-5-6@m">
-          <div class="uk-background-secondary">
+        <div class="col m12 l10">
+          <div class="" >
             <transition>
               <keep-alive>
                 <!-- Component matched by the route will render here-->
-                <router-view class="uk-light"></router-view>
+                <router-view></router-view>
               </keep-alive>
             </transition>
           </div>
@@ -35,9 +35,6 @@
 </template>
 
 <script>
-
-import UIkit from '@/uikit/js/uikit';
-import Icons from '@/uikit/js/uikit-icons';
 
 import Router from 'vue-router';
 
@@ -74,12 +71,11 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 
 </style>
