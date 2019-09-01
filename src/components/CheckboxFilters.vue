@@ -49,21 +49,21 @@
     <div class="switch">
         <label>
         Crunchyroll
-        <input type="checkbox">
+        <input checked="" type="checkbox" v-on:click="toggleServices('crunchyroll')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         ADN
-        <input type="checkbox">
+        <input checked="" type="checkbox" v-on:click="toggleServices('adn')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         Wakanim
-        <input type="checkbox">
+        <input checked="" type="checkbox" v-on:click="toggleServices('wakanim')">
         <span class="lever"></span>
         </label>
     </div>

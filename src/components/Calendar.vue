@@ -1,6 +1,7 @@
 <template>
-    <div class="uk-container">
-         <button class="uk-button" @click="toggleWeekends">toggle weekends</button>
+    <div class="">
+        <h1>En construction !</h1>
+         <button class="btn" @click="toggleWeekends">toggle weekends</button>
                 <FullCalendar
                         class="demo-app-calendar"
                         ref="fullCalendar"

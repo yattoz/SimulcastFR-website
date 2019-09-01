@@ -8,15 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.7",
-    "materialize-css": "^1.0.0",
     "@fullcalendar/core": "4.2.0",
     "@fullcalendar/daygrid": "4.2.0",
     "@fullcalendar/interaction": "4.2.0",
     "@fullcalendar/timegrid": "4.2.0",
-    "@fullcalendar/vue": "4.2.0"
+    "@fullcalendar/vue": "4.2.0",
+    "core-js": "^2.6.5",
+    "materialize-css": "^1.0.0",
+    "v-tooltip": "^2.0.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

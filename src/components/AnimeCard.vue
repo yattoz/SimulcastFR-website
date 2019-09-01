@@ -1,31 +1,32 @@
 <template>
     <a :href="anime.link" >
-    <div class="card z-depth-1 inner hoverable">
+    <div class="card z-depth-1 inner hoverable" :class="cardView" >
 
-        <div class="card-image inner" :class="titleView">
+        <div class="card-image inner card-inside">
             <span class="badge z-depth-1" :style="{ 'background-color': badgeColor}">
                 {{anime.service}}
             </span>
             <img :src="anime.image" :alt="anime.title">
-
         </div>
-        <div class="extendview" :style="{'background-color': 'fefefe'}" v-if="!FilterResults.isTitleShown">
-            <span class="adn-text">
+        <div class="extendview" v-if="!FilterResults.isTitleShown">
+            <span class="adn-text" v-tooltip.top="{content: anime.title, delay: 300}">
                 {{anime.title}}
             </span>
-        </div>   
-
-        <transition name="slide">
+        </div>
+         <transition name="slide">
             <div class="compactview z-depth-1"
                 :style="{ 'background-color': badgeColor, opacity: 0.95 }"
                 v-if="FilterResults.isTitleShown">
-                    <span class="adn-text center-align" style="color: #ffffff, opacity: 0" >
+                    <span class="adn-text center-align" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
                     {{anime.title}}
                     </span>
             </div>
-        </transition> 
+        </transition>   
+
+
      
     </div>
+    
  
     </a>
 </template>
@@ -68,15 +69,15 @@
                 var elems = document.querySelectorAll('.tooltipped');
                 var options = {enterDelay: 200};
                 var instances = M.Tooltip.init(elems, options);
-                console.log("tooltip initialized");
+                
             });
         },
         computed: {
             cardWidth() {
                 return this.cardWidthDef * this.FilterResults.cardScaling;
             },
-            titleView(){
-                return this.FilterResults.isTitleShown ? "card-compact" : "card-expand"
+            cardView(){
+                return this.FilterResults.isTitleShown ? "mycard-compact" : "mycard-extend"
             },
             badgeColor() {
                 let service = this.anime.service;
@@ -122,8 +123,7 @@
         -webkit-box-orient:vertical;
         line-clamp:2;
 
-        color: #000000;
-        opacity: 87%;
+        color: #222222;
 
         margin: 4px 4px 4px 4px;
         text-transform:uppercase;
@@ -172,12 +172,14 @@
 
 
         .extendview{
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
             display: flex;
+            bottom: 0px;
             width: 100%;
-            height: 17%; /* */
-            /* min-height: 2.8em; */
-            z-index: 100;
+            height: auto; /* */
+            min-height: 2.8em;
+            z-index: 10;
             
         }
 
@@ -218,13 +220,34 @@
             z-index: 1;
         }
 
-
-        .card-expand{
-            height: 83%;
+        .mycard-extend{
+            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
+            padding: 0em 0em 0em 0em;
+            width: auto;
+            height: 100%;
+            border: solid 1px rgba(0, 0, 0, 0.4);
             z-index: 1;
+            display: grid;
+            grid-gap: 1em;
+            grid-template-rows: 1fr 2em;
+            /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
 
-        .card-compact{
+        .mycard-compact{
+            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
+            padding: 0em 0em 0em 0em;
+            width: auto;
+            height: 100%;
+            border: solid 1px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            display: grid;
+            grid-gap: 1em;
+            grid-template-rows: 1fr;
+            /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
+        }
+
+
+        .card-inside{
             height: 100%;
             top: 0px;
             z-index: 1;

@@ -1,19 +1,16 @@
 <template>
-    <div class="uk-align-left uk-container uk-align-center uk-container-small uk-flex-wrap uk-flex-center uk-grid-medium uk-padding-small">
         <!-- Layout items -->
-        <div id="">
-            <div align="left" uk-grid class="uk-padding-small" tabindex="0">
-                    <ul  class="uk-list" :style="{'column-count': colWidth/10, 'column-width': colWidth + 'px'}">
-                        <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
-                            <a :href="unit.link" :style="{ 'color': badgeColor(unit.service) }"
-                               :uk-tooltip="'title: ' + unit.title + '; pos: bottom'">
-                                {{unit.title}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
+    <div align="left">
+        <ul class="box">
+            <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
+                <a :href="unit.link" :style="{ 'color': badgeColor(unit.service) }"
+                    v-tooltip.top="{content: unit.title, delay: 300}">
+
+                    {{unit.title}}
+                </a>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -21,6 +18,8 @@
     import JQuery from 'jquery'
     let $ = JQuery;
     import StoreFilter from '@/components/StoreFilter';
+    
+
     /*
     const cr_lineup_url = "json/cr_lineup.json";
     const adn_lineup_url = ".son/adn_lineup.json";
@@ -30,7 +29,7 @@
     const proxy = '';
 
     export default {
-        name: "AnimeLineup",
+        name: "AnimeCatalogue",
         components: {
         },
         props: {
@@ -74,7 +73,7 @@
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
                 console.log(self.full_lineup);
-            })
+            });
         },
         methods:{
             badgeColor(service) {
@@ -119,12 +118,20 @@
 <style scoped>
     ul{margin:0; padding:0;}
 
-    .cols_auto{
-
+    .box {
+        display: grid;
+        grid-gap: 0em;
+        grid-template-columns: repeat(auto-fill, minmax(200px,3fr));
+        /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
     }
     .textoverflow{
         overflow: hidden;
+        padding: 2px;
         white-space: nowrap; /* Don't forget this one */
         text-overflow: ellipsis;
+        border: solid 1px rgba(0, 0, 0, 0.3);
+        z-index: 1;
     }
+
+
 </style>

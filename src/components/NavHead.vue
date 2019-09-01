@@ -2,12 +2,12 @@
   <!-- <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"> -->
   <div>
     <nav>
-      <div class="nav-wrapper purple">
-        <router-link class="brand-logo" to="/">SimulcastFR</router-link>
+      <div class="nav-wrapper purple ">
+        <router-link class="brand-logo smart" to="/">SimulcastFR</router-link>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
           <i class="material-icons">menu</i>
         </a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="hide-on-med-and-down right">
           <li class="waves-effect" :class="pathname === '/' ? 'active' : ''">
             <router-link class="" to="/"  @click="pathname='/'">Simulcasts de la saison</router-link>
           </li>
@@ -68,4 +68,14 @@ export default {
 .:hover {
   color: #e3e3e3;
 }
+
+@media (min-width: 993px) {
+  .smart {
+    position: relative;
+  }
+}
+
+
+
+
 </style>
