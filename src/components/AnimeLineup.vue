@@ -8,7 +8,7 @@
         <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
         <AnimeCard v-for="unit in waka_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/> -->
             
-                <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
+        <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
 
@@ -18,7 +18,6 @@
     import JQuery from 'jquery'
     let $ = JQuery;
     import AnimeCard from "@/components/AnimeCard";
-    import CheckboxFilters from "@/components/CheckboxFilters"
     import StoreFilter from '@/components/StoreFilter';
     
     /*
@@ -28,8 +27,9 @@
 
      */
     //const full_lineup_url = "json/full_lineup.json";
-    const proxy = '';
-
+    const proxy = 'https://jsonp.afeld.me/?url=https://simulcastfr.netlify.com/';
+    //const proxy = '';
+    
     export default {
         name: "AnimeLineup",
         components: {

@@ -26,8 +26,9 @@
     const waka_lineup_url = "json/waka_lineup.json";
      */
     //const full_lineup_url = "json/full_lineup.json";
-    const proxy = '';
-
+    const proxy = 'https://jsonp.afeld.me/?url=https://simulcastfr.netlify.com/';
+    //const proxy = '';
+    
     export default {
         name: "AnimeCatalogue",
         components: {
@@ -41,7 +42,6 @@
                 adn_lineup: [],
                 waka_lineup: [],
                 full_lineup: [],
-                colWidthDef: 200,
                 FilterResults: StoreFilter.state
             }
         },
@@ -88,9 +88,6 @@
             }
         },
         computed: {
-            colWidth() {
-                return this.colWidthDef * this.FilterResults.cardScaling;
-            },
             computedLineup(){
                 var typedText = this.FilterResults.search;
                 var serviceSort = this.FilterResults.serviceSort;
