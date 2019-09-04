@@ -27,7 +27,7 @@
 
      */
     //const full_lineup_url = "json/full_lineup.json";
-    const proxy = 'https://jsonp.afeld.me/?url=https://simulcastfr.netlify.com/';
+    const proxy = 'https://jsonp.afeld.me/?url=';
     //const proxy = '';
     
     export default {
@@ -36,7 +36,7 @@
             AnimeCard,
         },
         props: {
-            full_lineup_url: ""
+            full_lineup_url: String
         },
         data() {
             return {
@@ -74,20 +74,20 @@
                 self.full_lineup = json.sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
-                console.log(self.full_lineup);
+                //console.log(self.full_lineup);
             })
         },
         computed: {
             computedLineup(){
                 var typedText = this.FilterResults.search;
                 var serviceSort = this.FilterResults.serviceSort;
-                var tmp;
+                var tmp = this.full_lineup;
                 if (serviceSort) {
-                    tmp = this.full_lineup.sort(function (a, b) {
+                    tmp = tmp.sort(function (a, b) {
                         return ('' + a.service.toLocaleString()).localeCompare(b.service.toLocaleString());
                     });
                 } else {
-                    tmp = this.full_lineup.sort(function (a, b) {
+                    tmp = tmp.sort(function (a, b) {
                         return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                     });
                 }

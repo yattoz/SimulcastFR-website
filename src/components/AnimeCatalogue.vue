@@ -4,10 +4,14 @@
     <div align="left">
         <ul class="box">
             <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
-                <a :href="unit.link" :style="{ 'color': badgeColor(unit.service) }"
-                    v-tooltip.top="{content: unit.title, delay: 300}">
-
+                <a :href="unit.link"
+                    @click.prevent="open_link_in_tab(unit.link)"
+                    v-tooltip.top="{content: unit.title, delay: 300}"
+                    style="color: #000000">
+                    <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
+                    <span class="title">
                     {{unit.title}}
+                    </span>
                 </a>
             </li>
         </ul>
@@ -26,7 +30,7 @@
     const waka_lineup_url = "json/waka_lineup.json";
      */
     //const full_lineup_url = "json/full_lineup.json";
-    const proxy = 'https://jsonp.afeld.me/?url=https://simulcastfr.netlify.com/';
+    const proxy = 'https://jsonp.afeld.me/?url=';
     //const proxy = '';
     
     export default {
@@ -34,7 +38,7 @@
         components: {
         },
         props: {
-            full_lineup_url: ""
+            full_lineup_url: String
         },
         data() {
             return {
@@ -72,7 +76,7 @@
                 self.full_lineup = json.sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
-                console.log(self.full_lineup);
+                //console.log(self.full_lineup);
             });
         },
         methods:{
@@ -80,24 +84,28 @@
                 //let service = this.anime.service;
                 service = service.toLowerCase();
                 if (service === "crunchyroll")
-                    return "#ff7500";
+                    return "#df6300";
                 if (service === "adn")
-                    return "#2c80ed";
+                    return "#0066ff";
                 if (service === "wakanim")
                     return "#e0000a";
+                return "#fefefe";
+            },
+            open_link_in_tab(url){
+                window.open(url);
             }
         },
         computed: {
             computedLineup(){
                 var typedText = this.FilterResults.search;
                 var serviceSort = this.FilterResults.serviceSort;
-                var tmp;
+                var tmp = this.full_lineup;
                 if (serviceSort) {
-                    tmp = this.full_lineup.sort(function (a, b) {
+                    tmp = tmp.sort(function (a, b) {
                         return ('' + a.service.toLocaleString()).localeCompare(b.service.toLocaleString());
                     });
                 } else {
-                    tmp = this.full_lineup.sort(function (a, b) {
+                    tmp = tmp.sort(function (a, b) {
                         return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                     });
                 }
@@ -118,16 +126,30 @@
     .box {
         display: grid;
         grid-gap: 0em;
-        grid-template-columns: repeat(auto-fill, minmax(200px,3fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
     }
+
     .textoverflow{
         overflow: hidden;
+        font-size: 1.0em;
         padding: 2px;
         white-space: nowrap; /* Don't forget this one */
         text-overflow: ellipsis;
         border: solid 1px rgba(0, 0, 0, 0.3);
         z-index: 1;
+    }
+
+    .service-icon{
+        width: 1.6em;
+        margin-bottom: -0.3em;
+        margin-left: 0px;
+        margin-right: 2px;
+        position: relative;
+    }
+
+    .title{
+        margin-left: 0em;
     }
 
 

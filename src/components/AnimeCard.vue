@@ -1,12 +1,18 @@
 <template>
-    <a :href="anime.link" >
+    <a :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
     <div class="card z-depth-1 inner hoverable" :class="cardView" >
 
         <div class="card-image inner card-inside">
-            <span class="badge z-depth-1" :style="{ 'background-color': badgeColor}">
+
+            <span class="badge z-depth-1" :style="{ 'background-color': badgeColor} ">
                 {{anime.service}}
             </span>
-            <img :src="anime.image" :alt="anime.title">
+            <!--
+            <div class="badge-icon z-depth-1" v-if="FilterResults.isTitleShown">
+                <img class="service-icon" :src="'/icons/'+anime.service+'.png'">
+            </div>
+            -->
+            <img class="anime-poster" :src="anime.image" :alt="anime.title">
         </div>
         <div class="extendview" v-if="!FilterResults.isTitleShown">
             <span class="adn-text" v-tooltip.top="{content: anime.title, delay: 300}">
@@ -15,7 +21,7 @@
         </div>
          <transition name="slide">
             <div class="compactview z-depth-1"
-                :style="{ 'background-color': badgeColor, opacity: 0.95 }"
+                :style="{ 'background-color': badgeColor, opacity: 0.90 }"
                 v-if="FilterResults.isTitleShown">
                     <span class="adn-text center-align" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
                     {{anime.title}}
@@ -91,6 +97,11 @@
                 // catch-all
                 return "#fefefe";
             }
+        },
+        methods: {
+            open_link_in_tab(url){
+                window.open(url);
+            }
         }
     }
 </script>
@@ -104,11 +115,11 @@
         overflow: hidden;
     }
 
-    .inner img{
+    .inner .anime-poster{
         transition: all 0.2s ease;
     }
     
-    .inner:hover img{
+    .inner:hover .anime-poster{
          transform: scale(1.06); 
     }
 
@@ -257,6 +268,24 @@
             object-fit: cover;
             height: 100%;
             z-index: 1;
+        }
+
+        .badge-icon{
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+            background-color: #fefefefe;
+            border-radius: 30%;
+            border: solid 1px rgba(0, 0, 0, 0.5);
+            /* border: solid 1px #121212; */
+        }
+
+
+        .service-icon{
+            height: 2em;
+            padding: 3px;
+            position: relative;
         }
 
 

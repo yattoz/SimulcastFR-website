@@ -1,8 +1,7 @@
 <template>
 
     <div class="">
-        <h1>En construction !</h1>
-        <p>Ce calendrier contient des données fixes pour démonstration.</p>
+        <p>Note : ce calendrier n'est actuellement pas filtrable.</p>
                 <FullCalendar
                         class="demo-app-calendar"
                         ref="fullCalendar"
@@ -53,13 +52,16 @@
     const waka_lineup_url = "json/waka_calendar.json";
 
      */
-    const full_calendar_url = "json/full_calendar.json";
-    const proxy = 'https://jsonp.afeld.me/?url=https://simulcastfr.netlify.com/';
+    //const full_calendar_url = "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_calendar.json";
+    const proxy = 'https://jsonp.afeld.me/?url=';
     //const proxy = '';
 
     export default {
         components: {
             FullCalendar // make the <FullCalendar> tag available
+        },
+        props: {
+            full_calendar_url: ""
         },
         data: function() {
             return {
@@ -74,37 +76,28 @@
                 calendarEvents: [
                     // initial event dat
                 ],
-                
-                full_calendar_url: "json/full_calendar.json",
                 full_calendar: [],
                 FilterResults: StoreFilter.state
-
             };
         },
         mounted() {
-            /*
-            this.calendarEvents.push({
-                // add new event data
-                title: "New Event",
-                start: new Date("2019-"),
-                allDay: false
-            });
-            */
             var self = this;
             $.getJSON(proxy + self.full_calendar_url, function (json) {
                 self.full_calendar = json;
                 self.full_calendar.forEach(function(anime){
                     self.calendarEvents.push({
                         // add new event data
-                        title: anime.title + ' ep. ' + anime.ep_number,
+                        title: anime.title + ' - épisode ' + anime.ep_number,
                         start: new Date(anime.ep_time),
                         url: anime.ep_link,
                         backgroundColor: self.badgeColor(anime),
-                        allDay: false
+                        borderColor: self.badgeColor(anime),
+                        allDay: false,
+                        service: anime.service
                     });
                     
                 });
-                console.log(self.calendarEvents);
+                console.log("mounted: " + self.calendarEvents);
             })
         },
         methods: {
@@ -115,15 +108,16 @@
                 let service = anime.service;
                 service = service.toLowerCase();
                 if (service === "crunchyroll")
-                    return "#df6400d0";
+                    return "#df6400d8";
                 if (service === "adn")
-                    return "#0066ff";
+                    return "#0066ffd8";
                 if (service === "wakanim")
-                    return "#e0000a";
+                    return "#e0000ad8";
                 // catch-all
                 return "#fefefe";
             },
             handleDateClick(arg) {
+                /* 
                 if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
                     this.calendarEvents.push({
                         // add new event data
@@ -132,6 +126,7 @@
                         allDay: arg.allDay
                     });
                 }
+                */
             },
             eventClick: function(info) {
                 info.jsEvent.preventDefault(); // don't let the browser navigate
@@ -139,6 +134,22 @@
                 if (info.event.url) {
                 window.open(info.event.url);
                 }
+            }
+        },
+        computed: {
+            computedCalendarEvents() {
+                var typedText = this.FilterResults.search;
+                var tmp = this.calendarEvents;
+                
+                var tmp2 = tmp.filter(event => {
+                    let caught = typedText === "";
+                    caught = caught || event.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
+                    caught = caught && this.FilterResults.tableServices.includes(event.service);
+                    return caught;
+                });
+                console.log("computed: ", tmp2);
+                return this.calendarEvents; 
+
             }
         }
     };
@@ -152,8 +163,6 @@
 
     .demo-app-top {
         margin: 0 0 3em;
-        color: #df6400c5;
-
     }
 
     .demo-app-calendar {
