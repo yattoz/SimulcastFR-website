@@ -11,7 +11,7 @@
             isTitleShown: false,
             cardScaling: 1.0,
             serviceSort: false,
-            tableServices: ['crunchyroll', 'adn', 'wakanim'],
+            tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo'],
 
             forceRedraw: false
         },

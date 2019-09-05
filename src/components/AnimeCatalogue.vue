@@ -89,6 +89,8 @@
                     return "#0066ff";
                 if (service === "wakanim")
                     return "#e0000a";
+                if (service == "primevideo")
+                    return "#00a8e0"
                 return "#fefefe";
             },
             open_link_in_tab(url){

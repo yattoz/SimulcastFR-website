@@ -69,6 +69,13 @@
     </div>
     <div class="switch">
         <label>
+        Amazon Prime Video
+        <input checked="" type="checkbox" v-on:click="toggleServices('primevideo')">
+        <span class="lever"></span>
+        </label>
+    </div>
+    <div class="switch">
+        <label>
         Vue compacte
         <input type="checkbox" v-on:click="toggleTitle()">
         <span class="lever"></span>

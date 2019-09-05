@@ -113,6 +113,8 @@
                     return "#0066ffd8";
                 if (service === "wakanim")
                     return "#e0000ad8";
+                if (service == "primevideo")
+                    return "#00a8e0d8"
                 // catch-all
                 return "#fefefe";
             },
