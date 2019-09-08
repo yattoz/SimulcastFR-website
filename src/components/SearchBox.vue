@@ -1,8 +1,8 @@
 <template>
 
-    <form class="">
+    <form class="" @submit.prevent="blurInput()" id="searchForm">
         <div class="input-field">
-            <input id="searchBoxAnime" type="text" v-model="search">
+            <input id="searchBoxAnime" type="text" v-model="search" v-on:input="processInput" >
             <label for="searchBoxAnime">Rechercher...</label>
             <i class="material-icons btn-flat prefix right" v-on:click="clearInput()">clear</i>
         </div>
@@ -25,15 +25,18 @@
         },
         watch: {
             search() {
-                this.processInput();
+                //this.processInput(); //old input processor, does not work with IME (so not on smartphones)
             }
         },
         methods: {
             processInput: debounce(function (){
-                //var typedText = document.getElementById('searchBoxAnime').value;
-                var typedText = this.search;
+                var typedText = document.getElementById('searchBoxAnime').value;
+                //var typedText = this.search;
                 StoreFilter.setSearch(typedText);
             }, 100),
+            blurInput() {
+                document.getElementById('searchBoxAnime').blur()
+            },
             clearInput() {
                 document.getElementById('searchBoxAnime').value = "";
                 StoreFilter.setSearch("");
