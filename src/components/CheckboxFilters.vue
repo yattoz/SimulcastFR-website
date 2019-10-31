@@ -91,7 +91,6 @@
         data() {
             return {
                 Filter: StoreFilter,
-                FilterResult: StoreFilter.state,
                 isCrunchyrollOn: true,
                 isAdnOn: true,
                 isWakanimOn: true,
@@ -101,15 +100,16 @@
         },
         mounted() {
             var self = this;
-            this.isCrunchyrollOn = this.FilterResult.tableServices.includes('crunchyroll')
+            this.isCrunchyrollOn = this.Filter.state.tableServices.includes('crunchyroll')
             this.isAdnOn = this.Filter.state.tableServices.includes('adn')
             this.isWakanimOn = this.Filter.state.tableServices.includes('wakanim')
             this.isPrimeVideoOn = this.Filter.state.tableServices.includes('primevideo')
-            this.isCompactModeOn = this.FilterResult.isTitleShown
+            this.isCompactModeOn = this.Filter.state.isTitleShown
         },
         methods: {
             toggleTitle(){
                 this.Filter.toggleTitle()
+                this.isCompactModeOn = this.Filter.state.isTitleShown // firefox bug at init, I set it all the time now...
             },
             updateScaling() {
                 let value = document.getElementById('scaleRange').value;
@@ -121,6 +121,7 @@
             },
             toggleServices(service) {
                 this.Filter.toggleServices(service);
+
             },
             setServiceSort(type) {
                 this.Filter.setServiceSort(type);
