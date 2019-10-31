@@ -49,35 +49,35 @@
     <div class="switch">
         <label>
         Crunchyroll
-        <input checked="" type="checkbox" v-on:click="toggleServices('crunchyroll')">
+        <input :checked="isCrunchyrollOn" type="checkbox" v-on:click="toggleServices('crunchyroll')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         ADN
-        <input checked="" type="checkbox" v-on:click="toggleServices('adn')">
+        <input :checked="isAdnOn" type="checkbox" v-on:click="toggleServices('adn')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         Wakanim
-        <input checked="" type="checkbox" v-on:click="toggleServices('wakanim')">
+        <input :checked="isWakanimOn" type="checkbox" v-on:click="toggleServices('wakanim')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         Amazon Prime Video
-        <input checked="" type="checkbox" v-on:click="toggleServices('primevideo')">
+        <input :checked="isPrimeVideoOn" type="checkbox" v-on:click="toggleServices('primevideo')">
         <span class="lever"></span>
         </label>
     </div>
     <div class="switch">
         <label>
         Vue compacte
-        <input type="checkbox" v-on:click="toggleTitle()">
+        <input :checked="isCompactModeOn" type="checkbox" v-on:click="toggleTitle()">
         <span class="lever"></span>
         </label>
     </div>
@@ -91,11 +91,21 @@
         data() {
             return {
                 Filter: StoreFilter,
-                crunchyrollActive: true,
-                adnActive: true,
-                wakanimActive: true,
-                sliderValue: 1.0
+                FilterResult: StoreFilter.state,
+                isCrunchyrollOn: true,
+                isAdnOn: true,
+                isWakanimOn: true,
+                isPrimeVideoOn: true,
+                isCompactModeOn: false,
             }
+        },
+        mounted() {
+            var self = this;
+            this.isCrunchyrollOn = this.FilterResult.tableServices.includes('crunchyroll')
+            this.isAdnOn = this.Filter.state.tableServices.includes('adn')
+            this.isWakanimOn = this.Filter.state.tableServices.includes('wakanim')
+            this.isPrimeVideoOn = this.Filter.state.tableServices.includes('primevideo')
+            this.isCompactModeOn = this.FilterResult.isTitleShown
         },
         methods: {
             toggleTitle(){

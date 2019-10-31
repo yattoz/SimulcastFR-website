@@ -8,6 +8,7 @@
         <h3>Liste des changements</h3>
         <p>
             <ul>
+                <li><b>[31/10/2019]</b> [Fix] Les interrupteurs pour filtrer la page se synchronisent maintenant correctement avec l'état du filtre quand on ferme puis restaure l'onglet. Aussi : renommage de la page pour meilleur référencement.</li>
                 <li><b>[08/09/2019]</b> La zone de recherche perd le focus en appuyant sur Entrée. Permet de fermer le clavier virtuel des smartphones et évite de rafraichir la page.</li>
                 <li><b>[07/09/2019]</b> Affichage des animes d'Amazon Prime Vidéo avec les données de Nautiljon.</li>
                 <li><b>[06/09/2019]</b> Passage sur un déploiement automatique de Netlify par le dépot GitHub.</li>
@@ -17,7 +18,7 @@
         </p>
         <h3>Contact</h3>
         <p>
-            Pour me faire part des bugs de façon efficace, <a href="https://github.com/simulcastfr/SimulcastFR-website/issues">ouvrez une <i>issue</i> sur GitHub.</a>
+            Pour me faire part des bugs de façon efficace, <a href="https://github.com/yattoz/SimulcastFR-website/issues">ouvrez une <i>issue</i> sur GitHub.</a>
         </p>
         <p>
             Mon Twitter est ouvert : <a href=https://www.twitter.com/yattoz>@yattoz</a> pour :
