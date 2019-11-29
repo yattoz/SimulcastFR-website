@@ -115,6 +115,8 @@
                     return "#e0000ad8";
                 if (service == "primevideo")
                     return "#00a8e0d8"
+                if (service == "netflix")
+                    return "#000000d8"
                 // catch-all
                 return "#fefefe";
             },

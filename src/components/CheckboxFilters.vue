@@ -74,6 +74,13 @@
         <span class="lever"></span>
         </label>
     </div>
+        <div class="switch">
+        <label>
+        Netflix
+        <input :checked="isNetflixOn" type="checkbox" v-on:click="toggleServices('netflix')">
+        <span class="lever"></span>
+        </label>
+    </div>
     <div class="switch">
         <label>
         Vue compacte
@@ -95,6 +102,7 @@
                 isAdnOn: true,
                 isWakanimOn: true,
                 isPrimeVideoOn: true,
+                isNetflixOn: true,
                 isCompactModeOn: false,
             }
         },
@@ -104,6 +112,7 @@
             this.isAdnOn = this.Filter.state.tableServices.includes('adn')
             this.isWakanimOn = this.Filter.state.tableServices.includes('wakanim')
             this.isPrimeVideoOn = this.Filter.state.tableServices.includes('primevideo')
+            this.isNetflixOn = this.Filter.state.tableServices.includes('netflix')
             this.isCompactModeOn = this.Filter.state.isTitleShown
         },
         methods: {

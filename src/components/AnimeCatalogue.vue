@@ -91,6 +91,8 @@
                     return "#e0000a";
                 if (service == "primevideo")
                     return "#00a8e0"
+                if (service == "netflix")
+                    return "#000000"
                 return "#fefefe";
             },
             open_link_in_tab(url){

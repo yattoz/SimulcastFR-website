@@ -74,8 +74,8 @@
             document.addEventListener('DOMContentLoaded', function() {
                 var elems = document.querySelectorAll('.tooltipped');
                 var options = {enterDelay: 200};
-                var instances = M.Tooltip.init(elems, options);
-                
+                M.Tooltip.init(elems, options);
+
             });
         },
         computed: {
@@ -96,6 +96,8 @@
                     return "#e0000a";
                 if (service == "primevideo")
                     return "#00a8e0"
+                if (service == "netflix")
+                    return "#000000"                    
                 // catch-all
                 return "#fefefe";
             }
