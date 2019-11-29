@@ -22,7 +22,7 @@ const routes = [
     path: '/',
     name: 'Full Lineup',
     component: AnimeLineup,
-    props:  { full_lineup_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_lineup.json"},
+    props:  { full_lineup_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_lineup-devel.json"},
       beforeEnter: (to, from, next) => {
           // called before the route that renders this component is confirmed.
           // does NOT have access to `this` component instance,
@@ -44,7 +44,7 @@ const routes = [
   {
     path: '/full-lineup',
     component: AnimeCatalogue,
-    props: { full_lineup_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_catalogue.json"},
+    props: { full_lineup_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_catalogue-devel.json"},
     beforeEnter: (to, from, next) => {
         // called before the route that renders this component is confirmed.
         // does NOT have access to `this` component instance,
@@ -55,7 +55,7 @@ const routes = [
   {
     path: '/calendar',
     component: Calendar,
-    props: { full_calendar_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_calendar.json"},
+    props: { full_calendar_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_calendar-devel.json"},
     beforeEnter: (to, from, next) => {
       
         // called before the route that renders this component is confirmed.
