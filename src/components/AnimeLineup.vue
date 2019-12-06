@@ -1,5 +1,5 @@
 <template>
-
+    <div>
     <div class="box" tabindex="0">
         <!-- Layout items -->
 
@@ -10,6 +10,15 @@
             
         <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
+    </div>
+    <div align="center" class="no_result" v-if="computedLineup.length <= 0" >
+        <p>Aucun résultat pour la recherche.</p>
+        <p>
+        Si vous cherchez une œuvre dont la diffusion est terminée,
+            <router-link to="/full-lineup">
+            recherchez plutôt dans le catalogue.
+            </router-link></p>
+    </div>
     </div>
 
 </template>
@@ -108,5 +117,9 @@
         grid-gap: 1em;
         grid-template-columns: repeat(auto-fill, minmax(120px,3fr));
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
+    }
+
+    .no_result{
+        font-size: large
     }
 </style>

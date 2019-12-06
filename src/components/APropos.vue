@@ -8,7 +8,7 @@
         <h3>Liste des changements</h3>
         <p>
             <ul>
-                <li><b>[06/12/2019]</b>Ajout du catalogue Netflix avec les données d'un site communautaire français.</li>
+                <li><b>[06/12/2019]</b> Ajout du catalogue Netflix avec les données d'un site communautaire français. Aussi: ajout d'un message si la recherche est vide.</li>
                 <li><b>[31/10/2019]</b> [Fix] Les interrupteurs pour filtrer la page se synchronisent maintenant correctement avec l'état du filtre quand on ferme puis restaure l'onglet. Aussi : renommage de la page pour meilleur référencement.</li>
                 <li><b>[08/09/2019]</b> La zone de recherche perd le focus en appuyant sur Entrée. Permet de fermer le clavier virtuel des smartphones et évite de rafraichir la page.</li>
                 <li><b>[07/09/2019]</b> Affichage des animes d'Amazon Prime Vidéo avec les données d'un site communautaire français.</li>

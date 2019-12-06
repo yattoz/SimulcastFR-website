@@ -15,6 +15,9 @@
                 </a>
             </li>
         </ul>
+        <div align="center" class="no_result" v-if="computedLineup.length <= 0" >
+        <p>Aucun résultat pour la recherche.</p>
+        </div>
     </div>
 </template>
 
@@ -154,6 +157,10 @@
 
     .title{
         margin-left: 0em;
+    }
+
+    .no_result{
+        font-size: large
     }
 
 
