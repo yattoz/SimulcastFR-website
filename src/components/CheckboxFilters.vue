@@ -107,7 +107,7 @@
             }
         },
         mounted() {
-            var self = this;
+            //var self = this;
             this.isCrunchyrollOn = this.Filter.state.tableServices.includes('crunchyroll')
             this.isAdnOn = this.Filter.state.tableServices.includes('adn')
             this.isWakanimOn = this.Filter.state.tableServices.includes('wakanim')

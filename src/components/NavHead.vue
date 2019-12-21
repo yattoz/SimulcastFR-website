@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import Router from "vue-router";
+//import Router from "vue-router";
 import M from "materialize-css";
 
 export default {
@@ -55,7 +55,7 @@ export default {
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".sidenav");
       var options = { edge: "left" };
-      var instances = M.Sidenav.init(elems, options);
+      M.Sidenav.init(elems, options);
     });
   }
 };

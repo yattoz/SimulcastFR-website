@@ -16,23 +16,23 @@
         },
         setSearch: function(str) {
             this.state.search = str;
-            console.log("StoreFilter.search = " + this.state.search);
+            //console.log("StoreFilter.search = " + this.state.search);
         },
         toggleTitle: function() {
             this.state.isTitleShown = !this.state.isTitleShown;
-            console.log("StoreFilter.isTitleShown = " + this.state.isTitleShown)
+            //console.log("StoreFilter.isTitleShown = " + this.state.isTitleShown)
         },
         updateScaling: function(value) {
             this.state.cardScaling = value;
-            console.log("StoreFilter.cardScaling = " + this.state.cardScaling)
+            //console.log("StoreFilter.cardScaling = " + this.state.cardScaling)
         },
         forceRedraw: function() {
             this.state.forceRedraw = !this.state.forceRedraw;
-            console.log("Force redraw")
+            //console.log("Force redraw")
         },
         setServiceSort: function(type) {
             this.state.serviceSort = type;
-            console.log("StoreFilter.serviceSort = " + this.state.serviceSort)
+            //console.log("StoreFilter.serviceSort = " + this.state.serviceSort)
         },
         toggleServices: function(service) {
             if (this.state.tableServices.includes(service))
@@ -44,7 +44,7 @@
                 this.state.tableServices.push(service);
             }
 
-            console.log(service + " toggled");
+            //console.log(service + " toggled");
         }
 
     }

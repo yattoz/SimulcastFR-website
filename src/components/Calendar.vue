@@ -37,7 +37,7 @@
     import dayGridPlugin from "@fullcalendar/daygrid";
     import timeGridPlugin from "@fullcalendar/timegrid";
     import interactionPlugin from "@fullcalendar/interaction";
-    import frLocale from '@fullcalendar/core/locales/fr';
+    //import frLocale from '@fullcalendar/core/locales/fr';
     import listPlugin from '@fullcalendar/list';
 
     // must manually include stylesheets for each plugin
@@ -61,7 +61,7 @@
             FullCalendar // make the <FullCalendar> tag available
         },
         props: {
-            full_calendar_url: ""
+            full_calendar_url: String
         },
         data: function() {
             return {
@@ -97,7 +97,7 @@
                     });
                     
                 });
-                console.log("mounted: " + self.calendarEvents);
+                //console.log("mounted: " + self.calendarEvents);
             })
         },
         methods: {
@@ -120,8 +120,9 @@
                 // catch-all
                 return "#fefefe";
             },
+            /*
             handleDateClick(arg) {
-                /* 
+                
                 if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
                     this.calendarEvents.push({
                         // add new event data
@@ -130,7 +131,6 @@
                         allDay: arg.allDay
                     });
                 }
-                */
             },
             eventClick: function(info) {
                 info.jsEvent.preventDefault(); // don't let the browser navigate
@@ -138,20 +138,20 @@
                 if (info.event.url) {
                 window.open(info.event.url);
                 }
-            }
+            }*/
         },
         computed: {
             computedCalendarEvents() {
                 var typedText = this.FilterResults.search;
                 var tmp = this.calendarEvents;
                 
-                var tmp2 = tmp.filter(event => {
+                /*var tmp2 = */tmp.filter(event => {
                     let caught = typedText === "";
                     caught = caught || event.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
                     caught = caught && this.FilterResults.tableServices.includes(event.service);
                     return caught;
                 });
-                console.log("computed: ", tmp2);
+                //console.log("computed: ", tmp2);
                 return this.calendarEvents; 
 
             }

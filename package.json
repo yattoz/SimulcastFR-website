@@ -14,22 +14,22 @@
     "@fullcalendar/timegrid": "4.2.0",
     "@fullcalendar/vue": "4.2.0",
     "@fullcalendar/list": "4.2.0",
-    "core-js": "^2.6.5",
+    "core-js": "^3.6.0",
     "materialize-css": "^1.0.0",
     "v-tooltip": "^2.0.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.0",
-    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
     "@vue/cli-service": "^4.1.1",
     "jquery": "^3.4.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-utils": ">=1.4.1",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
