@@ -9,6 +9,7 @@
         state: {
             search: "",
             isTitleShown: false,
+            isDubbedOn: false,
             cardScaling: 1.0,
             serviceSort: false,
             tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo', 'netflix'],
@@ -21,6 +22,10 @@
         toggleTitle: function() {
             this.state.isTitleShown = !this.state.isTitleShown;
             //console.log("StoreFilter.isTitleShown = " + this.state.isTitleShown)
+        },
+        toggleDubbed: function() {
+            this.state.isDubbedOn = !this.state.isDubbedOn
+            //console.log("StoreFilter.isDubbedOn = " + this.state.isDubbedOn)
         },
         updateScaling: function(value) {
             this.state.cardScaling = value;

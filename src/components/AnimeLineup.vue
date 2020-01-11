@@ -104,6 +104,7 @@
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
                     caught = caught && this.FilterResults.tableServices.includes(unit.service);
+                    caught = caught && (this.FilterResults.isDubbedOn || unit.title.slice(-4) !== "Dub)")
                     return caught;
                 });
             }

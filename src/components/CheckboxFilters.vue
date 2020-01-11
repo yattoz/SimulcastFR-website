@@ -88,6 +88,13 @@
         <span class="lever"></span>
         </label>
     </div>
+        <div class="switch">
+        <label>
+        Doublages
+        <input :checked="isDubbedOn" type="checkbox" v-on:click="toggleDubbed()">
+        <span class="lever"></span>
+        </label>
+    </div>
     </div>
 </template>
 
@@ -104,6 +111,7 @@
                 isPrimeVideoOn: true,
                 isNetflixOn: true,
                 isCompactModeOn: false,
+                isDubbedOn: false
             }
         },
         mounted() {
@@ -114,11 +122,16 @@
             this.isPrimeVideoOn = this.Filter.state.tableServices.includes('primevideo')
             this.isNetflixOn = this.Filter.state.tableServices.includes('netflix')
             this.isCompactModeOn = this.Filter.state.isTitleShown
+            this.isDubbedOn = this.Filter.state.isDubbedOn
         },
         methods: {
             toggleTitle(){
                 this.Filter.toggleTitle()
                 this.isCompactModeOn = this.Filter.state.isTitleShown // firefox bug at init, I set it all the time now...
+            },
+            toggleDubbed(){
+                this.Filter.toggleDubbed()
+                this.isDubbedOn = this.Filter.state.isDubbedOn // firefox bug at init, I set it all the time now...
             },
             updateScaling() {
                 let value = document.getElementById('scaleRange').value;
@@ -130,7 +143,6 @@
             },
             toggleServices(service) {
                 this.Filter.toggleServices(service);
-
             },
             setServiceSort(type) {
                 this.Filter.setServiceSort(type);
