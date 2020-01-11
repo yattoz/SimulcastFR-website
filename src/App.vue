@@ -7,13 +7,11 @@
   <div class="">
     <div class="">
       <div class="row">
-
         <div class="col s12 m3 l3">
-          <div class="container" style="margin-bottom: 3em">
+          <div class="container" style="margin-bottom: 1em">
             <div align="left" class="">
                 <SearchBox/>
-              <CheckboxFilters/>
-
+                <CheckboxFilters/>
             </div>
           </div>
         </div>

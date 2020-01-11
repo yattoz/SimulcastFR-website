@@ -11,8 +11,8 @@
         <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
-    <div align="center" class="no_result" v-if="computedLineup.length <= 0" >
-        <p>Aucun résultat pour la recherche.</p>
+    <div align="center" class="no_result" v-if="(computedLineup.length <= 0) && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim()))) ">
+        <p>Aucun résultat pour la recherche dans les simulcasts de cette saison.</p>
         <p>
         Si vous cherchez une œuvre dont la diffusion est terminée,
             <router-link to="/full-lineup">
@@ -116,7 +116,7 @@
       .box {
         display: grid;
         grid-gap: 1em;
-        grid-template-columns: repeat(auto-fill, minmax(120px,3fr));
+        grid-template-columns: repeat(auto-fill, minmax(8em,3fr)); /* 120px */
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
     }
 

@@ -15,7 +15,7 @@
                 </a>
             </li>
         </ul>
-        <div align="center" class="no_result" v-if="computedLineup.length <= 0" >
+        <div align="center" class="no_result" v-if="computedLineup.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))" >
         <p>Aucun résultat pour la recherche.</p>
         </div>
     </div>
