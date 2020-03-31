@@ -7,7 +7,7 @@
   <div class="">
     <div class="">
       <div class="row">
-        <div class="col s12 m3 l3">
+        <div class="col s12 m12 l3">
           <div class="container" style="margin-bottom: 1em">
             <div align="left" class="">
                 <SearchBox/>
@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="col s12 m9 l9">
+        <div class="col s12 m12 l9">
           <div class="" >
             <transition>
               <keep-alive>

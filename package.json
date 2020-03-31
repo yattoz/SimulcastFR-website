@@ -18,7 +18,9 @@
     "materialize-css": "^1.0.0",
     "v-tooltip": "^2.0.2",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.7"
+    "vue-router": "^3.0.7",
+    "acorn": ">=6.4.1",
+    "minimist": ">=1.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.1",
