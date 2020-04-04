@@ -76,7 +76,7 @@
             });
             */
             $.getJSON(proxy + self.full_lineup_url, function (json) {
-                self.full_lineup = json.sort(function (a, b) {
+                self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
                 //console.log(self.full_lineup);

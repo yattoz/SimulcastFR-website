@@ -83,7 +83,7 @@
         mounted() {
             var self = this;
             $.getJSON(proxy + self.full_calendar_url, function (json) {
-                self.full_calendar = json;
+                self.full_calendar = json["data"];
                 self.full_calendar.forEach(function(anime){
                     self.calendarEvents.push({
                         // add new event data
