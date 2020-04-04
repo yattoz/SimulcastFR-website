@@ -1,11 +1,11 @@
 <template>
         <!-- Layout items -->
+    <div>
 
     <div align="left">
-        TEXT
-        <!--
+
         <ul class="box">
-            <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service).concat(unit.time)"  class="textoverflow">
+            <li v-for="unit in computedAdded" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
                 <a :href="unit.link"
                     @click.prevent="open_link_in_tab(unit.link)"
                     v-tooltip.top="{content: unit.title, delay: 300}"
@@ -17,10 +17,37 @@
                 </a>
             </li>
         </ul>
-        <div align="center" class="no_result" v-if="computedLineup.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))" >
-        <p>Aucun résultat pour la recherche.</p>
+        
+        <div align="center" class="no_result" v-if="computedAdded.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))" >
+        <p>Pas de changements.</p>
         </div>
-        -->
+
+    </div>
+    <p>================================</p>
+    <div align="left">
+
+        <ul class="box">
+            <li v-for="unit in computedRemoved" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
+                <a :href="unit.link"
+                    @click.prevent="open_link_in_tab(unit.link)"
+                    v-tooltip.top="{content: unit.title, delay: 300}"
+                    style="color: #000000">
+                    <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
+                    <span class="title">
+                    {{unit.title}}
+                    </span>
+                </a>
+            </li>
+        </ul>
+        
+        <div align="center" class="no_result" v-if="computedRemoved.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))" >
+        <p>Pas de changements.</p>
+        </div>
+
+    </div>
+    <p>================================</p>
+    <p>================================</p>
+    <p>================================</p>
 
     </div>
 </template>
@@ -97,10 +124,30 @@
             }
         },
         computed: {
-            computedLineup(){
+            computedAdded(){
                 var typedText = this.FilterResults.search;
                 var serviceSort = this.FilterResults.serviceSort;
-                var tmp = this.added_lineup;
+                var tmp = this.added_lineup["data"];
+                if (serviceSort) {
+                    tmp = tmp.sort(function (a, b) {
+                        return ('' + a.service.toLocaleString()).localeCompare(b.service.toLocaleString());
+                    });
+                } else {
+                    tmp = tmp.sort(function (a, b) {
+                        return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
+                    });
+                }
+                return tmp.filter(unit => {
+                    let caught = typedText === "";
+                    caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
+                    caught = caught && this.FilterResults.tableServices.includes(unit.service);
+                    return caught;
+                });
+            },
+            computedRemoved(){
+                var typedText = this.FilterResults.search;
+                var serviceSort = this.FilterResults.serviceSort;
+                var tmp = this.removed_lineup["data"];
                 if (serviceSort) {
                     tmp = tmp.sort(function (a, b) {
                         return ('' + a.service.toLocaleString()).localeCompare(b.service.toLocaleString());
