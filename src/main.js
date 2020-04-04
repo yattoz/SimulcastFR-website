@@ -7,6 +7,7 @@ import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
 import AnimeCatalogue from "@/components/AnimeCatalogue"
+import AnimeHistory from "@/components/AnimeHistory"
 import APropos from "@/components/APropos"
 import Calendar from "@/components/Calendar"
 
@@ -43,8 +44,21 @@ const routes = [
   },
   {
     path: '/full-lineup',
+    name: "Catalogue",
     component: AnimeCatalogue,
     props: { full_lineup_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_catalogue.json"},
+    beforeEnter: (to, from, next) => {
+        // called before the route that renders this component is confirmed.
+        // does NOT have access to `this` component instance,
+        // because it has not been created yet when this guard is called
+        next()
+    },
+  },
+  {
+    path: '/history',
+    name: 'Historique',
+    component: AnimeHistory,
+    props: { diff_catalogue_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_diff_catalogue.json"},
     beforeEnter: (to, from, next) => {
         // called before the route that renders this component is confirmed.
         // does NOT have access to `this` component instance,

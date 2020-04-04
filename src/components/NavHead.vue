@@ -17,6 +17,9 @@
           <li class="waves-effect" :class="pathname === '/full-lineup' ? 'active' : ''">
             <router-link class="" to="/full-lineup" @click="pathname='/full-lineup'">Catalogue</router-link>
           </li>
+          <li class="waves-effect" :class="pathname === '/history' ? 'active' : ''">
+            <router-link class="" to="/history" @click="pathname='/history'">Historique</router-link>
+          </li>
           <li class="waves-effect"  :class="pathname === '/about' ? 'active' : ''">
             <router-link class="" to="/about" @click="pathname='/about'">A propos</router-link>
           </li>
@@ -32,6 +35,9 @@
           </li>
       <li>
         <router-link class="waves-effect sidenav-close" to="/full-lineup">Catalogue</router-link>
+      </li>
+      <li>
+        <router-link class="waves-effect sidenav-close" to="/history">Historique</router-link>
       </li>
       <li>
         <router-link class="waves-effect sidenav-close" to="/about">A propos</router-link>
@@ -62,12 +68,15 @@ export default {
 </script>
 
 <style scoped>
-. {
+
+/*
+.{
   color: #fefefe;
 }
 .:hover {
   color: #e3e3e3;
 }
+*/
 
 @media (min-width: 993px) {
   .smart {
