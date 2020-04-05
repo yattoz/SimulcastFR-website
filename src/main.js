@@ -7,7 +7,7 @@ import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
 import AnimeCatalogue from "@/components/AnimeCatalogue"
-import AnimeHistory from "@/components/AnimeHistory"
+import AnimeAddedRemoved from "@/components/AnimeAddedRemoved"
 import APropos from "@/components/APropos"
 import Calendar from "@/components/Calendar"
 
@@ -55,9 +55,9 @@ const routes = [
     },
   },
   {
-    path: '/history',
-    name: 'Historique',
-    component: AnimeHistory,
+    path: '/added-removed',
+    name: 'Ajouts / Retraits',
+    component: AnimeAddedRemoved,
     props: { diff_catalogue_url: "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_diff_catalogue.json"},
     beforeEnter: (to, from, next) => {
         // called before the route that renders this component is confirmed.

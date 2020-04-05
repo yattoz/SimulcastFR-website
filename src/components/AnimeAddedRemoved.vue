@@ -1,10 +1,11 @@
 <template>
         <!-- Layout items -->
 
-    <div align="left">
-        <WeekHistory v-for="unit in computedWeek" 
+    <div>
+        <WeekAddedRemoved v-for="unit in computedWeek" 
             v-bind:added_lineup="unit.added" 
             v-bind:removed_lineup="unit.removed"
+            v-bind:time="unit.time"
             v-bind:key="unit.time"/>
     </div>
 </template>
@@ -13,15 +14,15 @@
     import JQuery from 'jquery'
     let $ = JQuery;
     import StoreFilter from '@/components/StoreFilter';
-    import WeekHistory from '@/components/WeekHistory';
+    import WeekAddedRemoved from '@/components/WeekAddedRemoved';
     
     const proxy = 'https://jsonp.afeld.me/?url=';
     //const proxy = '';
     
     export default {
-        name: "AnimeHistory",
+        name: "AnimeAddedRemoved",
         components: {
-            WeekHistory
+            WeekAddedRemoved
         },
         props: {
             diff_catalogue_url: String

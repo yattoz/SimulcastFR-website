@@ -17,8 +17,8 @@
           <li class="waves-effect" :class="pathname === '/full-lineup' ? 'active' : ''">
             <router-link class="" to="/full-lineup" @click="pathname='/full-lineup'">Catalogue</router-link>
           </li>
-          <li class="waves-effect" :class="pathname === '/history' ? 'active' : ''">
-            <router-link class="" to="/history" @click="pathname='/history'">Historique</router-link>
+          <li class="waves-effect" :class="pathname === '/added-removed' ? 'active' : ''">
+            <router-link class="" to="/added-removed" @click="pathname='/added-removed'">Ajouts / Retraits</router-link>
           </li>
           <li class="waves-effect"  :class="pathname === '/about' ? 'active' : ''">
             <router-link class="" to="/about" @click="pathname='/about'">A propos</router-link>
@@ -37,7 +37,7 @@
         <router-link class="waves-effect sidenav-close" to="/full-lineup">Catalogue</router-link>
       </li>
       <li>
-        <router-link class="waves-effect sidenav-close" to="/history">Historique</router-link>
+        <router-link class="waves-effect sidenav-close" to="/added-removed">Ajouts / Retraits</router-link>
       </li>
       <li>
         <router-link class="waves-effect sidenav-close" to="/about">A propos</router-link>
