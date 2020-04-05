@@ -124,7 +124,7 @@
     }
     
     .inner:hover .anime-poster{
-         transform: scale(1.06); 
+         transform: scale(1.07); 
     }
 
 
@@ -226,7 +226,7 @@
         }
         
         .card{
-            /* border-radius: 10px; */
+            border-radius: 4px;
             margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
             padding: 0em 0em 0em 0em;
             width: auto;

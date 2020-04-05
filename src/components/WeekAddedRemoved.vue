@@ -3,9 +3,13 @@
   <div>
     <div align="left">
       <div class="row">
-        <p> {{ computedTime }} </p>
+      <div class = "datetime">
+         <h5>
+           {{ computedTime }} 
+          </h5>
+      </div>
         <div class="col s12 m12 l6 catalogue-col">
-        <div align="center" class="col-title">
+        <div align="center" class="col-title added-title">
             Nouvelles licences
         </div>
               <ul class="box" v-bind:class="{box_compact: FilterResults.isTitleShown}">
@@ -39,10 +43,11 @@
             >
               <p>Pas de changements.</p>
             </div>
+            <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
         </div>
         <div class="col s12 m12 l6 catalogue-col">
-          <div align="left" class="">
-            <div align="center" class="col-title">
+          <div align="left"> <!-- a bit of spacing -->
+            <div align="center" class="col-title removed-title">
                 Licences expirées
             </div>
             <ul class="box"  v-bind:class="{box_compact: FilterResults.isTitleShown}">
@@ -74,13 +79,16 @@
             <div
               align="center"
               class="no_result"
-              v-if="computedRemoved.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
-            >
+              v-if="computedRemoved.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))">
               <p>Pas de changements avec ces filtres.</p>
             </div>
+            <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
           </div>
         </div>
       </div>
+    </div>
+    <div style = 'padding: 0.6em; padding-left: 4em; padding-right: 4em'>
+    <!-- <div style='border: solid 1px rgba(0, 0, 0, 0.3);'/> -->
     </div>
   </div>
 </template>
@@ -100,7 +108,7 @@ const proxy = "https://jsonp.afeld.me/?url=";
 //const proxy = '';
 
 export default {
-  name: "WeekHistory",
+  name: "WeekAddedRemoved",
   components: {},
   props: {
     diff_catalogue_url: String,
@@ -217,16 +225,29 @@ export default {
 
 <style scoped>
 .added {
-  background: rgba(181, 231, 181, 0.5);
+  background-color: rgba(181, 231, 181, 0.5);
 }
 
 .removed {
   background-color: rgba(255, 185, 197, 0.5);
 }
 
+.added-title {
+  color: rgb(0, 165, 0);
+}
+
+.removed-title {
+  color: rgb(156, 0, 26);
+}
+
+.datetime{
+  padding-left: 0.75em;
+}
+
 .col-title {
-    margin-top: 1em;
-    padding: 0.4em;
+    padding: 0.2em;
+    font-size: 12pt;
+    font-weight: 500;
     /* border: solid 1px rgba(0, 0, 0, 0.15); 
     border-top-left-radius: 1em;
     border-top-right-radius: 1em; */
