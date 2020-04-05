@@ -247,7 +247,7 @@ export default {
 .col-title {
     padding: 0.2em;
     font-size: 12pt;
-    font-weight: 500;
+    font-weight: 501;
     /* border: solid 1px rgba(0, 0, 0, 0.15); 
     border-top-left-radius: 1em;
     border-top-right-radius: 1em; */
