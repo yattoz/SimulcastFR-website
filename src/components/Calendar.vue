@@ -22,9 +22,10 @@
                         :events="calendarEvents"
                         :locales="['fr']"
                         :height="'auto'"
-                        @eventClick="eventClick"
-                        @dateClick="handleDateClick"
                 />
+                <!--    @eventClick="eventClick"
+                        @dateClick="handleDateClick"   -->
+
     </div>
 </template>
 
