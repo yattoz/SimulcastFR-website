@@ -5,7 +5,8 @@
         <WeekAddedRemoved v-for="unit in computedWeek" 
             v-bind:added_lineup="unit.added" 
             v-bind:removed_lineup="unit.removed"
-            v-bind:time="unit.time"
+            v-bind:time_begin="unit.time_begin"
+            v-bind:time_end="unit.time_end"
             v-bind:key="unit.time"/>
     </div>
 </template>
@@ -30,7 +31,8 @@
         data() {
             return {
                 week: [],
-                time: [],
+                time_begin: [],
+                time_end: [],
                 FilterResults: StoreFilter.state
             }
         },

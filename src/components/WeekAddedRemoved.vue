@@ -114,7 +114,8 @@ export default {
     diff_catalogue_url: String,
     added_lineup: "",
     removed_lineup: "",
-    time: ""
+    time_begin: "",
+    time_end: ""
   },
   data() {
     return {
@@ -160,10 +161,11 @@ export default {
   },
   computed: {
     computedTime() {
-        var tmp = this.time;
-        var period = new Date(tmp);
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return "Depuis le ".concat(period.toLocaleDateString('fr-FR', options));
+        var period_beg = new Date(this.time_begin);
+        var period_end = new Date(this.time_end);
+        //const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const options = {month: 'long', day: 'numeric' };
+        return "Entre le ".concat(period_beg.toLocaleDateString('fr-FR', options)).concat(" et ").concat(period_end.toLocaleDateString('fr-FR', options));
     },
     computedAdded() {
       var typedText = this.FilterResults.search;
