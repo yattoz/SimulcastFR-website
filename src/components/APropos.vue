@@ -9,7 +9,7 @@
         <p>
             <ul>
                 <li><b>[08/04/2020]</b> Nouvelle fonctionnalité : ajout de la page "Ajout/retraits" retraçant les nouvelles licences et licences expirées. Aussi: léger relooking de la navbar.</li>
-                <li><b>[11/01/2019]</b> Ajout d'un filtre pour cacher les simulcasts re-doublés (désactivé par défaut). Lisibilité améliorée pour les filtres. Message "Aucun résultat" affiché seulement si une recherche est entrée.</li>
+                <li><b>[11/01/2020]</b> Ajout d'un filtre pour cacher les simulcasts re-doublés (désactivé par défaut). Lisibilité améliorée pour les filtres. Message "Aucun résultat" affiché seulement si une recherche est entrée.</li>
                 <li><b>[06/12/2019]</b> Ajout du catalogue Netflix avec les données d'un site communautaire français. Aussi: ajout d'un message si la recherche est vide.</li>
                 <li><b>[31/10/2019]</b> [Fix] Les interrupteurs pour filtrer la page se synchronisent maintenant correctement avec l'état du filtre quand on ferme puis restaure l'onglet. Aussi : renommage de la page pour meilleur référencement.</li>
                 <li><b>[08/09/2019]</b> La zone de recherche perd le focus en appuyant sur Entrée. Permet de fermer le clavier virtuel des smartphones et évite de rafraichir la page.</li>
