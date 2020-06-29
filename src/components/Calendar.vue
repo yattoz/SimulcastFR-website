@@ -88,7 +88,7 @@
                 self.full_calendar.forEach(function(anime){
                     self.calendarEvents.push({
                         // add new event data
-                        title: anime.title + ' - épisode ' + anime.ep_number,
+                        title: anime.title + ' - épisode ' + anime.ep_number.join(', '),
                         start: new Date(anime.ep_time),
                         url: anime.ep_link,
                         backgroundColor: self.badgeColor(anime),
