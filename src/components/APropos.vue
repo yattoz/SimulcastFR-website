@@ -8,6 +8,7 @@
         <h3>Liste des changements</h3>
         <p>
             <ul>
+                <li><b>[14/07/2020]</b> Ajustement de la densité d'affichage pour tablettes et smartphones dans la vue des simulcasts. Fix du calendrier qui affiche les épisodes d'une même série dans une même ligne (plus lisible).</li>
                 <li><b>[08/04/2020]</b> Nouvelle fonctionnalité : ajout de la page "Ajout/retraits" retraçant les nouvelles licences et licences expirées. Aussi: léger relooking de la navbar.</li>
                 <li><b>[11/01/2020]</b> Ajout d'un filtre pour cacher les simulcasts re-doublés (désactivé par défaut). Lisibilité améliorée pour les filtres. Message "Aucun résultat" affiché seulement si une recherche est entrée.</li>
                 <li><b>[06/12/2019]</b> Ajout du catalogue Netflix avec les données d'un site communautaire français. Aussi: ajout d'un message si la recherche est vide.</li>
