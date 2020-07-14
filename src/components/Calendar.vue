@@ -86,9 +86,12 @@
             $.getJSON(proxy + self.full_calendar_url, function (json) {
                 self.full_calendar = json["data"];
                 self.full_calendar.forEach(function(anime){
-                    let title_and_eps = ''
-                    if (anime.ep_number.length > 0)
+                    let title_and_eps = anime.title
+                    if (anime.ep_number.length == 1 && anime.ep_number[0].length > 0)
                         title_and_eps = anime.title + ' - épisode ' + anime.ep_number.join(', ')
+                    else if (anime.ep_number.length > 1)
+                        title_and_eps = anime.title + ' - épisodes ' + anime.ep_number.join(', ')
+
                     self.calendarEvents.push({
                         // add new event data
                         title: title_and_eps,

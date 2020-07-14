@@ -47,7 +47,10 @@
 
 <style scoped>
     .input-field .prefix.right{
-    right: 0;
+        position: absolute;
+        right: 0px;
+        margin-left: 0px;
+        padding: 0px
     }
     .input-field .prefix {
         position: absolute;

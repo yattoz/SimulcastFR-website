@@ -8,7 +8,7 @@
     <div class="">
       <div class="row">
         <div class="col s12 m12 l3">
-          <div class="" style="margin: 1em; margin-bottom: 0em">
+          <div class="" style="margin: 0.4em; margin-bottom: 0.6em">
             <div align="left" class="">
                 <SearchBox/>
                 <CheckboxFilters/>
@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="col s12 m12 l9">
-          <div class="" style="margin: 1em" >
+          <div class="" style="margin: 0.4em" >
             <transition>
               <keep-alive>
                 <!-- Component matched by the route will render here-->
