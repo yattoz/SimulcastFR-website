@@ -1,6 +1,6 @@
 {
   "name": "simulcastfr",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -21,7 +21,8 @@
     "vue-router": "^3.0.7",
     "acorn": ">=6.4.1",
     "minimist": ">=1.2.2",
-    "kind-of": ">=6.0.3"
+    "kind-of": ">=6.0.3",
+    "lozad": "1.15.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.1",

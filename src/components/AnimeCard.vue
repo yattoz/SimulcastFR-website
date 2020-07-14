@@ -12,7 +12,7 @@
                 <img class="service-icon" :src="'/icons/'+anime.service+'.png'">
             </div>
             -->
-            <img class="anime-poster" :src="anime.image" :alt="anime.title">
+            <img class="lozad anime-poster" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title" data-loaded="true">
         </div>
         <div class="extendview" v-if="!FilterResults.isTitleShown">
             <span class="adn-text" v-tooltip.top="{content: anime.title, delay: 300}">
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
     // shamelessly ripped off https://stackoverflow.com/questions/1199352/smart-way-to-shorten-long-strings-with-javascript
     String.prototype.trunc =
         function( n, useWordBoundary ){
@@ -75,7 +76,6 @@
                 var elems = document.querySelectorAll('.tooltipped');
                 var options = {enterDelay: 200};
                 M.Tooltip.init(elems, options);
-
             });
         },
         computed: {

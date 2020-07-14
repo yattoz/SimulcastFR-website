@@ -25,9 +25,12 @@
 
 <script>
     import JQuery from 'jquery'
+    import lozad from 'lozad'
+
     let $ = JQuery;
     import AnimeCard from "@/components/AnimeCard";
     import StoreFilter from '@/components/StoreFilter';
+    
     
     /*
     const cr_lineup_url = "json/cr_lineup.json";
@@ -85,6 +88,8 @@
                 });
                 //console.log(self.full_lineup);
             })
+            const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+            observer.observe();
         },
         computed: {
             computedLineup(){
@@ -116,7 +121,7 @@
       .box {
         display: grid;
         grid-gap: 1em;
-        grid-template-columns: repeat(auto-fill, minmax(8em,3fr)); /* 120px */
+        grid-template-columns: repeat(auto-fill, minmax(12em,3fr)); /* 120px */
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
     }
 
