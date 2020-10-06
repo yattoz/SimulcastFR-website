@@ -16,7 +16,7 @@
         SimulcastFR est en maintenance (je paye les pots cassés de mon architecture déplorable).
         </p>
         <p>
-        Je tenterai d'apporter les réparations qui s'imposent d'ici quelques jours ou semaines.
+        Je tenterai d'apporter les réparations qui s'imposent d'ici mi-octobre.
         </p>
         <p>
         Merci pour votre patience !
