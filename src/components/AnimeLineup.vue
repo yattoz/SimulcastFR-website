@@ -11,6 +11,7 @@
         <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
+<!--
      <div align="center">
         <p>
         SimulcastFR est en maintenance (je paye les pots cassés de mon architecture déplorable).
@@ -22,6 +23,7 @@
         Merci pour votre patience !
         </p>
      </div>
+-->
     <div align="center" class="no_result" v-if="(computedLineup.length <= 0) && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim()))) ">
         <p>Aucun résultat pour la recherche dans les simulcasts de cette saison.</p>
         <p>
