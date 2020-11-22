@@ -92,17 +92,19 @@
                     else if (anime.ep_number.length > 1)
                         title_and_eps = anime.title + ' - épisodes ' + anime.ep_number.join(', ')
 
-                    self.calendarEvents.push({
-                        // add new event data
-                        title: title_and_eps,
-                        start: new Date(anime.ep_time),
-                        url: anime.ep_link,
-                        backgroundColor: self.badgeColor(anime),
-                        borderColor: self.badgeColor(anime),
-                        allDay: false,
-                        service: anime.service
-                    });
-                    
+                    if (anime.title.slice(-4) !== "Dub)")
+                    {
+                        self.calendarEvents.push({
+                            // add new event data
+                            title: title_and_eps,
+                            start: new Date(anime.ep_time),
+                            url: anime.ep_link,
+                            backgroundColor: self.badgeColor(anime),
+                            borderColor: self.badgeColor(anime),
+                            allDay: false,
+                            service: anime.service
+                        });
+                    }
                 });
                 //console.log("mounted: " + self.calendarEvents);
             })
@@ -156,6 +158,7 @@
                     let caught = typedText === "";
                     caught = caught || event.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
                     caught = caught && this.FilterResults.tableServices.includes(event.service);
+                    caught = caught && (this.FilterResults.isDubbedOn || unit.title.slice(-4) !== "Dub)");
                     return caught;
                 });
                 //console.log("computed: ", tmp2);
