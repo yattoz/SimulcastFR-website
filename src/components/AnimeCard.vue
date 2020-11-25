@@ -127,6 +127,11 @@
          transform: scale(1.07); 
     }
 
+    a:link {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
 
     .adn-text{
          /* margin:5.33333333px 0 0 0;*/
@@ -137,9 +142,6 @@
         -webkit-line-clamp:2;
         -webkit-box-orient:vertical;
         line-clamp:2;
-
-        color: #222222;
-
         margin: 4px 4px 4px 4px;
         text-transform:uppercase;
         font-weight:bold;
@@ -187,7 +189,6 @@
 
 
         .extendview{
-            background-color: rgba(255, 255, 255, 0.9);
             position: absolute;
             display: flex;
             bottom: 0px;
@@ -199,7 +200,6 @@
         }
 
         .extendview span {
-            color: #121212;
             text-align: left;
             margin-left: 4px;
             margin-right: 4px;
@@ -226,6 +226,7 @@
         }
         
         .card{
+            background-color: transparent;
             border-radius: 4px;
             margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
             padding: 0em 0em 0em 0em;

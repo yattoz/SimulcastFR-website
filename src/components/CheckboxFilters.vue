@@ -54,6 +54,7 @@
 
 <script>
     import StoreFilter from "@/components/StoreFilter"
+
     export default {
         name: "CheckboxFilters",
         data() {
@@ -107,9 +108,12 @@
 
 <style scoped>
 
+    label {
+        color:#121212
+    }
+    
     .switch label{
-        color: #121212;
-        float:right;
+        float: right;
     }
 
     .switch span{
@@ -125,12 +129,13 @@
     }
 
     .border-bottom {
-        border-bottom: solid 1px rgba(0, 0, 0, 0.15);
+        border-bottom: solid 1px rgba(127,127,127, 1);
     }
 
     .border {
-        border: solid 1px rgba(0, 0, 0, 0.15);
-        border-radius: 1em;
+        border: solid 1px rgba(127,127,127, 1);
+        border-radius: 1em 1em 1em 1em;
+        margin: 0.4em
     }
 
 </style>

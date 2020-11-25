@@ -12,6 +12,7 @@
             <div align="left" class="">
                 <SearchBox/>
                 <CheckboxFilters/>
+                <ToggleDarkMode/>
             </div>
           </div>
         </div>
@@ -38,6 +39,7 @@
 import SearchBox from "@/components/SearchBox";
 import CheckboxFilters  from "@/components/CheckboxFilters";
 import NavHead from "@/components/NavHead";
+import ToggleDarkMode from "@/components/ToggleDarkMode";
 
 
 export default {
@@ -51,6 +53,7 @@ export default {
     NavHead,
     SearchBox,
     CheckboxFilters,
+    ToggleDarkMode,
   },
   methods: {
     goBack () {
