@@ -57,6 +57,7 @@
     const proxy = 'https://jsonp.afeld.me/?url=';
     //const proxy = '';
 
+
     export default {
         components: {
             FullCalendar // make the <FullCalendar> tag available
@@ -182,6 +183,10 @@
     .demo-app-calendar {
         margin: 0 auto;
         max-width: 900px;
+    }
+    tr {
+        background-color: transparent;
+        color: black;
     }
     
 </style>

@@ -143,7 +143,7 @@
         padding: 2px;
         white-space: nowrap; /* Don't forget this one */
         text-overflow: ellipsis;
-        border: solid 1px rgba(0, 0, 0, 0.3);
+        border: solid 1px rgba(127, 127, 127, 0.6);
         z-index: 1;
     }
 

@@ -12,7 +12,9 @@
             <div align="left" class="">
                 <SearchBox/>
                 <CheckboxFilters/>
+                <div class="toggleDarkModeButton">
                 <ToggleDarkMode/>
+                </div>
             </div>
           </div>
         </div>
@@ -73,6 +75,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+}
+
+.toggleDarkModeButton {
+  position: absolute;
+  right: 1em;
+  top: -0.2em;
 }
 
 </style>

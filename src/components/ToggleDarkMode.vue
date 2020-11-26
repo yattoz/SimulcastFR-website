@@ -51,18 +51,27 @@ body.dark-mode {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
 body.dark-mode p,
-body.dark-mode label {
+body.dark-mode label,
+body.dark-mode a:link,
+body.dark-mode span,
+body.dark-mode td {
   color: #f1f1f1;
 }
 
-
-body.dark-mode .extendview {
-    color:#f1f1f1;
+body.dark-mode {
+  color: #f1f1f1;
+}
+body.dark-mode tr {
+  background-color: #111111;
 }
 
+
 body.dark-mode .extendview,
-body.dark-mode .card {
+body.dark-mode .card
+{
     background-color: #555555;
 }
 
@@ -89,6 +98,11 @@ body.dark-mode .card {
   transition: 0.2s;
   border: 0.125em solid #eef3f6;
   overflow: hidden;
+  /*
+  position: absolute;
+  right: 3em;
+  top: 3em;
+  */
 }
 #theme-toggle + label span {
   background: #fffad8;

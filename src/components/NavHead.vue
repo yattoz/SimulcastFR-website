@@ -56,6 +56,7 @@
 <script>
 //import Router from "vue-router";
 import M from "materialize-css";
+
 export default {
   name: "NavHead",
   data() {
