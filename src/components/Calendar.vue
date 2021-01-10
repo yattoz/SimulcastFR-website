@@ -54,7 +54,7 @@
 
      */
     //const full_calendar_url = "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_calendar.json";
-    const proxy = 'https://jsonp.afeld.me/?url=';
+    const proxy = '';
     //const proxy = '';
 
 

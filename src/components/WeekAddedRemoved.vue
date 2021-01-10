@@ -104,7 +104,7 @@ import StoreFilter from "@/components/StoreFilter";
     const waka_lineup_url = "json/waka_lineup.json";
      */
 //const diff_catalogue_url = "json/full_lineup.json";
-const proxy = "https://jsonp.afeld.me/?url=";
+const proxy = "";
 //const proxy = '';
 
 export default {
