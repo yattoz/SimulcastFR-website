@@ -53,8 +53,8 @@
     const waka_lineup_url = "json/waka_calendar.json";
 
      */
-    //const full_calendar_url = "https://shelter.mahoro-net.org/~yattoz/simulcastfr/json/full_calendar.json";
-    const proxy = 'https://jsonp.afeld.me/?url=';
+    //const full_calendar_url = "https://recommande.duckdns.org/simulcastfr/json/full_calendar.json";
+    const proxy = '';
     //const proxy = '';
 
 

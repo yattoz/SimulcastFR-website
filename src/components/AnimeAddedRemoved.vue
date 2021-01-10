@@ -17,7 +17,7 @@
     import StoreFilter from '@/components/StoreFilter';
     import WeekAddedRemoved from '@/components/WeekAddedRemoved';
     
-    const proxy = 'https://jsonp.afeld.me/?url=';
+    const proxy = '';
     //const proxy = '';
     
     export default {

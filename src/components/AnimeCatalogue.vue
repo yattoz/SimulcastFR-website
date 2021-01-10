@@ -33,7 +33,7 @@
     const waka_lineup_url = "json/waka_lineup.json";
      */
     //const full_lineup_url = "json/full_lineup.json";
-    const proxy = 'https://jsonp.afeld.me/?url=';
+    const proxy = '';
     //const proxy = '';
     
     export default {
