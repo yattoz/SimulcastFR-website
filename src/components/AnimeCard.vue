@@ -128,11 +128,14 @@
     }
 
     a:link {
-        color: black;
         background-color: transparent;
         text-decoration: none;
     }
 
+    body.dark-mode .adn-text {
+        color: white;
+    }
+    
     .adn-text{
          /* margin:5.33333333px 0 0 0;*/
         max-height:2.3em;
@@ -145,7 +148,8 @@
         margin: 4px 4px 4px 4px;
         text-transform:uppercase;
         font-weight:bold;
-        line-height:1.2em
+        line-height:1.2em;
+        color: black;
     }
 
         .slide-enter-active {
