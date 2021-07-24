@@ -2,7 +2,12 @@
 
     <div class="">
         <p>Note : ce calendrier n'est actuellement pas filtrable.</p>
+        <div>
+        <a class="waves-effect waves-light btn" v-on:click="toggleCalendar('agenda')">Vue Agenda</a>
+        <a class="waves-effect waves-light btn" v-on:click="toggleCalendar('list')">Vue Liste</a>
+        </div>
                 <FullCalendar
+                        id="fullCalendarWidget"
                         class="demo-app-calendar"
                         ref="fullCalendar"
                         defaultView="listWeek"
@@ -40,7 +45,6 @@
     import interactionPlugin from "@fullcalendar/interaction";
     //import frLocale from '@fullcalendar/core/locales/fr';
     import listPlugin from '@fullcalendar/list';
-
     // must manually include stylesheets for each plugin
     import "@fullcalendar/core/main.css";
     import "@fullcalendar/daygrid/main.css";
@@ -130,6 +134,15 @@
                 // catch-all
                 return "#fefefe";
             },
+            toggleCalendar(type) {
+                let fullCalendar = document.getElementById("fullCalendarWidget")
+                console.log(type)
+                
+                if (type === "list")
+                    fullCalendar.hidden = true
+                else
+                    fullCalendar.hidden = false
+            }
             /*
             handleDateClick(arg) {
                 
