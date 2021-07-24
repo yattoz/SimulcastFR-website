@@ -1,33 +1,30 @@
 <template>
     <a :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
-    <div class="card z-depth-1 inner hoverable" :class="cardView" >
+    <div class="card" :class="cardView" >
 
-        <div class="card-image inner card-inside">
+        <div class="anime-poster-container">
 
-            <span class="badge z-depth-1" :style="{ 'background-color': badgeColor} ">
+            <span class="anime-service" :style="{ 'background-color': badgeColor} ">
                 {{anime.service}}
             </span>
-            <!--
-            <div class="badge-icon z-depth-1" v-if="FilterResults.isTitleShown">
-                <img class="service-icon" :src="'/icons/'+anime.service+'.png'">
-            </div>
-            -->
-            <img class="lozad anime-poster" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title" data-loaded="true">
+            <img class="" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title" data-loaded="true">
         </div>
-        <div class="extendview" v-if="!FilterResults.isTitleShown">
-            <span class="adn-text" v-tooltip.top="{content: anime.title, delay: 300}">
+        <div class="anime-title" v-if="!FilterResults.isTitleShown">
+            <span class="" v-tooltip.top="{content: anime.title, delay: 300}">
                 {{anime.title}}
             </span>
         </div>
+        <!-- 
          <transition name="slide">
-            <div class="compactview z-depth-1"
+            <div class="compactview"
                 :style="{ 'background-color': badgeColor, opacity: 0.90 }"
                 v-if="FilterResults.isTitleShown">
                     <span class="adn-text center-align" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
                     {{anime.title}}
                     </span>
             </div>
-        </transition>   
+        </transition> 
+        -->
 
 
      
@@ -50,7 +47,6 @@
         };
 
     import StoreFilter from "@/components/StoreFilter";
-    import M from "materialize-css";
 
     export default {
         name: "AnimeCard",
@@ -75,7 +71,6 @@
             document.addEventListener('DOMContentLoaded', function() {
                 var elems = document.querySelectorAll('.tooltipped');
                 var options = {enterDelay: 200};
-                M.Tooltip.init(elems, options);
             });
         },
         computed: {
@@ -111,19 +106,38 @@
 </script>
 
 <style scoped>
-    .inner{
+    .card{
+        background-color: transparent;
+        border-radius: 4px;
+        margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
+        padding: 0em 0em 0em 0em;
+        width: auto;
+        height: 100%;
+        border: solid 1px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 1;
         overflow: hidden;
+        height: 100%;
+        border: solid 1px rgba(0, 0, 0, 0.4);
+        z-index: 1;
+        display: grid;
+        grid-gap: 0em;
+        grid-template-rows: 1fr 2.8em;
     }
     
-    .inner div{
-        overflow: hidden;
-    }
-
-    .inner .anime-poster{
+    .card img{
+        display: block;
         transition: all 0.2s ease;
+        position: relative;
+        object-fit: cover;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        top: 0px;
     }
     
-    .inner:hover .anime-poster{
+    .card:hover img{
          transform: scale(1.07); 
     }
 
@@ -132,24 +146,35 @@
         text-decoration: none;
     }
 
-    body.dark-mode .adn-text {
+    body.dark-mode {
         color: white;
     }
     
-    .adn-text{
-         /* margin:5.33333333px 0 0 0;*/
-        max-height:2.3em;
-        font-size:0.9em;
+    .anime-title{
+        /* margin:5.33333333px 0 0 0;*/
+        top: 0px;
+        z-index: 1000;
+        font-size:0.8em;
         overflow:hidden;
         display:-webkit-box;
-        -webkit-line-clamp:2;
+        -webkit-line-clamp:3;
         -webkit-box-orient:vertical;
-        line-clamp:2;
+        line-clamp:3;
         margin: 4px 4px 4px 4px;
         text-transform:uppercase;
         font-weight:bold;
-        line-height:1.2em;
+        line-height:1em;
+        height: auto;
         color: black;
+        text-align: left;
+        font-family: sans-serif;
+    }
+
+    .anime-poster-container {
+        height: inherit;
+        width: inherit;
+        display: flex;
+        overflow: hidden;
     }
 
         .slide-enter-active {
@@ -210,12 +235,30 @@
             margin-bottom: auto;
         }
 
-        .card-image span{
+        .anime-service{
             position: absolute;
             top: -2px;
             right: -2px;
-            z-index: 100;
+            z-index: 100000;
             /* border: solid 1px #121212; */
+        }
+
+        .badge-icon{
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+            background-color: #fefefefe;
+            border-radius: 30%;
+            border: solid 1px rgba(0, 0, 0, 0.5);
+            /* border: solid 1px #121212; */
+        }
+
+
+        .service-icon{
+            height: 2em;
+            padding: 3px;
+            position: relative;
         }
 
         span.badge{
@@ -229,29 +272,6 @@
             margin-left: 14px;
         }
         
-        .card{
-            background-color: transparent;
-            border-radius: 4px;
-            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
-            padding: 0em 0em 0em 0em;
-            width: auto;
-            height: 100%;
-            border: solid 1px rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .mycard-extend{
-            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
-            padding: 0em 0em 0em 0em;
-            width: auto;
-            height: 100%;
-            border: solid 1px rgba(0, 0, 0, 0.4);
-            z-index: 1;
-            display: grid;
-            grid-gap: 1em;
-            grid-template-rows: 1fr 2em;
-            /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
-        }
 
         .mycard-compact{
             margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
@@ -279,23 +299,7 @@
             z-index: 1;
         }
 
-        .badge-icon{
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            z-index: 100;
-            background-color: #fefefefe;
-            border-radius: 30%;
-            border: solid 1px rgba(0, 0, 0, 0.5);
-            /* border: solid 1px #121212; */
-        }
 
-
-        .service-icon{
-            height: 2em;
-            padding: 3px;
-            position: relative;
-        }
 
 
 

@@ -128,7 +128,10 @@
 </script>
 
 <style scoped>
-    ul{margin:0; padding:0;}
+    ul {
+        margin:0; 
+        padding:0;
+    }
 
     .box {
         display: grid;

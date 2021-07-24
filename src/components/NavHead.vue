@@ -33,6 +33,7 @@
         </div>
       </div>
     </nav>
+    <!--
     <ul class="sidenav" id="mobile-demo">
       <li @click="setPath('/')" :class="this.path == '/' ? 'active' : ''" to="/">
         <router-link class="waves-effect sidenav-close" to="/">Simulcasts de la saison</router-link>
@@ -49,13 +50,12 @@
       <li @click="setPath('/about')" :class="this.path == '/' ? 'active' : ''" to="/">
         <router-link class="waves-effect sidenav-close" to="/about">A propos</router-link>
       </li>
-    </ul>
+    </ul>-->
   </div>
 </template>
 
 <script>
 //import Router from "vue-router";
-import M from "materialize-css";
 
 export default {
   name: "NavHead",
@@ -68,33 +68,18 @@ export default {
     setPath: function(str) {
       this.path = str;
       var el = document.querySelector(".tabs");
-      var instance = M.Tabs.getInstance(el);
-      console.log(el);
-      console.log(instance);
-
-      instance.updateTabIndicator();
-      instance.select(this.path);
-      instance.updateTabIndicator();
-      console.log("Path = " + this.path);
     }
   },
   mounted() {
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelector(".sidenav");
       var options = { edge: "left" };
-      M.Sidenav.init(elems, options);
 
       var el = document.querySelector(".tabs");
       console.log(el);
       options = {};
-      var instance = M.Tabs.init(el, options);
-      console.log(instance);
-
       this.path = window.location.pathname;
       console.log(this.path);
-
-      instance.select(this.path);
-      instance.updateTabIndicator();
     });
   }
 };
