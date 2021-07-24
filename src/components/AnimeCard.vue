@@ -14,17 +14,15 @@
                 {{anime.title}}
             </span>
         </div>
-        <!-- 
          <transition name="slide">
-            <div class="compactview"
+            <div class="anime-title compact-anime-title"
                 :style="{ 'background-color': badgeColor, opacity: 0.90 }"
                 v-if="FilterResults.isTitleShown">
-                    <span class="adn-text center-align" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
+                    <span class="" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
                     {{anime.title}}
                     </span>
             </div>
         </transition> 
-        -->
 
 
      
@@ -122,7 +120,7 @@
         z-index: 1;
         display: grid;
         grid-gap: 0em;
-        grid-template-rows: 1fr 2.8em;
+        grid-template-rows: 1fr auto;
     }
     
     .card img{
@@ -137,6 +135,13 @@
         top: 0px;
     }
     
+    .card:hover{
+        /* offset-x | offset-y | blur-radius | color */
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+        transition: box-shadow 0.4s;
+        transition-timing-function: ease;
+    }
+
     .card:hover img{
          transform: scale(1.07); 
     }
@@ -160,11 +165,11 @@
         -webkit-line-clamp:3;
         -webkit-box-orient:vertical;
         line-clamp:3;
-        margin: 4px 4px 4px 4px;
+        margin: 0.4em;
         text-transform:uppercase;
         font-weight:bold;
-        line-height:1em;
-        height: auto;
+        line-height:1.2em;
+        height: 3.6em; /* 3 * line-height*/
         color: black;
         text-align: left;
         font-family: sans-serif;
@@ -176,6 +181,25 @@
         display: flex;
         overflow: hidden;
     }
+
+    .compact-anime-title {
+        position: absolute;
+        top: unset;
+        bottom: 0px;
+        width: calc(100% - 0.4em - 0.4em); /* removing padding from both sides.*/
+        margin: 0px;
+        height: 3.6em;
+        padding: 0.4em;
+        color: white;
+    }
+
+        .anime-service{
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            z-index: 100000;
+            /* border: solid 1px #121212; */
+        }
 
         .slide-enter-active {
             transition: all .3s ease;
@@ -197,110 +221,4 @@
         .fade-enter, .fade-leave-to {
             opacity: 0;
         }
-
-        .compactview{
-            position: absolute;
-            display: flex;
-            bottom: 0px;
-            width: 100%;
-            height: auto; /* */
-            min-height: 2.8em;
-            z-index: 10;
-        }
-
-        .compactview span{
-            color: #fefefe;
-            margin-top: 4px;
-            margin-bottom: auto;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        .extendview{
-            position: absolute;
-            display: flex;
-            bottom: 0px;
-            width: 100%;
-            height: auto; /* */
-            min-height: 2.8em;
-            z-index: 10;
-            
-        }
-
-        .extendview span {
-            text-align: left;
-            margin-left: 4px;
-            margin-right: 4px;
-            margin-bottom: auto;
-        }
-
-        .anime-service{
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            z-index: 100000;
-            /* border: solid 1px #121212; */
-        }
-
-        .badge-icon{
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            z-index: 100;
-            background-color: #fefefefe;
-            border-radius: 30%;
-            border: solid 1px rgba(0, 0, 0, 0.5);
-            /* border: solid 1px #121212; */
-        }
-
-
-        .service-icon{
-            height: 2em;
-            padding: 3px;
-            position: relative;
-        }
-
-        span.badge{
-            text-transform:uppercase;
-            font-weight: 500; 
-            font-size: 0.8rem;
-            color: #fff;
-            border-radius: 2px;
-            padding: auto;
-            /* padding: 0 6px;*/
-            margin-left: 14px;
-        }
-        
-
-        .mycard-compact{
-            margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
-            padding: 0em 0em 0em 0em;
-            width: auto;
-            height: 100%;
-            border: solid 1px rgba(0, 0, 0, 0.4);
-            z-index: 1;
-            display: grid;
-            grid-gap: 1em;
-            grid-template-rows: 1fr;
-            /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
-        }
-
-
-        .card-inside{
-            height: 100%;
-            top: 0px;
-            z-index: 1;
-        }
-        
-        img{
-            object-fit: cover;
-            height: 100%;
-            z-index: 1;
-        }
-
-
-
-
-
 </style>
