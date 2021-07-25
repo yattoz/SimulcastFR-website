@@ -61,6 +61,7 @@
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
                 */
+               self.full_lineup = data
                 //console.log();
                 console.log(self.full_lineup)
 
