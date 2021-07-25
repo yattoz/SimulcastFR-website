@@ -1,7 +1,7 @@
 <template>
-    <a :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
-    <div class="card" :class="cardView" >
-
+    <a class="" :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
+    <div class="card card-shadow">
+        <div class="card-inside">
         <div class="anime-poster-container">
 
             <span class="anime-service" :style="{ 'background-color': badgeColor} ">
@@ -25,7 +25,7 @@
         </transition> 
 
 
-     
+        </div>
     </div>
     
  
@@ -104,55 +104,68 @@
 </script>
 
 <style scoped>
-    .card{
-        background-color: transparent;
-        border-radius: 4px;
-        margin: 0em 0em 0em 0em; /* margins set by father element grid-gap (AnimeLineup.vue) */
-        padding: 0em 0em 0em 0em;
+    .card {
         width: auto;
         height: 100%;
-        border: solid 1px rgba(0, 0, 0, 0.4);
         position: relative;
-        z-index: 1;
-        overflow: hidden;
+    }
+
+    .card-inside{
+        border-radius: 8px;
+        width: auto;
         height: 100%;
-        border: solid 1px rgba(0, 0, 0, 0.4);
-        z-index: 1;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+        position: relative;
+        height: 100%;
         display: grid;
         grid-gap: 0em;
         grid-template-rows: 1fr auto;
+        overflow: hidden;
     }
     
-    .card img{
+    .card-inside img{
         display: block;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
         position: relative;
         object-fit: cover;
-        overflow: hidden;
         height: 100%;
         width: 100%;
         z-index: 1;
         top: 0px;
     }
+
+
+    /* Pre-render the bigger shadow, but hide it */
+    .card-shadow::after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-color: transparent;
+        border-radius: 8px;
+        opacity: 0;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+    }
+
+    /* Transition to showing the bigger shadow on hover */
+    .card-shadow:hover::after {
+        opacity: 1;
+    }
     
-    .card:hover{
-        /* offset-x | offset-y | blur-radius | color */
-        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
-        transition: box-shadow 0.4s;
-        transition-timing-function: ease;
+    .card-inside:hover img{
+         transform: scale(1.1);
     }
 
-    .card:hover img{
-         transform: scale(1.07); 
+    a:visited {
+        color: inherit;
     }
-
     a:link {
         background-color: transparent;
         text-decoration: none;
-    }
-
-    body.dark-mode {
-        color: white;
+        color: inherit;
     }
     
     .anime-title{
@@ -170,9 +183,8 @@
         font-weight:bold;
         line-height:1.2em;
         height: 3.6em; /* 3 * line-height*/
-        color: black;
         text-align: left;
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     .anime-poster-container {
@@ -209,16 +221,6 @@
         }
         .slide-enter, .slide-leave-to {
             transform: translateY(100%);
-            opacity: 0;
-        }
-
-        .fade-enter-active {
-            transition: all .4s;
-        }
-        .fade-leave-active {
-            transition: all .4s;
-        }
-        .fade-enter, .fade-leave-to {
             opacity: 0;
         }
 </style>

@@ -45,7 +45,7 @@ export default {
   margin: 1em auto;
 }
 body.dark-mode {
-  background: #323232;
+  background: #121212;
 }
 
 body.dark-mode h1,
@@ -58,23 +58,21 @@ body.dark-mode label,
 body.dark-mode a:link,
 body.dark-mode span,
 body.dark-mode td {
-  color: #f1f1f1;
+  color: rgba(255, 255, 255, 0.87);
 }
 
 body.dark-mode {
-  color: #f1f1f1;
+  color: rgba(255, 255, 255, 0.87);
 }
 body.dark-mode tr {
-  background-color: #111111;
+  background-color: #121212;
 }
 
 
-body.dark-mode .extendview,
-body.dark-mode .card
+body.dark-mode .card-inside
 {
     background-color: #555555;
 }
-
 
 
 
