@@ -15,7 +15,7 @@ import Calendar from "@/components/Calendar"
 Vue.use(VueRouter)
 Vue.use(VTooltip)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 
 const routes = [{
