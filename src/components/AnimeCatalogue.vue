@@ -7,7 +7,7 @@
                 <a :href="unit.link"
                     @click.prevent="open_link_in_tab(unit.link)"
                     v-tooltip.top="{content: unit.title, delay: 300}"
-                    style="color: #000000">
+                    >
                     <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
                     <span class="title">
                     {{unit.title}}
@@ -22,8 +22,7 @@
 </template>
 
 <script>
-    import JQuery from 'jquery'
-    let $ = JQuery;
+
     import StoreFilter from '@/components/StoreFilter';
     
 
@@ -54,33 +53,37 @@
         },
         mounted() {
             var self = this;
-            /*
-            $.getJSON(proxy + cr_lineup_url, function (json) {
-                self.cr_lineup = json.sort(function (a, b) {
-                    return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString()); });
-                console.log(self.cr_lineup);
-                $.getJSON(proxy + waka_lineup_url, function (json) {
-                    self.waka_lineup = json.sort(function (a, b) {
-                        return ('' + a.title.attr).localeCompare(b.title.attr); }); // sort by lexicographic order
-                    console.log(self.waka_lineup);
-                    $.getJSON(proxy + adn_lineup_url, function (json) {
-                        self.adn_lineup = json.sort(function (a, b) {
-                            return ('' + a.title.attr).localeCompare(b.title.attr);  });
-                        console.log(self.adn_lineup);
-                        let full_lineup_tmp = self.cr_lineup.concat(self.adn_lineup.concat(self.waka_lineup));
-                        self.full_lineup = full_lineup_tmp.sort(function (a, b) {
-                            return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());  })
-                        console.log(self.full_lineup);
-                    });
-                });
-            });
-            */
-            $.getJSON(proxy + self.full_lineup_url, function (json) {
+            
+            function fillCatalogue(json) {
                 self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
                 //console.log(self.full_lineup);
-            });
+            }
+
+            let request = new XMLHttpRequest();
+            request.open('GET', proxy + self.full_lineup_url, true);
+
+            request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                console.log("success ! response:" + this.response)
+                let json = JSON.parse(this.response);
+
+                fillCatalogue(json)
+            } else {
+                // 
+                console.log("We reached our target server, but it returned an error")
+            }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort
+                console.log("There was a connection error of some sort")
+            };
+
+            request.send();
+
+
         },
         methods:{
             badgeColor(service) {
@@ -128,6 +131,11 @@
 </script>
 
 <style scoped>
+
+    a {
+        text-decoration: none;
+    }
+
     ul {
         margin:0; 
         padding:0;

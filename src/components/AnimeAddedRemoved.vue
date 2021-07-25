@@ -12,8 +12,6 @@
 </template>
 
 <script>
-    import JQuery from 'jquery'
-    let $ = JQuery;
     import StoreFilter from '@/components/StoreFilter';
     import WeekAddedRemoved from '@/components/WeekAddedRemoved';
     
@@ -38,12 +36,36 @@
         },
         mounted() {
             var self = this;
-            $.getJSON(proxy + self.diff_catalogue_url, function (json) {
+            function fillAddedRemoved(json) {
                 json.forEach(period => {
-                    console.log(period);
+                    // console.log(period);
                     self.week.push(period);
                 });
-            });
+            }
+
+            let request = new XMLHttpRequest()
+            request.open('GET', proxy + self.diff_catalogue_url, true);
+
+            request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                console.log("success ! response:" + this.response)
+                let json = JSON.parse(this.response);
+
+                fillAddedRemoved(json)
+            } else {
+                // 
+                console.log("We reached our target server, but it returned an error")
+            }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort
+                console.log("There was a connection error of some sort")
+            };
+
+            request.send();
+
+
         },
         methods:{
             badgeColor(service) {

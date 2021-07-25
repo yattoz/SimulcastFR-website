@@ -35,8 +35,6 @@
 </template>
 
 <script>
-    import JQuery from 'jquery'
-    let $ = JQuery;
     import StoreFilter from '@/components/StoreFilter';
 
     import FullCalendar from "@fullcalendar/vue";
@@ -88,7 +86,7 @@
         },
         mounted() {
             var self = this;
-            $.getJSON(proxy + self.full_calendar_url, function (json) {
+            function fillCalendar(json) {
                 self.full_calendar = json["data"];
                 self.full_calendar.forEach(function(anime){
                     let title_and_eps = anime.title
@@ -112,7 +110,30 @@
                     }
                 });
                 //console.log("mounted: " + self.calendarEvents);
-            })
+            }
+            let request = new XMLHttpRequest();
+            request.open('GET', proxy + self.full_calendar_url, true);
+
+            request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                console.log("success ! response:" + this.response)
+                let json = JSON.parse(this.response);
+
+                fillCalendar(json)
+            } else {
+                // 
+                console.log("We reached our target server, but it returned an error")
+            }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort
+                console.log("There was a connection error of some sort")
+            };
+
+            request.send();
+
+
         },
         methods: {
             toggleWeekends() {
@@ -185,7 +206,6 @@
 
 <style scoped>
     .demo-app {
-        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
         font-size: 14px;
     }
 

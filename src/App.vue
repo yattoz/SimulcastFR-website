@@ -73,10 +73,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+
+    a:visited {
+        color: inherit;
+    }
+    a:link {
+        background-color: transparent;
+        text-decoration: none;
+        color: inherit;
+    }
+    
 .toggleDarkModeButton {
   position: absolute;
   right: 1em;

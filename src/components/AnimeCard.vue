@@ -108,13 +108,15 @@
         width: auto;
         height: 100%;
         position: relative;
+        text-transform:uppercase;
+        font-weight:bold;
     }
 
     .card-inside{
         border-radius: 8px;
         width: auto;
         height: 100%;
-        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
         position: relative;
         height: 100%;
         display: grid;
@@ -125,7 +127,7 @@
     
     .card-inside img{
         display: block;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease-in-out;
         position: relative;
         object-fit: cover;
         height: 100%;
@@ -146,8 +148,8 @@
         background-color: transparent;
         border-radius: 8px;
         opacity: 0;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
-        transition: all 0.3s ease;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease-in-out;
     }
 
     /* Transition to showing the bigger shadow on hover */
@@ -155,17 +157,8 @@
         opacity: 1;
     }
     
-    .card-inside:hover img{
+    .card:hover img{
          transform: scale(1.1);
-    }
-
-    a:visited {
-        color: inherit;
-    }
-    a:link {
-        background-color: transparent;
-        text-decoration: none;
-        color: inherit;
     }
     
     .anime-title{
@@ -179,12 +172,9 @@
         -webkit-box-orient:vertical;
         line-clamp:3;
         margin: 0.4em;
-        text-transform:uppercase;
-        font-weight:bold;
         line-height:1.2em;
         height: 3.6em; /* 3 * line-height*/
         text-align: left;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     .anime-poster-container {
@@ -200,21 +190,26 @@
         bottom: 0px;
         width: calc(100% - 0.4em - 0.4em); /* removing padding from both sides.*/
         margin: 0px;
-        height: 3.6em;
+        height: 3.3em;
         padding: 0.4em;
         color: white;
     }
 
         .anime-service{
             position: absolute;
-            top: -2px;
-            right: -2px;
-            z-index: 100000;
+            top: -0.1em;
+            right: -0.1em;
+            z-index: 1000;
+            border-radius: 0.3em;
+            padding: 0.3em;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+            color: rgba(255, 255, 255, 0.87);
+            font-size: 0.8em;
             /* border: solid 1px #121212; */
         }
 
         .slide-enter-active {
-            transition: all .3s ease;
+            transition: all .3s ease-in-out;
         }
         .slide-leave-active {
             transition: all .3s;

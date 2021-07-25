@@ -94,8 +94,7 @@
 </template>
 
 <script>
-import JQuery from "jquery";
-let $ = JQuery;
+
 import StoreFilter from "@/components/StoreFilter";
 
 /*

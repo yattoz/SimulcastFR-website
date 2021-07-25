@@ -1,60 +1,58 @@
 {
-  "name": "simulcastfr",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@fullcalendar/core": "4.2.0",
-    "@fullcalendar/daygrid": "4.2.0",
-    "@fullcalendar/interaction": "4.2.0",
-    "@fullcalendar/list": "4.2.0",
-    "@fullcalendar/timegrid": "4.2.0",
-    "@fullcalendar/vue": "4.2.0",
-    "acorn": ">=6.4.1",
-    "core-js": "^3.6.0",
-    "kind-of": ">=6.0.3",
-    "lozad": "1.15.0",
-    "minimist": ">=1.2.2",
-    "v-tooltip": "^2.0.2",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.7"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.1",
-    "@vue/cli-plugin-eslint": "^4.1.1",
-    "@vue/cli-service": "^4.1.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "eslint-utils": ">=1.4.1",
-    "jquery": "^3.5.0",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "simulcastfr",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "dependencies": {
+        "@fullcalendar/core": "4.2.0",
+        "@fullcalendar/daygrid": "4.2.0",
+        "@fullcalendar/interaction": "4.2.0",
+        "@fullcalendar/list": "4.2.0",
+        "@fullcalendar/timegrid": "4.2.0",
+        "@fullcalendar/vue": "4.2.0",
+        "acorn": ">=6.4.1",
+        "core-js": "^3.6.0",
+        "kind-of": ">=6.0.3",
+        "minimist": ">=1.2.2",
+        "v-tooltip": "^2.0.2",
+        "vue": "^2.6.10",
+        "vue-router": "^3.0.7"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.1.1",
+        "@vue/cli-plugin-eslint": "^4.1.1",
+        "@vue/cli-service": "^4.1.1",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.16.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "eslint-utils": ">=1.4.1",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

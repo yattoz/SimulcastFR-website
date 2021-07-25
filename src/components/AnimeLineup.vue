@@ -37,10 +37,7 @@
 </template>
 
 <script>
-    import JQuery from 'jquery'
-    import lozad from 'lozad'
 
-    let $ = JQuery;
     import AnimeCard from "@/components/AnimeCard";
     import StoreFilter from '@/components/StoreFilter';
     
@@ -73,36 +70,30 @@
             }
         },
         mounted() {
-            var self = this;
-            /*
-            $.getJSON(proxy + cr_lineup_url, function (json) {
-                self.cr_lineup = json.sort(function (a, b) {
-                    return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString()); });
-                console.log(self.cr_lineup);
-                $.getJSON(proxy + waka_lineup_url, function (json) {
-                    self.waka_lineup = json.sort(function (a, b) {
-                        return ('' + a.title.attr).localeCompare(b.title.attr); }); // sort by lexicographic order
-                    console.log(self.waka_lineup);
-                    $.getJSON(proxy + adn_lineup_url, function (json) {
-                        self.adn_lineup = json.sort(function (a, b) {
-                            return ('' + a.title.attr).localeCompare(b.title.attr);  });
-                        console.log(self.adn_lineup);
-                        let full_lineup_tmp = self.cr_lineup.concat(self.adn_lineup.concat(self.waka_lineup));
-                        self.full_lineup = full_lineup_tmp.sort(function (a, b) {
-                            return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());  })
-                        console.log(self.full_lineup);
-                    });
-                });
-            });
-            */
-            $.getJSON(proxy + self.full_lineup_url, function (json) {
+            let self = this;
+            let request = new XMLHttpRequest();
+            request.open('GET', proxy + self.full_lineup_url, true);
+
+            request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                console.log("success ! response:" + this.response)
+                let json = JSON.parse(this.response);
+
                 self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
-                //console.log(self.full_lineup);
-            })
-            const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-            observer.observe();
+            } else {
+                // 
+                console.log("We reached our target server, but it returned an error")
+            }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort
+                console.log("There was a connection error of some sort")
+            };
+
+            request.send();
         },
         computed: {
             computedLineup(){
