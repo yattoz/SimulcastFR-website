@@ -2,6 +2,17 @@
         <!-- Layout items -->
 
     <div align="left">
+        <div class=" textoverflow">
+            <span>
+                Nombre d'éléments par page
+            </span>
+        <select name="Nombre d'éléments par page" v-on:change="setNumberOfElementsPerPage($event)">
+            <option value="200">200</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="99999">Tout afficher</option>
+        </select>
+    </div>
         <ul class="box">
             <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
                 <a :href="unit.link"
@@ -20,8 +31,8 @@
         </div>
         <div class="pagination">
             <div v-for="page in computedPages" v-bind:key="page">
-                <button :id="'button-page-' + page" v-on:click="setPage(page)">
-                    {{page}}
+                <button :id="'button-page-' + page + 1" v-on:click="setPage(page)">
+                    {{page + 1}}
                 </button>
             </div>
         </div>
@@ -48,7 +59,6 @@
                 waka_lineup: [],
                 full_lineup: [],
                 FilterResults: StoreFilter.state,
-                elementsPerPage: 200,
                 currentPage: 0
             }
         },
@@ -88,7 +98,6 @@
 
             request.send();
 
-
         },
         methods:{
             badgeColor(service) {
@@ -111,6 +120,10 @@
             },
             setPage(pageNumber) {
                 this.currentPage = pageNumber
+            },
+            setNumberOfElementsPerPage(event) {
+                let number = event.target.value
+                this.FilterResults.itemsPerPage = number
             }
         },
         computed: {
@@ -133,20 +146,21 @@
                     caught = caught && this.FilterResults.tableServices.includes(unit.service);
                     return caught;
                 });
-                console.log(tmp.length)
+                let numberOfItems = tmp.length
+                let numberOfPages = numberOfItems / this.FilterResults.itemsPerPage
+                this.currentPage = Math.min(this.currentPage, Math.floor(numberOfPages))
                 return tmp
             },
             computedLineup(){
-                return this.fullComputedLineup.slice(this.currentPage * this.elementsPerPage, (this.currentPage + 1) * this.elementsPerPage)
+                return this.fullComputedLineup.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
             },
             computedPages(){
                 let numberOfItems = this.fullComputedLineup.length
                 let res = Array()
-                let numberOfPages = numberOfItems / this.elementsPerPage
+                let numberOfPages = numberOfItems / this.FilterResults.itemsPerPage
                 for(let i = 0; i < numberOfPages; i++) {
                     res.push(i)
                 }
-                console.log(numberOfItems, this.elementsPerPage, numberOfPages)
                 return res
             }
         }

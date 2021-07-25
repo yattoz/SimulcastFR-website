@@ -13,7 +13,8 @@
             cardScaling: 1.0,
             serviceSort: false,
             tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo', 'netflix'],
-            forceRedraw: false
+            forceRedraw: false,
+            itemsPerPage: 200
         },
         setSearch: function(str) {
             this.state.search = str;
@@ -49,8 +50,10 @@
                 this.state.tableServices.push(service);
             }
 
-            //console.log(service + " toggled");
-        }
+        } // ,
+        // setItemPerPage: function(itemsPerPage) {
+        //     this.state.itemsPerPage = itemsPerPage
+        // }
 
     }
 </script>
