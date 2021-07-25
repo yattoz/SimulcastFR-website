@@ -41,16 +41,7 @@
     import AnimeCard from "@/components/AnimeCard";
     import StoreFilter from '@/components/StoreFilter';
     
-    
-    /*
-    const cr_lineup_url = "json/cr_lineup.json";
-    const adn_lineup_url = ".son/adn_lineup.json";
-    const waka_lineup_url = "json/waka_lineup.json";
-
-     */
-    //const full_lineup_url = "json/full_lineup.json";
     const proxy = '';
-    //const proxy = '';
     
     export default {
         name: "AnimeLineup",
@@ -76,7 +67,6 @@
 
             request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
-                console.log("success ! response:" + this.response)
                 let json = JSON.parse(this.response);
 
                 self.full_lineup = json["data"].sort(function (a, b) {

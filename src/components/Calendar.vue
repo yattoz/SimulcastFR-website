@@ -48,16 +48,7 @@
     import "@fullcalendar/daygrid/main.css";
     import "@fullcalendar/timegrid/main.css";
     import "@fullcalendar/list/main.css";
-
-    /*
-    const cr_lineup_url = "json/cr_calendar.json";
-    const adn_lineup_url = "json/adn_calendar.json";
-    const waka_lineup_url = "json/waka_calendar.json";
-
-     */
-    //const full_calendar_url = "https://recommande.duckdns.org/simulcastfr/json/full_calendar.json";
     const proxy = '';
-    //const proxy = '';
 
 
     export default {
@@ -116,7 +107,6 @@
 
             request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
-                console.log("success ! response:" + this.response)
                 let json = JSON.parse(this.response);
 
                 fillCalendar(json)

@@ -48,7 +48,6 @@
 
             request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
-                console.log("success ! response:" + this.response)
                 let json = JSON.parse(this.response);
 
                 fillAddedRemoved(json)
