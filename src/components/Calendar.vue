@@ -3,58 +3,44 @@
     <div class="">
         <p>Note : ce calendrier n'est actuellement pas filtrable.</p>
         <div>
-        <a class="waves-effect waves-light btn" v-on:click="toggleCalendar('agenda')">Vue Agenda</a>
-        <a class="waves-effect waves-light btn" v-on:click="toggleCalendar('list')">Vue Liste</a>
-        </div>
-                <FullCalendar
-                        id="fullCalendarWidget"
-                        class="demo-app-calendar"
-                        ref="fullCalendar"
-                        defaultView="listWeek"
-                        weekNumberCalculation="ISO"
-                        :views="{
-                            timeGridWeek: { buttonText: 'Semaine (calendrier)' },
-                            listWeek: { buttonText: 'Semaine (liste)' },
-                            listDay: { buttonText: 'Aujourd\'hui (liste)' }
-                        }"
-                        :header="{
-                            left: '',
-                            center: 'Simulcast Ete 2019',
-                            right: 'timeGridWeek,listWeek,listDay'
-                          }"
-                        :plugins="calendarPlugins"
-                        :weekends="calendarWeekends"
-                        :events="calendarEvents"
-                        :locales="['fr']"
-                        :height="'auto'"
-                />
-                <!--    @eventClick="eventClick"
-                        @dateClick="handleDateClick"   -->
+        <button class="" v-on:click="toggleCalendar('agenda')">Vue Agenda</button>
+        <button class="" v-on:click="toggleCalendar('list')">Vue Liste</button>
+        <v-popover offset="16">
+        <!-- This will be the popover target (for the events and position) -->
+        <button class="tooltip-target b3">Click me</button>
 
+        <!-- This will be the content of the popover -->
+        <template slot="popover">
+            Voix ambigüe au coeur d'un zéphyr qui préfère aux jattes les kiwis.
+        </template>
+        </v-popover>
+        </div>
+            <div class="agenda" id="fullCalendarWidget">
+            
+                            <!--    @eventClick="eventClick"
+                        @dateClick="handleDateClick"   -->
+            </div>
     </div>
 </template>
 
 <script>
     import StoreFilter from '@/components/StoreFilter';
 
-    import FullCalendar from "@fullcalendar/vue";
-    import dayGridPlugin from "@fullcalendar/daygrid";
+    import { Calendar } from '@fullcalendar/core';
+    import tippy from 'tippy.js'
     import timeGridPlugin from "@fullcalendar/timegrid";
-    import interactionPlugin from "@fullcalendar/interaction";
+
     //import frLocale from '@fullcalendar/core/locales/fr';
-    import listPlugin from '@fullcalendar/list';
     // must manually include stylesheets for each plugin
     import "@fullcalendar/core/main.css";
-    import "@fullcalendar/daygrid/main.css";
     import "@fullcalendar/timegrid/main.css";
-    import "@fullcalendar/list/main.css";
     const proxy = '';
 
 
     export default {
-        components: {
-            FullCalendar // make the <FullCalendar> tag available
-        },
+        // components: {
+        //     FullCalendar // make the <FullCalendar> tag available
+        // },
         props: {
             full_calendar_url: String
         },
@@ -62,16 +48,14 @@
             return {
                 calendarPlugins: [
                     // plugins must be defined in the JS
-                    dayGridPlugin,
-                    timeGridPlugin,
-                    interactionPlugin, // needed for dateClick
-                    listPlugin
+                    timeGridPlugin
                 ],
                 calendarWeekends: true,
                 calendarEvents: [
                     // initial event dat
                 ],
                 full_calendar: [],
+                calendar: null,
                 FilterResults: StoreFilter.state
             };
         },
@@ -100,7 +84,25 @@
                         });
                     }
                 });
-                //console.log("mounted: " + self.calendarEvents);
+                let calendarEl = document.getElementById("fullCalendarWidget")
+                self.calendar = new Calendar(calendarEl, {
+                        class: "demo-app-calendar",
+                        ref: "fullCalendar",
+                        defaultView: "timeGridWeek",
+                        weekNumberCalculation: "ISO",
+                        header: {
+                            left: '',
+                            center: 'Simulcasts',
+                            right: ''
+                          },
+                        eventRender: self.renderTooltip,
+                        plugins: self.calendarPlugins,
+                        weekends: self.calendarWeekends,
+                        events: self.calendarEvents,
+                        locales: ['fr'],
+                        height: 'auto'
+            })
+                self.calendar.render()
             }
             let request = new XMLHttpRequest();
             request.open('GET', proxy + self.full_calendar_url, true);
@@ -121,8 +123,8 @@
                 console.log("There was a connection error of some sort")
             };
 
-            request.send();
 
+            request.send();
 
         },
         methods: {
@@ -153,26 +155,18 @@
                     fullCalendar.hidden = true
                 else
                     fullCalendar.hidden = false
-            }
-            /*
-            handleDateClick(arg) {
-                
-                if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
-                    this.calendarEvents.push({
-                        // add new event data
-                        title: "New Event",
-                        start: arg.date,
-                        allDay: arg.allDay
-                    });
-                }
             },
-            eventClick: function(info) {
-                info.jsEvent.preventDefault(); // don't let the browser navigate
-
-                if (info.event.url) {
-                window.open(info.event.url);
-                }
-            }*/
+            renderTooltip(info) {
+                console.log(info)
+                info.el.style.color = "white"
+                info.el.style.lineHeight = "1em"
+                info.el.style.fontSize = "10pt"
+                info.el.style.height = "4.2em"
+                let tooltip = tippy(info.el, {
+                    content: info.event.title,
+                    class: "tooltip"
+                })                
+            }
         },
         computed: {
             computedCalendarEvents() {
@@ -195,8 +189,13 @@
 </script>
 
 <style scoped>
+    .agenda {
+        width: 100%;
+        height: 900px;
+    }
+
     .demo-app {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .demo-app-top {
@@ -206,10 +205,6 @@
     .demo-app-calendar {
         margin: 0 auto;
         max-width: 900px;
-    }
-    tr {
-        background-color: transparent;
-        color: black;
     }
     
 </style>

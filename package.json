@@ -18,6 +18,7 @@
         "core-js": "^3.6.0",
         "kind-of": ">=6.0.3",
         "minimist": ">=1.2.2",
+        "tippy.js": "^6.3.1",
         "v-tooltip": "^2.0.2",
         "vue": "^2.6.10",
         "vue-router": "^3.0.7"
