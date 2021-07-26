@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <a id="top"></a>
 
   <NavHead style="margin-bottom: 3em"></NavHead>
 
@@ -28,10 +29,15 @@
             </transition>
           </div>
         </div>
+        <a href="#top">
+          <div class="scroll-up">
+          <svg style="width: 100%; height: 100%;" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />        </svg>
+          </div>
+        </a>
       </div>
       </div>
 </div>
-
       </div>
 
 </template>
@@ -69,13 +75,13 @@ export default {
 </script>
 
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 0px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+    #app {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      margin-top: 0px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 
 
     a:visited {
@@ -91,6 +97,20 @@ export default {
   position: absolute;
   right: 1em;
   top: -0.2em;
+}
+
+.scroll-up {
+  display: block; /* you can remove this to make the scroll-up appear.*/
+  position: fixed;
+  z-index: 11000;
+  bottom: 3%;
+  right: 3%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 99em;
+  background-color: green;
+  color: white;
 }
 
 </style>

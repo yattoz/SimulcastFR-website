@@ -1,18 +1,25 @@
 <template>
         <!-- Layout items -->
 
-    <div align="left">
-        <div class=" textoverflow">
-            <span>
-                Nombre d'éléments par page
+    <div class="catalog">
+        <div class="selector-box">
+            <span class="text-right">
+                Éléments par page
             </span>
-        <select name="Nombre d'éléments par page" v-on:change="setNumberOfElementsPerPage($event)">
+        <select class="selector" name="nbrElemsPerPage" v-on:change="setNumberOfElementsPerPage($event)">
             <option value="200">200</option>
             <option value="500">500</option>
             <option value="1000">1000</option>
             <option value="99999">Tout afficher</option>
         </select>
-    </div>
+        </div>
+        <div class="pagination" v-if="computedPages.length > 1">
+            <div v-for="page in computedPages" v-bind:key="page">
+                <button class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)">
+                    {{page + 1}}
+                </button>
+            </div>
+        </div>
         <ul class="box">
             <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
                 <a :href="unit.link"
@@ -31,7 +38,7 @@
         </div>
         <div class="pagination">
             <div v-for="page in computedPages" v-bind:key="page">
-                <button :id="'button-page-' + page + 1" v-on:click="setPage(page)">
+                <button class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)" >
                     {{page + 1}}
                 </button>
             </div>
@@ -169,12 +176,17 @@
 
 <style scoped>
 
-    ul {
-        margin:0; 
-        padding:0;
+    .catalog {
+        display: grid;
+        grid-template-rows: auto;
+        gap: 1em;
     }
 
-    .box {
+
+    ul.box {
+        text-align: left;
+        margin:0; 
+        padding:0;
         display: grid;
         grid-gap: 0em;
         grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
@@ -216,6 +228,25 @@
 
     .pagination button {
         width: 100%
+    }
+
+    .active {
+        background-color: hotpink;
+    }
+
+    .selector-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4em;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .selector {
+        text-align: left;
+        width: min-content;
     }
 
 

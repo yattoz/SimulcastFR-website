@@ -116,7 +116,7 @@
         border-radius: 8px;
         width: auto;
         height: 100%;
-        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 3px 1px -2px rgba(0, 0, 0, 0.22), 0 1px 5px 0 rgba(0, 0, 0, 0.32);
         position: relative;
         height: 100%;
         display: grid;
@@ -148,7 +148,7 @@
         background-color: transparent;
         border-radius: 8px;
         opacity: 0;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         transition: all 0.2s ease-in-out;
     }
 
