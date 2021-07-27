@@ -48,6 +48,7 @@ import SearchBox from "@/components/SearchBox";
 import CheckboxFilters  from "@/components/CheckboxFilters";
 import NavHead from "@/components/NavHead";
 import ToggleDarkMode from "@/components/ToggleDarkMode";
+import 'tippy.js/dist/tippy.css'; // styling for all tippies
 
 
 export default {

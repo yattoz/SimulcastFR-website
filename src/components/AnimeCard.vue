@@ -10,7 +10,7 @@
             <img class="" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title" data-loaded="true">
         </div>
         <div class="anime-title" v-if="!FilterResults.isTitleShown">
-            <span class="" v-tooltip.top="{content: anime.title, delay: 300}">
+            <span :data-tippy-content="anime.title">
                 {{anime.title}}
             </span>
         </div>
@@ -18,7 +18,7 @@
             <div class="anime-title compact-anime-title"
                 :style="{ 'background-color': badgeColor, opacity: 0.90 }"
                 v-if="FilterResults.isTitleShown">
-                    <span class="" style="color: #ffffff, opacity: 0" v-tooltip.top="{content: anime.title, delay: 300}">
+                    <span class="" style="color: #ffffff, opacity: 0" :data-tippy-content="anime.title">
                     {{anime.title}}
                     </span>
             </div>
@@ -66,10 +66,6 @@
             }
         },
         mounted() {
-            document.addEventListener('DOMContentLoaded', function() {
-                var elems = document.querySelectorAll('.tooltipped');
-                var options = {enterDelay: 200};
-            });
         },
         computed: {
             cardWidth() {

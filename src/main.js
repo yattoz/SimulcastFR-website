@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VTooltip from 'v-tooltip';
-
 
 import App from './App.vue'
 
@@ -13,7 +11,6 @@ import Calendar from "@/components/Calendar"
 
 
 Vue.use(VueRouter)
-Vue.use(VTooltip)
 
 Vue.config.productionTip = true
 

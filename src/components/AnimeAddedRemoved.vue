@@ -14,6 +14,7 @@
 <script>
     import StoreFilter from '@/components/StoreFilter';
     import WeekAddedRemoved from '@/components/WeekAddedRemoved';
+    import tippy from 'tippy.js'
     
     const proxy = '';
     //const proxy = '';
@@ -41,6 +42,12 @@
                     // console.log(period);
                     self.week.push(period);
                 });
+                self.$nextTick(function () {
+                    // Code that will run only after the
+                    // entire view has been rendered
+                    let instances = tippy('[data-tippy-content]');
+                    console.log(instances)
+                })
             }
 
             let request = new XMLHttpRequest()

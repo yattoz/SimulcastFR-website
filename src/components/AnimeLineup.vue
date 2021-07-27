@@ -2,13 +2,9 @@
     <div>
     <div class="box" tabindex="0">
         <!-- Layout items -->
-
-        <!--
-        <AnimeCard v-for="unit in cr_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-        <AnimeCard v-for="unit in adn_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/>
-        <AnimeCard v-for="unit in waka_lineup"  v-bind:anime="unit" v-bind:key="unit.image"/> -->
-            
-        <AnimeCard v-for="unit in computedLineup" v-bind:anime="unit" v-bind:key="unit.title.concat('_').concat(unit.service)"/>
+        <AnimeCard v-for="unit in computedLineup" 
+                    v-bind:anime="unit" 
+                    v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
 <!--
@@ -40,7 +36,7 @@
 
     import AnimeCard from "@/components/AnimeCard";
     import StoreFilter from '@/components/StoreFilter';
-    
+    import tippy from 'tippy.js'
     const proxy = '';
     
     export default {
@@ -72,6 +68,12 @@
                 self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
+                self.$nextTick(function () {
+                    // Code that will run only after the
+                    // entire view has been rendered
+                    let instances = tippy('[data-tippy-content]');
+                    console.log(instances)
+                })
             } else {
                 // 
                 console.log("We reached our target server, but it returned an error")

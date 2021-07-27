@@ -21,7 +21,7 @@
                   <a
                     :href="unit.link"
                     @click.prevent="open_link_in_tab(unit.link)"
-                    v-tooltip.top="{content: unit.title, delay: 300}"
+                    :data-tippy-content="unit.title"
                     style="color: #000000"
                   >
                     <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
@@ -59,7 +59,7 @@
                 <a
                   :href="unit.link"
                   @click.prevent="open_link_in_tab(unit.link)"
-                  v-tooltip.top="{content: unit.title, delay: 300}"
+                  :data-tippy-content="unit.title"
                   style="color: #000000"
                 >
                   <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
@@ -122,26 +122,6 @@ export default {
     };
   },
   mounted() {
-    var self = this;
-    /*
-                json.forEach(period => {
-                    console.log(period);
-                     if (period["type"] == "added") {
-                        period_data.forEach(anime => {
-                            anime["time"] = period["time"]["begin"];
-                            self.added_lineup.push(anime);
-                        });
-                     }
-                    if (period["type"] == "removed") {
-                        period_data.forEach(anime => {
-                            anime["time"] = period["time"]["begin"];
-                            self.removed_lineup.push(anime);
-                        });
-                     }
-                     console.log(period_data);
-                });
-            });
-            */
   },
   methods: {
     badgeColor(service) {

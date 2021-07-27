@@ -1,5 +1,4 @@
 <template>
-        <!-- Layout items -->
 
     <div class="catalog">
         <div class="selector-box">
@@ -21,10 +20,11 @@
             </div>
         </div>
         <ul class="box">
-            <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  class="textoverflow">
+            <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  
+                class="textoverflow"
+                :data-tippy-content="unit.title">
                 <a :href="unit.link"
                     @click.prevent="open_link_in_tab(unit.link)"
-                    v-tooltip.top="{content: unit.title, delay: 300}"
                     >
                     <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
                     <span class="title">
@@ -49,7 +49,8 @@
 <script>
 
     import StoreFilter from '@/components/StoreFilter';
-    
+    import tippy from 'tippy.js'
+
     const proxy = '';
     
     export default {
@@ -61,9 +62,6 @@
         },
         data() {
             return {
-                cr_lineup: [],
-                adn_lineup: [],
-                waka_lineup: [],
                 full_lineup: [],
                 FilterResults: StoreFilter.state,
                 currentPage: 0
@@ -73,15 +71,17 @@
             var self = this;
             
             function fillCatalogue(json) {
+                
                 let data = json["data"]
                 /* .sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
                 */
-               self.full_lineup = data
-                //console.log();
-                console.log(self.full_lineup)
-
+                self.full_lineup = data
+                self.$nextTick(function () {
+                    let instances = tippy('[data-tippy-content]');
+                    console.log(instances)
+                })
             }
 
             let request = new XMLHttpRequest();
