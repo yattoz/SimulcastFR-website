@@ -20,6 +20,9 @@ const routes = [{
         name: 'Full Lineup',
         component: AnimeLineup,
         props: { full_lineup_url: "https://www.calvinballconsortium.fr/simulcastfr/json/full_lineup.json" },
+        meta: {
+            title: 'SimulcastFR - Les animés diffusés en ce moment'
+        },
         beforeEnter: (to, from, next) => {
             // called before the route that renders this component is confirmed.
             // does NOT have access to `this` component instance,
@@ -31,6 +34,9 @@ const routes = [{
         path: '/about',
         name: "A Propos",
         component: APropos,
+        meta: {
+            title: "SimulcastFR - A propos"
+        },
         beforeEnter: (to, from, next) => {
             // called before the route that renders this component is confirmed.
             // does NOT have access to `this` component instance,
@@ -43,6 +49,9 @@ const routes = [{
         name: "Catalogue",
         component: AnimeCatalogue,
         props: { full_lineup_url: "https://www.calvinballconsortium.fr/simulcastfr/json/full_catalogue.json" },
+        meta: {
+            title: "SimulcastFR - Catalogue complet des animés en France"
+        },
         beforeEnter: (to, from, next) => {
             // called before the route that renders this component is confirmed.
             // does NOT have access to `this` component instance,
@@ -55,6 +64,9 @@ const routes = [{
         name: 'Ajouts / Retraits',
         component: AnimeAddedRemoved,
         props: { diff_catalogue_url: "https://www.calvinballconsortium.fr/simulcastfr/json/full_diff_catalogue.json" },
+        meta: {
+            title: "SimulcastFR - Liste des changements"
+        },
         beforeEnter: (to, from, next) => {
             // called before the route that renders this component is confirmed.
             // does NOT have access to `this` component instance,
@@ -66,8 +78,10 @@ const routes = [{
         path: '/calendar',
         component: Calendar,
         props: { full_calendar_url: "https://www.calvinballconsortium.fr/simulcastfr/json/full_calendar.json" },
+        meta: {
+            title: "SimulcastFR - Calendrier des sorties"
+        },
         beforeEnter: (to, from, next) => {
-
             // called before the route that renders this component is confirmed.
             // does NOT have access to `this` component instance,
             // because it has not been created yet when this guard is called
@@ -82,6 +96,15 @@ const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
 })
+
+router.beforeEach((to, from, next) => {
+    // Use next tick to handle router history correctly
+    // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
+    Vue.nextTick(() => {
+        document.title = to.meta.title || DEFAULT_TITLE;
+    });
+    next()
+});
 
 new Vue({
     router,
