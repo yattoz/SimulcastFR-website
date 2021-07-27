@@ -28,6 +28,7 @@
 
     import { Calendar } from '@fullcalendar/core';
     import tippy from 'tippy.js'
+    import 'tippy.js/dist/tippy.css'; // optional for styling
     import timeGridPlugin from "@fullcalendar/timegrid";
 
     //import frLocale from '@fullcalendar/core/locales/fr';
@@ -162,9 +163,9 @@
                 info.el.style.lineHeight = "1em"
                 info.el.style.fontSize = "10pt"
                 info.el.style.height = "4.2em"
+                
                 let tooltip = tippy(info.el, {
-                    content: info.event.title,
-                    class: "tooltip"
+                    content: info.event.title
                 })                
             }
         },

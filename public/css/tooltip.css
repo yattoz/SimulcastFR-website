@@ -19,6 +19,7 @@
     position: absolute;
     margin: 5px;
     z-index: 10000;
+    color: #121212
 }
 
 body.dark-mode .tooltip {
@@ -27,7 +28,7 @@ body.dark-mode .tooltip {
 }
 
 body.dark-mode .tooltip .tooltip-arrow {
-    border-color: #555555
+    color: #555555
 }
 
 .tooltip[x-placement^="top"] {
