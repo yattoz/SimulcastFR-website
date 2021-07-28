@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { createApp,h } from 'vue'
+import { configureCompat, createApp, h } from 'vue'
 import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
@@ -11,6 +11,12 @@ import APropos from "@/components/APropos"
 import Calendar from "@/components/Calendar"
 
 
+configureCompat(
+    {
+        WATCH_ARRAY: false,
+        RENDER_FUNCTION: false
+    }
+)
 
 const routes = [{
         path: '/',

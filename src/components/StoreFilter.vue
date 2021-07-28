@@ -10,6 +10,7 @@
             search: "",
             isTitleShown: false,
             isDubbedOn: false,
+            isAgendaShown: false,
             cardScaling: 1.0,
             serviceSort: false,
             tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo', 'netflix'],
@@ -53,6 +54,9 @@
         },
         setItemsPerPage: function(number) {
             this.state.itemsPerPage = number
+        },
+        setAgendaShown: function(bool) {
+            this.state.isAgendaShown = bool
         }
     }
 </script>

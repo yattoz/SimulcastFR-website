@@ -1,15 +1,17 @@
 <template>
 
     <div class="">
-        <p>Note : ce calendrier n'est actuellement pas filtrable.</p>
         <div>
         <button class="" v-on:click="toggleCalendar('agenda')">Vue Agenda</button>
         <button class="" v-on:click="toggleCalendar('list')">Vue Liste</button>
 
         </div>
-            <div class="agenda" id="fullCalendarWidget">
+            <div class="agenda-container" :class="{invisible: !FilterResults.isAgendaShown}">
+                <p> Cet agenda n'est pas filtrable. </p>
+                <div class="agenda" id="fullCalendarWidget">
+                </div>
             </div>
-    </div>
+        </div>
 </template>
 
 <script>
@@ -78,14 +80,12 @@
                 });
                 let calendarEl = document.getElementById("fullCalendarWidget")
                 self.calendar = new Calendar(calendarEl, {
-                        class: "demo-app-calendar",
-                        ref: "fullCalendar",
-                        defaultView: "timeGridWeek",
+                        initialView: "timeGridWeek",
                         weekNumberCalculation: "ISO",
-                        header: {
-                            left: '',
-                            center: 'Simulcasts',
-                            right: ''
+                        headerToolbar: {
+                            start: 'title', // will normally be on the left. if RTL, will be on the right
+                            center: '',
+                            end: '' //'today prev,next' // will normally be on the right. if RTL, will be on the left
                           },
                         eventDidMount: self.renderTooltip,
                         plugins: self.calendarPlugins,
@@ -140,16 +140,9 @@
                 return "#fefefe";
             },
             toggleCalendar(type) {
-                let fullCalendar = document.getElementById("fullCalendarWidget")
-                console.log(type)
-                
-                if (type === "list")
-                    fullCalendar.hidden = true
-                else
-                    fullCalendar.hidden = false
+                StoreFilter.setAgendaShown(type === "agenda")
             },
             renderTooltip(info) {
-                console.log(info)
                 info.el.style.color = "white"
                 info.el.style.lineHeight = "1em"
                 info.el.style.fontSize = "10pt"
@@ -183,7 +176,7 @@
 <style scoped>
     .agenda {
         width: 100%;
-        height: 900px;
+        height: 1400px;
     }
 
     .demo-app {
@@ -194,9 +187,9 @@
         margin: 0 0 3em;
     }
 
-    .demo-app-calendar {
-        margin: 0 auto;
-        max-width: 900px;
+
+    .invisible {
+        visibility: hidden;
+        height: 0px;
     }
-    
 </style>
