@@ -2,21 +2,23 @@
   <!-- Layout items -->
   <div>
     <div align="left">
-      <div class="row">
       <div class = "datetime">
          <h5>
            {{ computedTime }} 
           </h5>
       </div>
-        <div class="col s12 m12 l6 catalogue-col">
+      <div class="two-columns">
+        <div class="col s12 m12 l6">
         <div align="center" class="col-title added-title">
             Nouvelles licences
         </div>
-              <ul class="box" v-bind:class="{box_compact: FilterResults.isTitleShown}">
-                <li
+              <div class="box added" 
+                   v-bind:class="{box_compact: FilterResults.isTitleShown}"
+                   v-if="computedAdded.length > 0">
+                <span
                   v-for="unit in computedAdded"
                   v-bind:key="unit.title.concat('_').concat(unit.service)"
-                  class="textoverflow added"
+                  class="overflowhidden"
                 >
                   <a
                     :href="unit.link"
@@ -27,34 +29,36 @@
                     <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
                     <span class="title">{{unit.title}}</span>
                   </a>
-                </li>
-              </ul>
+                </span>
+              </div>
               <div
                 align="center"
                 class="no_result"
-                v-if="computedAdded.length <= 0  && !( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+                v-else-if="computedAdded.length <= 0  && !( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
               >
                 <p>Pas de changements avec ces filtres.</p>
               </div>
-            <div
-              align="center"
-              class="no_result"
-              v-if="computedAdded.length <= 0  && ( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
-            >
-              <p>Pas de changements.</p>
-            </div>
+              <div
+                align="center"
+                class="no_result"
+                v-if="computedAdded.length <= 0  && ( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+              >
+                <p>Pas de changements.</p>
+              </div>
             <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
         </div>
-        <div class="col s12 m12 l6 catalogue-col">
+        <div class="col s12 m12 l6">
           <div align="left"> <!-- a bit of spacing -->
             <div align="center" class="col-title removed-title">
                 Licences expirées
             </div>
-            <ul class="box"  v-bind:class="{box_compact: FilterResults.isTitleShown}">
-              <li
+            <div class="box removed"  
+                 v-bind:class="{box_compact: FilterResults.isTitleShown}"
+                 v-if="computedRemoved.length > 0">
+              <span
                 v-for="unit in computedRemoved"
                 v-bind:key="unit.title.concat('_').concat(unit.service)"
-                class="textoverflow removed"
+                class="overflowhidden"
               >
                 <a
                   :href="unit.link"
@@ -65,13 +69,13 @@
                   <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
                   <span class="title">{{unit.title}}</span>
                 </a>
-              </li>
-            </ul>
+              </span>
+            </div>
 
             <div
               align="center"
               class="no_result"
-              v-if="computedRemoved.length <= 0  && ( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))"
+              v-else-if="computedRemoved.length <= 0  && ( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))"
             >
               <p>Pas de changements.</p>
             </div>
@@ -234,43 +238,43 @@ export default {
     border-top-right-radius: 1em; */
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-.box {
-  display: grid;
-  grid-gap: 0em;
-  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
-}
-
 .box_compact {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
 }
 
-.textoverflow {
-  overflow: hidden;
-  font-size: 1em;
-  padding: 2px;
-  white-space: nowrap; /* Don't forget this one */
-  text-overflow: ellipsis;
-  border: solid 1px rgba(0, 0, 0, 0.3);
-  z-index: 1;
+.box {
+    text-align: left;
+    padding: 8px;
+    border-radius: 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 3px 1px -2px rgba(0, 0, 0, 0.22), 0 1px 5px 0 rgba(0, 0, 0, 0.32);
 }
 
-.service-icon {
-  width: 1.6em;
-  margin-bottom: -0.3em;
-  margin-left: 0px;
-  margin-right: 2px;
-  position: relative;
+.overflowhidden{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Don't forget this one */
 }
 
-.title {
-  margin-left: 0em;
+.service-icon{
+    width: 1.6em;
+    height: 1.6em;
+    margin-bottom: -0.3em;
+    margin-left: 0px;
+    margin-right: 2px;
+    position: relative;
+    display: inline-block;
 }
 
+.title{
+    font-size: 1.0em;
+    padding: 2px;
+    margin-left: 0em;
+    display: inline;
+
+}
 .no_result {
   font-size: large;
 }

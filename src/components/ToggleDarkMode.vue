@@ -43,7 +43,11 @@ export default {
 .dark-mode-widget {
   display: table;
   margin: 1em auto;
+  position: absolute;
+  right: 1em;
+  top: -0.2em;
 }
+
 body.dark-mode {
   background: #121212;
 }

@@ -99,11 +99,6 @@ export default {
         color: inherit;
     }
     
-.toggleDarkModeButton {
-  position: absolute;
-  right: 1em;
-  top: -0.2em;
-}
 
 .scroll-up {
   display: block; /* you can remove this to make the scroll-up appear.*/
