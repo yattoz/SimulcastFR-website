@@ -19,9 +19,9 @@
                 </button>
             </div>
         </div>
-        <ul class="box">
-            <li v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  
-                class="textoverflow"
+        <div class="box">
+            <span v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  
+                class="overflowhidden"
                 :data-tippy-content="unit.title">
                 <a :href="unit.link"
                     @click.prevent="open_link_in_tab(unit.link)"
@@ -31,9 +31,9 @@
                     {{unit.title}}
                     </span>
                 </a>
-            </li>
-        </ul>
-        <div align="center" class="no_result" v-if="computedLineup.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))" >
+            </span>
+        </div>
+        <div align="center" class="no_result" v-if="computedLineup.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))" >
         <p>Aucun résultat pour la recherche.</p>
         </div>
         <div class="pagination">
@@ -69,14 +69,10 @@
         },
         mounted() {
             var self = this;
-            
+            tippy.setDefaultProps( { delay: [300, 100] } )
             function fillCatalogue(json) {
                 
                 let data = json["data"]
-                /* .sort(function (a, b) {
-                    return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
-                });
-                */
                 self.full_lineup = data
                 self.$nextTick(function () {
                     let instances = tippy('[data-tippy-content]');
@@ -130,11 +126,12 @@
             },
             setNumberOfElementsPerPage(event) {
                 let number = event.target.value
-                this.FilterResults.itemsPerPage = number
+                StoreFilter.setItemsPerPage(number)
             }
         },
         computed: {
             fullComputedLineup(){
+                console.log("fullComputedLineup")
                 let typedText = this.FilterResults.search;
                 let serviceSort = this.FilterResults.serviceSort;
                 let tmp = this.full_lineup;
@@ -159,7 +156,8 @@
                 return tmp
             },
             computedLineup(){
-                return this.fullComputedLineup.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
+                let res = this.fullComputedLineup.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
+                return res
             },
             computedPages(){
                 let numberOfItems = this.fullComputedLineup.length
@@ -183,24 +181,20 @@
     }
 
 
-    ul.box {
+    .box {
         text-align: left;
         margin:0; 
         padding:0;
         display: grid;
-        grid-gap: 0em;
+        gap: 16px;
         grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
     }
 
-    .textoverflow{
+    .overflowhidden{
         overflow: hidden;
-        font-size: 1.0em;
-        padding: 2px;
-        white-space: nowrap; /* Don't forget this one */
         text-overflow: ellipsis;
-        border: solid 1px rgba(127, 127, 127, 0.6);
-        z-index: 1;
+        white-space: nowrap; /* Don't forget this one */
     }
 
     .service-icon{
@@ -210,10 +204,15 @@
         margin-left: 0px;
         margin-right: 2px;
         position: relative;
+        display: inline-block;
     }
 
     .title{
+        font-size: 1.0em;
+        padding: 2px;
         margin-left: 0em;
+        display: inline;
+
     }
 
     .no_result{

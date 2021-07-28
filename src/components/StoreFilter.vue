@@ -1,12 +1,12 @@
 <template>
-    <!-- empty -->
     <div></div>
 </template>
 
 <script>
+    import {reactive} from 'vue';
     export default {
         name: "StoreFilter",
-        state: {
+        state: reactive({
             search: "",
             isTitleShown: false,
             isDubbedOn: false,
@@ -15,7 +15,7 @@
             tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo', 'netflix'],
             forceRedraw: false,
             itemsPerPage: 200
-        },
+        }),
         setSearch: function(str) {
             this.state.search = str;
             //console.log("StoreFilter.search = " + this.state.search);
@@ -49,11 +49,10 @@
             } else {
                 this.state.tableServices.push(service);
             }
-
-        } // ,
-        // setItemPerPage: function(itemsPerPage) {
-        //     this.state.itemsPerPage = itemsPerPage
-        // }
-
+            console.log(this.state.tableServices)
+        },
+        setItemsPerPage: function(number) {
+            this.state.itemsPerPage = number
+        }
     }
 </script>

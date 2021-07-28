@@ -7,20 +7,8 @@
                     v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
-<!--
-     <div align="center">
-        <p>
-        SimulcastFR est en maintenance (je paye les pots cassés de mon architecture déplorable).
-        </p>
-        <p>
-        Je tenterai d'apporter les réparations qui s'imposent d'ici mi-octobre.
-        </p>
-        <p>
-        Merci pour votre patience !
-        </p>
-     </div>
--->
-    <div align="center" class="no_result" v-if="(computedLineup.length <= 0) && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim()))) ">
+
+    <div align="center" v-if="(computedLineup.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim()))) ) ">
         <p>Aucun résultat pour la recherche dans les simulcasts de cette saison.</p>
         <p>
         Si vous cherchez une œuvre dont la diffusion est terminée,
@@ -42,22 +30,20 @@
     export default {
         name: "AnimeLineup",
         components: {
-            AnimeCard,
+            AnimeCard
         },
         props: {
             full_lineup_url: String
         },
         data() {
             return {
-                cr_lineup: [],
-                adn_lineup: [],
-                waka_lineup: [],
                 full_lineup: [],
                 FilterResults: StoreFilter.state
             }
         },
         mounted() {
             let self = this;
+            tippy.setDefaultProps( { delay: [300, 100] } )
             let request = new XMLHttpRequest();
             request.open('GET', proxy + self.full_lineup_url, true);
 
@@ -72,7 +58,6 @@
                     // Code that will run only after the
                     // entire view has been rendered
                     let instances = tippy('[data-tippy-content]');
-                    console.log(instances)
                 })
             } else {
                 // 

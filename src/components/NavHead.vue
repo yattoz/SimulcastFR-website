@@ -12,22 +12,20 @@
           </a>
           <ul class="tabs tabs-transparent hide-on-med-and-down">
             <li class="tab" @click="setPath('/')" id="/">
-              <router-link :class="this.path == '/' ? 'active' : ''" to="/">Simulcasts de la saison</router-link>
+              <router-link to="/">Simulcasts de la saison</router-link>
             </li>
             <li class="tab" @click="setPath('/calendar')" id="/calendar">
-              <router-link
-                :class="this.path == '/calendar' ? 'active' : ''"
-                to="/calendar"
+              <router-link to="/calendar"
               >Calendrier</router-link>
             </li>
             <li class="tab" @click="setPath('/full-lineup')" id="/full-lineup">
-              <router-link class to="/full-lineup">Catalogue</router-link>
+              <router-link to="/full-lineup">Catalogue</router-link>
             </li>
             <li class="tab" @click="setPath('/added-removed')" id="/added-removed">
-              <router-link class to="/added-removed">Ajouts / Retraits</router-link>
+              <router-link to="/added-removed">Ajouts / Retraits</router-link>
             </li>
             <li class="tab" @click="setPath('/about')" id="/about">
-              <router-link :class="this.path === '/about' ? 'active' : ''" to="/about">A propos</router-link>
+              <router-link to="/about">A propos</router-link>
             </li>
           </ul>
         </div>

@@ -32,14 +32,14 @@
               <div
                 align="center"
                 class="no_result"
-                v-if="computedAdded.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+                v-if="computedAdded.length <= 0  && !( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
               >
                 <p>Pas de changements avec ces filtres.</p>
               </div>
             <div
               align="center"
               class="no_result"
-              v-if="computedAdded.length <= 0  && ( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+              v-if="computedAdded.length <= 0  && ( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
             >
               <p>Pas de changements.</p>
             </div>
@@ -71,7 +71,7 @@
             <div
               align="center"
               class="no_result"
-              v-if="computedRemoved.length <= 0  && ( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+              v-if="computedRemoved.length <= 0  && ( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))"
             >
               <p>Pas de changements.</p>
             </div>
@@ -79,7 +79,7 @@
             <div
               align="center"
               class="no_result"
-              v-if="computedRemoved.length <= 0  && !( (this.FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))">
+              v-if="computedRemoved.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))">
               <p>Pas de changements avec ces filtres.</p>
             </div>
             <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->

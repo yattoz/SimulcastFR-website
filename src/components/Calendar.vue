@@ -5,20 +5,9 @@
         <div>
         <button class="" v-on:click="toggleCalendar('agenda')">Vue Agenda</button>
         <button class="" v-on:click="toggleCalendar('list')">Vue Liste</button>
-        <v-popover offset="16">
-        <!-- This will be the popover target (for the events and position) -->
-        <button class="tooltip-target b3">Click me</button>
 
-        <!-- This will be the content of the popover -->
-        <template slot="popover">
-            Voix ambigüe au coeur d'un zéphyr qui préfère aux jattes les kiwis.
-        </template>
-        </v-popover>
         </div>
             <div class="agenda" id="fullCalendarWidget">
-            
-                            <!--    @eventClick="eventClick"
-                        @dateClick="handleDateClick"   -->
             </div>
     </div>
 </template>
@@ -31,8 +20,8 @@
 
     //import frLocale from '@fullcalendar/core/locales/fr';
     // must manually include stylesheets for each plugin
-    import "@fullcalendar/core/main.css";
-    import "@fullcalendar/timegrid/main.css";
+    // import "@fullcalendar/core/main.css";
+    // import "@fullcalendar/timegrid/main.css";
 
     import tippy from 'tippy.js'
 
@@ -63,6 +52,7 @@
         },
         mounted() {
             var self = this;
+            tippy.setDefaultProps( { delay: [0, 0] } )
             function fillCalendar(json) {
                 self.full_calendar = json["data"];
                 self.full_calendar.forEach(function(anime){
@@ -97,7 +87,7 @@
                             center: 'Simulcasts',
                             right: ''
                           },
-                        eventRender: self.renderTooltip,
+                        eventDidMount: self.renderTooltip,
                         plugins: self.calendarPlugins,
                         weekends: self.calendarWeekends,
                         events: self.calendarEvents,
@@ -164,9 +154,11 @@
                 info.el.style.lineHeight = "1em"
                 info.el.style.fontSize = "10pt"
                 info.el.style.height = "4.2em"
-                
+                let intl = new Intl.DateTimeFormat('fr-FR', {month: 'numeric', day: 'numeric', hour: 'numeric', 'minute': 'numeric'})
+
                 let tooltip = tippy(info.el, {
-                    content: info.event.title
+                    content: `${intl.format(info.event.start)}<br/>${info.event.title}`,
+                    allowHTML: true,
                 })                
             }
         },
@@ -182,9 +174,7 @@
                     caught = caught && (this.FilterResults.isDubbedOn || unit.title.slice(-4) !== "Dub)");
                     return caught;
                 });
-                //console.log("computed: ", tmp2);
                 return this.calendarEvents; 
-
             }
         }
     };

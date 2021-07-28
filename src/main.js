@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
+import { createApp,h } from 'vue'
 import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
@@ -9,10 +10,6 @@ import AnimeAddedRemoved from "@/components/AnimeAddedRemoved"
 import APropos from "@/components/APropos"
 import Calendar from "@/components/Calendar"
 
-
-Vue.use(VueRouter)
-
-Vue.config.productionTip = true
 
 
 const routes = [{
@@ -92,8 +89,8 @@ const routes = [{
 
 ]
 
-const router = new VueRouter({
-    mode: 'history',
+const router = createRouter({
+    history: createWebHistory(),
     routes // short for `routes: routes`
 })
 
@@ -106,7 +103,12 @@ router.beforeEach((to, from, next) => {
     next()
 });
 
-new Vue({
-    router,
-    render: h => h(App)
-}).$mount('#app')
+// 5. Create and mount the root instance.
+const app  = createApp({
+    render: ()=>h(App)
+});
+
+// Make sure to _use_ the router instance to make the
+// whole app router-aware.
+app.use(router)
+app.mount('#app')

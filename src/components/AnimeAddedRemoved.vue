@@ -37,6 +37,7 @@
         },
         mounted() {
             var self = this;
+            tippy.setDefaultProps( { delay: [300, 100] } )
             function fillAddedRemoved(json) {
                 json.forEach(period => {
                     // console.log(period);

@@ -21,12 +21,18 @@
         </div>
         <div class="col s12 m12 l9">
           <div class="" style="margin: 0.4em" >
-            <transition>
-              <keep-alive>
-                <!-- Component matched by the route will render here-->
-                <router-view></router-view>
-              </keep-alive>
-            </transition>
+
+    <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transition || 'fade'" mode="out-in">
+        <keep-alive>
+          <component
+            :is="Component"
+            :key="route.meta.usePathKey ? route.path : undefined"
+          />
+        </keep-alive>
+      </transition>
+    </router-view>
+
           </div>
         </div>
         <a href="#top">
