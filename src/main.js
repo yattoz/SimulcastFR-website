@@ -1,7 +1,7 @@
-import Vue from 'vue'
+
+import { createApp, h, nextTick, configureCompat } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { configureCompat, createApp, h } from 'vue'
 import App from './App.vue'
 
 import AnimeLineup from '@/components/AnimeLineup'
@@ -103,7 +103,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     // Use next tick to handle router history correctly
     // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
-    Vue.nextTick(() => {
+    nextTick(() => {
         document.title = to.meta.title || DEFAULT_TITLE;
     });
     next()
