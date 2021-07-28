@@ -104,7 +104,7 @@
         .box {
             display: grid;
             grid-gap: 1em;
-            grid-template-columns: repeat(auto-fill, minmax(9em,1fr)); /* 120px */
+            grid-template-columns: repeat(auto-fill, minmax(8em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
 
@@ -114,7 +114,7 @@
         .box {
             display: grid;
             grid-gap: 0.8em;
-            grid-template-columns: repeat(auto-fill, minmax(7em,1fr)); /* 120px */
+            grid-template-columns: repeat(auto-fill, minmax(7.5em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
     }
@@ -123,7 +123,7 @@
         .box {
             display: grid;
             grid-gap: 0.6em;
-            grid-template-columns: repeat(auto-fill, minmax(6em,1fr)); /* 120px */
+            grid-template-columns: repeat(auto-fill, minmax(6.4em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
 

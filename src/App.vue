@@ -7,7 +7,7 @@
 
   <div class="">
     <div class="">
-      <div class="row">
+      <div class="two-columns-asymetric">
         <div class="col s12 m12 l3">
           <div class="" style="margin: 0.4em; margin-bottom: 0.6em">
             <div align="left" class="">
@@ -35,13 +35,13 @@
 
           </div>
         </div>
+      </div>
         <a href="#top">
           <div class="scroll-up">
           <svg style="width: 100%; height: 100%;" viewBox="0 0 24 24">
     <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />        </svg>
           </div>
         </a>
-      </div>
       </div>
 </div>
       </div>
@@ -98,7 +98,27 @@ export default {
         text-decoration: none;
         color: inherit;
     }
-    
+
+@media (min-width: 768px) {  /* smaller than tablet */
+
+    .two-columns-asymetric {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        gap: 16px;
+    }
+
+}
+
+@media (max-width: 768px) {  /* smaller than tablet */
+
+    .two-columns-asymetric {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+}
+
 
 .scroll-up {
   display: block; /* you can remove this to make the scroll-up appear.*/

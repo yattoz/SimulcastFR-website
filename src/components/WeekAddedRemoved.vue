@@ -13,11 +13,11 @@
             Nouvelles licences
         </div>
               <div class="box added" 
-                   v-bind:class="{box_compact: FilterResults.isTitleShown}"
+                   :class="{boxcompact: FilterResults.isTitleShown}"
                    v-if="computedAdded.length > 0">
                 <span
                   v-for="unit in computedAdded"
-                  v-bind:key="unit.title.concat('_').concat(unit.service)"
+                  :key="unit.title.concat('_').concat(unit.service)"
                   class="overflowhidden"
                 >
                   <a
@@ -53,11 +53,11 @@
                 Licences expirées
             </div>
             <div class="box removed"  
-                 v-bind:class="{box_compact: FilterResults.isTitleShown}"
+                 :class="{boxcompact: FilterResults.isTitleShown}"
                  v-if="computedRemoved.length > 0">
               <span
                 v-for="unit in computedRemoved"
-                v-bind:key="unit.title.concat('_').concat(unit.service)"
+                :key="unit.title.concat('_').concat(unit.service)"
                 class="overflowhidden"
               >
                 <a
@@ -209,6 +209,36 @@ export default {
 </script>
 
 <style scoped>
+
+
+@media (min-width: 768px) /* bigger than or equal to tablet */
+ {
+    .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {  /* smaller than tablet */
+    .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 576px) {  /* smaller than smartphone */
+    .two-columns {
+        display: grid;
+        grid-gap: 0.6em;
+        grid-template-columns: 1fr
+    }
+
+}
+
+
+
 .added {
   background-color: rgba(181, 231, 181, 0.5);
 }
@@ -238,18 +268,18 @@ export default {
     border-top-right-radius: 1em; */
 }
 
-.box_compact {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-}
-
 .box {
     text-align: left;
     padding: 8px;
     border-radius: 16px;
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    grid-template-columns: 1fr;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 3px 1px -2px rgba(0, 0, 0, 0.22), 0 1px 5px 0 rgba(0, 0, 0, 0.32);
+}
+
+.boxcompact {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
 }
 
 .overflowhidden{

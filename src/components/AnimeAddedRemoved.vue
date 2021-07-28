@@ -1,6 +1,4 @@
 <template>
-        <!-- Layout items -->
-
     <div>
         <WeekAddedRemoved v-for="unit in computedWeek" 
             v-bind:added_lineup="unit.added" 
