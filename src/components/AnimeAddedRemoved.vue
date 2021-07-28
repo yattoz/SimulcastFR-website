@@ -1,11 +1,21 @@
 <template>
     <div>
+        <select class="selector" name="whichMonth" v-on:change="setMonth($event)">
+            <option 
+                v-for="unit in computedMonths"
+                v-bind:key="unit"
+                :value="unit.value">
+                {{unit.text}}
+            </option>
+        </select>
+        <div>
         <WeekAddedRemoved v-for="unit in computedWeek" 
             v-bind:added_lineup="unit.added" 
             v-bind:removed_lineup="unit.removed"
             v-bind:time_begin="unit.time_begin"
             v-bind:time_end="unit.time_end"
             v-bind:key="unit.time"/>
+        </div>
     </div>
 </template>
 
@@ -13,7 +23,7 @@
     import StoreFilter from '@/components/StoreFilter';
     import WeekAddedRemoved from '@/components/WeekAddedRemoved';
     import tippy from 'tippy.js'
-    
+    import { nextTick } from 'vue'
     const proxy = '';
     //const proxy = '';
     
@@ -28,8 +38,8 @@
         data() {
             return {
                 week: [],
-                time_begin: [],
-                time_end: [],
+                months: [],
+                currentMonth: new Date((new Date()).getFullYear(), (new Date()).getMonth(), 1),
                 FilterResults: StoreFilter.state
             }
         },
@@ -41,12 +51,22 @@
                     // console.log(period);
                     self.week.push(period);
                 });
-                self.$nextTick(function () {
+                nextTick(function () {
                     // Code that will run only after the
                     // entire view has been rendered
                     let instances = tippy('[data-tippy-content]');
-                    console.log(instances)
+                    // console.log(instances)
                 })
+                self.week.forEach(week =>
+                {
+                    let dateBegin = new Date(week.time_begin)
+                    let dateEnd = new Date(week.time_end)
+                    let beginMonth = new Date(dateBegin.getFullYear(), dateBegin.getMonth(), 1)
+                    // let endMonth = new Date(dateEnd.getFullYear(), dateEnd.getMonth(), 1)
+                    if (self.months.filter(x => x.getTime() == beginMonth.getTime()).length == 0)
+                        self.months.push(beginMonth)
+                })
+                self.currentMonth = self.months[0]
             }
 
             let request = new XMLHttpRequest()
@@ -90,12 +110,35 @@
             },
             open_link_in_tab(url){
                 window.open(url);
+            },
+            setMonth(event) {
+                let dateIsoString = event.target.value
+                this.currentMonth = new Date(dateIsoString)
             }
         },
         computed: {
             computedWeek(){
                 var tmp = this.week;
-                return tmp;
+                console.log("computing")
+                let nextMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 1)
+                return tmp.filter(x => {
+                    let begin = new Date(x.time_begin)
+                    let end = new Date(x.time_end)
+                    let isBeginningOutOfMonth = begin.getTime() > nextMonth.getTime()
+                    let isEndOutOfMonth = end.getTime() < this.currentMonth.getTime()
+                    return !(isBeginningOutOfMonth) && !(isEndOutOfMonth)
+                })
+            },
+            computedMonths(){
+                const options = {month: 'long', year: 'numeric' };
+                return this.months.map(x =>
+                    {
+                        let res = {
+                            value: x.toISOString(),
+                            text: x.toLocaleDateString('fr-FR', options)
+                        }
+                        return res
+                    })
             }
         }
     }

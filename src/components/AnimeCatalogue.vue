@@ -50,7 +50,7 @@
 
     import StoreFilter from '@/components/StoreFilter';
     import tippy from 'tippy.js'
-
+    import { nextTick } from 'vue' 
     const proxy = '';
     
     export default {
@@ -74,7 +74,7 @@
                 
                 let data = json["data"]
                 self.full_lineup = data
-                self.$nextTick(function () {
+                nextTick(function () {
                     let instances = tippy('[data-tippy-content]');
                     console.log(instances)
                 })

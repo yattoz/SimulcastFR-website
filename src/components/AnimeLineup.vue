@@ -24,6 +24,7 @@
 
     import AnimeCard from "@/components/AnimeCard";
     import StoreFilter from '@/components/StoreFilter';
+    import { nextTick } from 'vue'
     import tippy from 'tippy.js'
     const proxy = '';
     
@@ -54,7 +55,7 @@
                 self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
-                self.$nextTick(function () {
+                nextTick(function () {
                     // Code that will run only after the
                     // entire view has been rendered
                     let instances = tippy('[data-tippy-content]');
