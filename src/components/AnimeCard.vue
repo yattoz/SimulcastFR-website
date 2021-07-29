@@ -126,8 +126,8 @@
         transition: all 0.15s ease-in-out 0.1s;
         position: relative;
         object-fit: cover;
-        height: 100%;
-        width: 100%;
+        height: 102%;
+        width: 102%;
         z-index: 1;
         top: 0px;
     }
@@ -157,7 +157,7 @@
     }
     
 
-    .card-inside::after {
+    .card-shadow::before {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -167,11 +167,11 @@
         background-color: #ffffff;
         border-radius: inherit;
         opacity: 0;
-        transition: 0.15s ease 0.1s;
-        z-index: 900;
+        transition: 0.15s ease-in-out 0.1s;
+        z-index: 1100;
     }
 
-    .card-inside:hover::after {
+    .card-shadow:hover::before {
         opacity: 0.33;
     }
 
