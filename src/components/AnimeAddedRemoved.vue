@@ -8,8 +8,9 @@
                 {{unit.text}}
             </option>
         </select>
-        <div>
-        <WeekAddedRemoved v-for="unit in computedWeek" 
+        <div id="week-added-removed">
+        <WeekAddedRemoved 
+            v-for="unit in computedWeek" 
             v-bind:added_lineup="unit.added" 
             v-bind:removed_lineup="unit.removed"
             v-bind:time_begin="unit.time_begin"
@@ -55,7 +56,7 @@
                     // Code that will run only after the
                     // entire view has been rendered
                     let instances = tippy('[data-tippy-content]');
-                    // console.log(instances)
+                    console.log(instances)
                 })
                 self.week.forEach(week =>
                 {
@@ -66,7 +67,7 @@
                     if (self.months.filter(x => x.getTime() == beginMonth.getTime()).length == 0)
                         self.months.push(beginMonth)
                 })
-                self.currentMonth = self.months[0]
+                // self.currentMonth = self.months[0] // useless since we initialize it to current month with new Date()
             }
 
             let request = new XMLHttpRequest()
@@ -119,8 +120,11 @@
         computed: {
             computedWeek(){
                 var tmp = this.week;
-                console.log("computing")
                 let nextMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 1)
+                nextTick(function() {
+                    console.log("tippy")
+                    tippy('[data-tippy-content]')
+                })
                 return tmp.filter(x => {
                     let begin = new Date(x.time_begin)
                     let end = new Date(x.time_end)

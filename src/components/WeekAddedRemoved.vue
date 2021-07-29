@@ -1,14 +1,14 @@
 <template>
   <!-- Layout items -->
-  <div>
+  <div :nbr-elems="computedAdded.length + computedRemoved.length">
     <div align="left">
       <div class = "datetime">
-         <h5>
+         <h3>
            {{ computedTime }} 
-          </h5>
+          </h3>
       </div>
       <div class="two-columns">
-        <div class="col s12 m12 l6">
+        <div class="">
         <div align="center" class="col-title added-title">
             Nouvelles licences
         </div>
@@ -34,20 +34,20 @@
               <div
                 align="center"
                 class="no_result"
-                v-else-if="computedAdded.length <= 0  && !( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+                v-else-if="computedAdded.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))"
               >
                 <p>Pas de changements avec ces filtres.</p>
               </div>
               <div
                 align="center"
                 class="no_result"
-                v-if="computedAdded.length <= 0  && ( (FilterResults.search.length === 0 || !(this.FilterResults.search.trim())))"
+                v-if="computedAdded.length <= 0  && ( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))"
               >
                 <p>Pas de changements.</p>
               </div>
             <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
         </div>
-        <div class="col s12 m12 l6">
+        <div class="">
           <div align="left"> <!-- a bit of spacing -->
             <div align="center" class="col-title removed-title">
                 Licences expirées
@@ -240,23 +240,24 @@ export default {
 
 
 .added {
-  background-color: rgba(181, 231, 181, 0.5);
+  background-color: rgba(105, 201, 105, 0.331);
 }
 
 .removed {
-  background-color: rgba(255, 185, 197, 0.5);
+  background-color: rgba(219, 115, 132, 0.331);
 }
 
 .added-title {
-  color: rgb(0, 165, 0);
+  color: rgb(7, 147, 7);
 }
 
 .removed-title {
-  color: rgb(156, 0, 26);
+  color: rgb(255, 82, 111);
 }
 
 .datetime{
   padding-left: 0.75em;
+  padding-top: 2em;
 }
 
 .col-title {
