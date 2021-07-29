@@ -20,11 +20,6 @@
     import { Calendar } from '@fullcalendar/core';
     import timeGridPlugin from "@fullcalendar/timegrid";
 
-    //import frLocale from '@fullcalendar/core/locales/fr';
-    // must manually include stylesheets for each plugin
-    // import "@fullcalendar/core/main.css";
-    // import "@fullcalendar/timegrid/main.css";
-
     import tippy from 'tippy.js'
 
     const proxy = '';

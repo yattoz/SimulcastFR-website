@@ -31,30 +31,12 @@
         </div>
       </div>
     </nav>
-    <!--
-    <ul class="sidenav" id="mobile-demo">
-      <li @click="setPath('/')" :class="this.path == '/' ? 'active' : ''" to="/">
-        <router-link class="waves-effect sidenav-close" to="/">Simulcasts de la saison</router-link>
-      </li>
-      <li @click="setPath('/calendar')" :class="this.path == '/calendar' ? 'active' : ''" to="/">
-        <router-link class="waves-effect sidenav-close" to="/calendar">Calendrier</router-link>
-      </li>
-      <li @click="setPath('/full-lineup')" :class="this.path == '/full-lineup' ? 'active' : ''" to="/">
-        <router-link class="waves-effect sidenav-close" to="/full-lineup">Catalogue</router-link>
-      </li>
-      <li @click="setPath('/added-removed')" :class="this.path == '/' ? 'added-removed' : ''" to="/">
-        <router-link class="waves-effect sidenav-close" to="/added-removed">Ajouts / Retraits</router-link>
-      </li>
-      <li @click="setPath('/about')" :class="this.path == '/' ? 'active' : ''" to="/">
-        <router-link class="waves-effect sidenav-close" to="/about">A propos</router-link>
-      </li>
-    </ul>-->
   </div>
 </template>
 
 <script>
-
-export default {
+  
+  export default {
   name: "NavHead",
   data() {
     return {

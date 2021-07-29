@@ -165,7 +165,7 @@
         height: 100%;
         content: '';
         background-color: #ffffff;
-        border-radius: inherit;
+        border-radius: 8px;
         opacity: 0;
         transition: 0.15s ease-in-out 0.1s;
         z-index: 1100;
@@ -179,7 +179,7 @@
     .anime-title{
         /* margin:5.33333333px 0 0 0;*/
         top: 0px;
-        z-index: 1000;
+        z-index: 2000; /* display over white veil */
         font-size:0.8em;
         overflow:hidden;
         display:-webkit-box;

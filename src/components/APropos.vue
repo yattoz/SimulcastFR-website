@@ -1,5 +1,9 @@
 <template>
     <div class="left container" align="left">
+        <div style="text-align: center">
+        <h2> SimulcastFR - 2021, Yattoz </h2>
+        <img class="logo" src="@/assets/logo.png"/>
+        </div>
         <h3>A propos</h3>
         <p>
             Ceci est un site affichant les simulcasts des diffuseurs saisonniers principaux français.
@@ -44,5 +48,10 @@
 </script>
 
 <style scoped>
-
+    .logo {
+        width: 20%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto 
+    }
 </style>

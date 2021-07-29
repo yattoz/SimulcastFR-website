@@ -142,7 +142,7 @@
     .border {
         box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
         border-radius: 16px;
-        margin: 0.4em;
+        margin-top: 1em;
     }
 
     

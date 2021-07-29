@@ -8,7 +8,7 @@
   <div class="">
     <div class="">
       <div class="two-columns-asymetric">
-        <div class="col s12 m12 l3">
+        <div class="">
           <div class="" style="margin: 0.4em; margin-bottom: 0.6em">
             <div align="left" class="">
                 <SearchBox/>
