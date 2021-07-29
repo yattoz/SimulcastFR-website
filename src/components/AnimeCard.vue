@@ -106,35 +106,35 @@
         position: relative;
         text-transform:uppercase;
         font-weight:bold;
-        border-radius: 8px;
     }
 
     .card-inside{
+        border-radius: 8px;
         width: auto;
         height: 100%;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 3px 1px -2px rgba(0, 0, 0, 0.22), 0 1px 5px 0 rgba(0, 0, 0, 0.32);
-        /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 3px -2px rgba(0, 0, 0, 0.22), 0 2px 6px 0 rgba(0, 0, 0, 0.32); */
         position: relative;
         height: 100%;
         display: grid;
         grid-gap: 0em;
         grid-template-rows: 1fr auto;
         overflow: hidden;
-        border-radius: inherit;
     }
     
-    .card-inside img{
+    .card img{
         display: block;
-        transition: 0.15s ease-in-out 0.1s;
+        transition: all 0.15s ease-in-out 0.1s;
         position: relative;
         object-fit: cover;
         height: 100%;
         width: 100%;
         z-index: 1;
         top: 0px;
-        transform: scale(1.01) /* avoids inelegant 1px white space before transition starts */
     }
 
+    .card:hover img{
+         transform: scale(1.1);
+    }
 
     /* Pre-render the bigger shadow, but hide it */
     .card-shadow::after {
@@ -145,10 +145,10 @@
         height: 100%;
         content: '';
         background-color: transparent;
-        border-radius: inherit;
+        border-radius: 8px;
         opacity: 0;
         box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        transition: 0.15s ease 0.1s;
+        transition: all 0.15s ease-in-out 0s;
     }
 
     /* Transition to showing the bigger shadow on hover */
@@ -156,11 +156,6 @@
         opacity: 1;
     }
     
-    
-    .card:hover img{
-         transform: scale(1.1)
-    }
-   
 
     .card-inside::after {
         position: absolute;
