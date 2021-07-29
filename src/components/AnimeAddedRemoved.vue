@@ -56,7 +56,6 @@
                     // Code that will run only after the
                     // entire view has been rendered
                     let instances = tippy('[data-tippy-content]');
-                    console.log(instances)
                 })
                 self.week.forEach(week =>
                 {

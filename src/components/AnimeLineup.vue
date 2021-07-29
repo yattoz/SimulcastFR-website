@@ -1,7 +1,6 @@
 <template>
     <div>
     <div class="box" tabindex="0">
-        <!-- Layout items -->
         <AnimeCard v-for="unit in computedLineup" 
                     v-bind:anime="unit" 
                     v-bind:key="unit.title.concat('_').concat(unit.service)"/>
@@ -55,11 +54,6 @@
                 self.full_lineup = json["data"].sort(function (a, b) {
                     return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                 });
-                nextTick(function () {
-                    // Code that will run only after the
-                    // entire view has been rendered
-                    let instances = tippy('[data-tippy-content]');
-                })
             } else {
                 // 
                 console.log("We reached our target server, but it returned an error")
@@ -87,6 +81,11 @@
                         return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                     });
                 }
+                nextTick(function () {
+                    // Code that will run only after the
+                    // entire view has been rendered
+                    let instances = tippy('[data-tippy-content]');
+                })
                 return tmp.filter(unit => {
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
@@ -104,7 +103,7 @@
     @media (min-width: 768px) {  /* bigger than or equal to tablet */
         .box {
             display: grid;
-            grid-gap: 1em;
+            gap: 1.25em;
             grid-template-columns: repeat(auto-fill, minmax(8em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
@@ -114,7 +113,7 @@
     @media (max-width: 768px) {  /* smaller than tablet */
         .box {
             display: grid;
-            grid-gap: 0.8em;
+            gap: 1em;
             grid-template-columns: repeat(auto-fill, minmax(7.5em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }
@@ -123,7 +122,7 @@
     @media (max-width: 576px) {  /* smaller than smartphone */
         .box {
             display: grid;
-            grid-gap: 0.6em;
+            gap: 1em;
             grid-template-columns: repeat(auto-fill, minmax(6.4em,1fr)); /* 120px */
             /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
         }

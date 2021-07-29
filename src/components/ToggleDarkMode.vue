@@ -48,38 +48,6 @@ export default {
   top: -0.2em;
 }
 
-body.dark-mode {
-  background: #121212;
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode p,
-body.dark-mode label,
-body.dark-mode a:link,
-body.dark-mode span,
-body.dark-mode td {
-  color: rgba(255, 255, 255, 0.87);
-}
-
-body.dark-mode {
-  color: rgba(255, 255, 255, 0.87);
-}
-body.dark-mode tr {
-  background-color: #121212;
-}
-
-
-body.dark-mode .card-inside
-{
-    background-color: #555555;
-}
-
-
-
 #theme-toggle {
   display: none;
 }

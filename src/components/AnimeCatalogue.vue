@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="box">
-            <span v-for="unit in computedLineup" v-bind:key="unit.title.concat('_').concat(unit.service)"  
+            <span v-for="unit in computedCatalog" v-bind:key="unit.title.concat('_').concat(unit.service)"  
                 class="overflowhidden"
                 :data-tippy-content="unit.title">
                 <a :href="unit.link"
@@ -33,10 +33,10 @@
                 </a>
             </span>
         </div>
-        <div align="center" class="no_result" v-if="computedLineup.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))" >
+        <div align="center" class="no_result" v-if="computedCatalog.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))" >
         <p>Aucun résultat pour la recherche.</p>
         </div>
-        <div class="pagination">
+        <div class="pagination" v-if="computedPages.length > 1">
             <div v-for="page in computedPages" v-bind:key="page">
                 <button class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)" >
                     {{page + 1}}
@@ -74,10 +74,6 @@
                 
                 let data = json["data"]
                 self.full_lineup = data
-                nextTick(function () {
-                    let instances = tippy('[data-tippy-content]');
-                    console.log(instances)
-                })
             }
 
             let request = new XMLHttpRequest();
@@ -130,8 +126,7 @@
             }
         },
         computed: {
-            fullComputedLineup(){
-                console.log("fullComputedLineup")
+            computedFullCatalog(){
                 let typedText = this.FilterResults.search;
                 let serviceSort = this.FilterResults.serviceSort;
                 let tmp = this.full_lineup;
@@ -155,12 +150,15 @@
                 this.currentPage = Math.min(this.currentPage, Math.floor(numberOfPages))
                 return tmp
             },
-            computedLineup(){
-                let res = this.fullComputedLineup.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
+            computedCatalog(){
+                let res = this.computedFullCatalog.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
+                nextTick(function () {
+                    let instances = tippy('[data-tippy-content]');
+                })
                 return res
             },
             computedPages(){
-                let numberOfItems = this.fullComputedLineup.length
+                let numberOfItems = this.computedFullCatalog.length
                 let res = Array()
                 let numberOfPages = numberOfItems / this.FilterResults.itemsPerPage
                 for(let i = 0; i < numberOfPages; i++) {

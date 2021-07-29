@@ -88,12 +88,13 @@
                             end: '' //'today prev,next' // will normally be on the right. if RTL, will be on the left
                           },
                         eventDidMount: self.renderTooltip,
+                        viewClassNames: ["background-on"],
                         plugins: self.calendarPlugins,
                         weekends: self.calendarWeekends,
                         events: self.calendarEvents,
                         locales: ['fr'],
                         height: 'auto'
-            })
+                })
                 self.calendar.render()
             }
             let request = new XMLHttpRequest();
@@ -117,7 +118,13 @@
 
 
             request.send();
-
+        },
+        activated() {
+            // if the calendar is created, the component is deactivated, the window resized, then re-activated,
+            // fullCalendar hasn't listened to window resizes so we should re-render it.
+            if (this.calendar != null) {
+                this.calendar.render()
+            }
         },
         methods: {
             toggleWeekends() {

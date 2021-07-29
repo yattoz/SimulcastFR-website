@@ -1,5 +1,4 @@
 <template>
-  <!-- Layout items -->
   <div :nbr-elems="computedAdded.length + computedRemoved.length">
     <div align="left">
       <div class = "datetime">
@@ -101,14 +100,7 @@
 
 import StoreFilter from "@/components/StoreFilter";
 
-/*
-    const cr_lineup_url = "json/cr_lineup.json";
-    const adn_lineup_url = ".son/adn_lineup.json";
-    const waka_lineup_url = "json/waka_lineup.json";
-     */
-//const diff_catalogue_url = "json/full_lineup.json";
 const proxy = "";
-//const proxy = '';
 
 export default {
   name: "WeekAddedRemoved",
@@ -224,14 +216,13 @@ export default {
     .two-columns {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 16px;
     }
 }
 
 @media (max-width: 576px) {  /* smaller than smartphone */
     .two-columns {
         display: grid;
-        grid-gap: 0.6em;
         grid-template-columns: 1fr
     }
 

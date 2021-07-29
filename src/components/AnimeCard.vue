@@ -1,13 +1,13 @@
 <template>
     <a class="" :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
     <div class="card card-shadow">
-        <div class="card-inside">
+        <div class="card-inside background-on">
         <div class="anime-poster-container">
 
             <span class="anime-service" :style="{ 'background-color': badgeColor} ">
                 {{anime.service}}
             </span>
-            <img class="" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title" data-loaded="true">
+            <img class="" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title">
         </div>
         <div class="anime-title" v-if="!FilterResults.isTitleShown">
             <span :data-tippy-content="anime.title">
@@ -106,30 +106,33 @@
         position: relative;
         text-transform:uppercase;
         font-weight:bold;
+        border-radius: 8px;
     }
 
     .card-inside{
-        border-radius: 8px;
         width: auto;
         height: 100%;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 3px 1px -2px rgba(0, 0, 0, 0.22), 0 1px 5px 0 rgba(0, 0, 0, 0.32);
+        /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 3px -2px rgba(0, 0, 0, 0.22), 0 2px 6px 0 rgba(0, 0, 0, 0.32); */
         position: relative;
         height: 100%;
         display: grid;
         grid-gap: 0em;
         grid-template-rows: 1fr auto;
         overflow: hidden;
+        border-radius: inherit;
     }
     
     .card-inside img{
         display: block;
-        transition: all 0.2s ease-in-out;
+        transition: 0.15s ease-in-out 0.1s;
         position: relative;
         object-fit: cover;
         height: 100%;
         width: 100%;
         z-index: 1;
         top: 0px;
+        transform: scale(1.01) /* avoids inelegant 1px white space before transition starts */
     }
 
 
@@ -142,10 +145,10 @@
         height: 100%;
         content: '';
         background-color: transparent;
-        border-radius: 8px;
+        border-radius: inherit;
         opacity: 0;
         box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        transition: all 0.2s ease-in-out;
+        transition: 0.15s ease 0.1s;
     }
 
     /* Transition to showing the bigger shadow on hover */
@@ -153,9 +156,30 @@
         opacity: 1;
     }
     
+    
     .card:hover img{
-         transform: scale(1.1);
+         transform: scale(1.1)
     }
+   
+
+    .card-inside::after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-color: #ffffff;
+        border-radius: inherit;
+        opacity: 0;
+        transition: 0.15s ease 0.1s;
+        z-index: 900;
+    }
+
+    .card-inside:hover::after {
+        opacity: 0.33;
+    }
+
     
     .anime-title{
         /* margin:5.33333333px 0 0 0;*/

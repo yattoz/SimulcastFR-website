@@ -1,49 +1,49 @@
 <template>
-    <div class="border">
+    <div class="border background-on">
     <div class="switch textoverflow border-bottom">
-        <label>
-        Crunchyroll
+        <label class="label">
+        <div>Crunchyroll</div>
         <input class="toggle toggle-crunchyroll" :checked="isCrunchyrollOn" type="checkbox" v-on:click="toggleServices('crunchyroll')">
         </label>
     </div>
     <div class="switch textoverflow border-bottom">
-        <label>
-        ADN
+        <label class="label">
+        <div>ADN</div>
         <input class="toggle toggle-adn" :checked="isAdnOn" type="checkbox" v-on:click="toggleServices('adn')">
 
         </label>
     </div>
     <div class="switch textoverflow border-bottom">
-        <label>
-        Wakanim
+        <label class="label">
+        <div>Wakanim</div>
         <input class="toggle toggle-wakanim" :checked="isWakanimOn" type="checkbox" v-on:click="toggleServices('wakanim')">
 
         </label>
     </div>
     <div class="switch textoverflow border-bottom">
-        <label>
-        Amazon Prime Video
+        <label class="label">
+        <div>Amazon Prime Video</div>
         <input class="toggle toggle-prime" :checked="isPrimeVideoOn" type="checkbox" v-on:click="toggleServices('primevideo')">
 
         </label>
     </div>
         <div class="switch textoverflow border-bottom">
-        <label>
-        Netflix
+        <label class="label">
+        <div>Netflix</div>
         <input class="toggle toggle-netflix" :checked="isNetflixOn" type="checkbox" v-on:click="toggleServices('netflix')">
 
         </label>
     </div>
     <div class="switch textoverflow border-bottom">
-        <label>
-        Vue compacte
+        <label class="label">
+        <div>Vue compacte</div>
         <input class="toggle" :checked="isCompactModeOn" type="checkbox" v-on:click="toggleTitle()">
 
         </label>
     </div>
         <div class="switch textoverflow">
-        <label>
-        Doublages
+        <label class="label">
+        <div>Doublages</div>
         <input class="toggle" :checked="isDubbedOn" type="checkbox" v-on:click="toggleDubbed()">
 
         </label>
@@ -107,8 +107,11 @@
 
 <style scoped>
 
-    label {
+    .label {
         align-content: center;
+        display: grid;
+        grid-template-columns: max-content auto;
+        gap: 8px;
     }
     
     .switch label{
@@ -122,25 +125,26 @@
 
     .textoverflow{
         overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 1.0em;
         padding: 0.4em;
         z-index: 1;
     }
 
     .switch label {
-        display:inline-block;
         vertical-align: middle;
     }
 
     .border-bottom {
-        border-bottom: solid 1px rgba(127,127,127, 1);
+        border-bottom: solid 0px rgba(127,127,127, 1);
     }
 
     .border {
-        border: solid 1px rgba(127,127,127, 1);
-        border-radius: 1em 1em 1em 1em;
-        margin: 0.4em
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        margin: 0.4em;
     }
+
     
 .toggle {
   -webkit-appearance: none;
