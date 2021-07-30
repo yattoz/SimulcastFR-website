@@ -6,12 +6,12 @@
                     v-bind:key="unit.title.concat('_').concat(unit.service)"/>
             
     </div>
-
+    <div v-if="computedIsTitleShown"></div>
     <div align="center" v-if="(computedLineup.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim()))) ) ">
         <p>Aucun résultat pour la recherche dans les simulcasts de cette saison.</p>
         <p>
         Si vous cherchez une œuvre dont la diffusion est terminée,
-            <router-link to="/full-lineup">
+            <router-link class="true-link" to="/full-lineup">
             recherchez plutôt dans le catalogue.
             </router-link></p>
     </div>
@@ -68,6 +68,13 @@
             request.send();
         },
         computed: {
+            computedIsTitleShown() {
+                nextTick(function () {
+                    let instances = tippy('[data-tippy-content]');
+                })
+                // empty watcher to relaunch tippy
+                return this.FilterResults.isTitleShown
+            },
             computedLineup(){
                 var typedText = this.FilterResults.search;
                 var serviceSort = this.FilterResults.serviceSort;

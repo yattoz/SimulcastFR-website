@@ -2,37 +2,31 @@
   <div id="app">
   <a id="top"></a>
 
-  <NavHead style="margin-bottom: 3em"></NavHead>
+  <NavHead/>
 
 
   <div class="">
     <div class="">
       <div class="two-columns-asymetric">
         <div class="">
-          <div class="" style="margin: 0.4em; margin-bottom: 0.6em">
+          <div class="">
             <div align="left" class="">
-                <SearchBox/>
                 <CheckboxFilters/>
-                <div class="toggleDarkModeButton">
-                <ToggleDarkMode/>
-                </div>
             </div>
           </div>
         </div>
-        <div class="col s12 m12 l9">
-          <div class="" style="margin: 0.4em" >
-
-    <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition || 'fade'" mode="out-in">
-        <keep-alive>
-          <component
-            :is="Component"
-            :key="route.meta.usePathKey ? route.path : undefined"
-          />
-        </keep-alive>
-      </transition>
-    </router-view>
-
+        <div class="">
+          <div class="">
+            <router-view v-slot="{ Component, route }">
+              <transition :name="route.meta.transition || 'fade'" mode="out-in">
+                <keep-alive>
+                  <component
+                    :is="Component"
+                    :key="route.meta.usePathKey ? route.path : undefined"
+                  />
+                </keep-alive>
+              </transition>
+            </router-view>
           </div>
         </div>
       </div>
@@ -50,12 +44,11 @@
 
 <script>
 
-import SearchBox from "@/components/SearchBox";
 import CheckboxFilters  from "@/components/CheckboxFilters";
 import NavHead from "@/components/NavHead";
 import ToggleDarkMode from "@/components/ToggleDarkMode";
 import 'tippy.js/dist/tippy.css'; // styling for all tippies
-
+import '@/css/global.css';
 
 export default {
   name: 'app',
@@ -66,7 +59,6 @@ export default {
   },
   components: {
     NavHead,
-    SearchBox,
     CheckboxFilters,
     ToggleDarkMode,
   },
@@ -94,12 +86,13 @@ export default {
         color: inherit;
     }
 
-@media (min-width: 768px) {  /* smaller than tablet */
+@media (min-width: 768px) {
 
     .two-columns-asymetric {
         display: grid;
         grid-template-columns: 1fr 5fr;
-        gap: 16px;
+        gap: 1em;
+        padding: 0.4em;
     }
 
 }
@@ -109,7 +102,8 @@ export default {
     .two-columns-asymetric {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 1em;
+        padding: 0.4em;
     }
 
 }
@@ -125,7 +119,7 @@ export default {
   height: 48px;
   cursor: pointer;
   border-radius: 99em;
-  background-color: green;
+  background-color: var(--primary);
   color: white;
 }
 

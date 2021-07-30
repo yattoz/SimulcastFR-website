@@ -3,7 +3,6 @@
     <form class="" @submit.prevent="blurInput()" id="searchForm">
         <div class="input-field">
             <input id="searchBoxAnime" type="text" v-model="search" v-on:input="processInput" placeholder="Rechercher..." >
-            <!-- <label for="searchBoxAnime">Rechercher...</label> -->
             <a class="" v-on:click="clearInput()">
             <svg class="cross" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
@@ -57,6 +56,11 @@
         gap: 0.6em;
         grid-template-columns: auto 2rem;
     }
+
+    #searchBoxAnime {
+        border-radius: 0.8em;
+    }
+
     a {
         cursor: pointer;
     }

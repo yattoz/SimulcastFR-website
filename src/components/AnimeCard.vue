@@ -188,7 +188,7 @@
         line-clamp:3;
         margin: 0.4em;
         line-height:1.2em;
-        height: 3.6em; /* 3 * line-height*/
+        height: calc(3.6em); /* 3 * line-height*/
         text-align: left;
     }
 
@@ -205,9 +205,12 @@
         bottom: 0px;
         width: calc(100% - 0.4em - 0.4em); /* removing padding from both sides.*/
         margin: 0px;
-        height: 3.3em;
+        height: 3.38em;
         padding: 0.4em;
-        color: white;
+    }
+
+    .compact-anime-title span {
+        color: var(--white-text)
     }
 
         .anime-service{

@@ -10,7 +10,7 @@ html {
     --white-background: #f1f1f1;
     --active-white: #fbfbfb;
     --active-black: #454545;
-    --primary: green;
+    --primary: blue;
 }
 
 body {
@@ -64,12 +64,35 @@ body.dark-mode {
   {
       background-color: var(--active-black);
   }
-  
-  
+
+.border {
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 0.4em;
+}
+
 select {
     font-size: inherit;
 }
   
 .tippy-content {
   font-size: 12pt;
+}
+
+a.true-link {
+  text-decoration: underline; 
+  color: blue;
+}
+
+body.dark-mode a.true-link {
+  text-decoration: underline; 
+  color: darkturquoise;
+}
+
+a.true-link:visited {
+  color: purple;
+}
+
+body.dark-mode a.true-link:visited {
+  color: orchid;
 }

@@ -1,47 +1,52 @@
 <template>
     <div class="border background-on">
-    <div class="switch textoverflow border-bottom">
+    <div class="filter-item" style="text-align: center; ">
+        Filtres
+    </div>
+    <SearchBox class="filter-item" style="padding-left: 0.2em;" />
+
+    <div class="filter-item ">
         <label class="label">
         <div>Crunchyroll</div>
         <input class="toggle toggle-crunchyroll" :checked="isCrunchyrollOn" type="checkbox" v-on:click="toggleServices('crunchyroll')">
         </label>
     </div>
-    <div class="switch textoverflow border-bottom">
+    <div class="filter-item ">
         <label class="label">
         <div>ADN</div>
         <input class="toggle toggle-adn" :checked="isAdnOn" type="checkbox" v-on:click="toggleServices('adn')">
 
         </label>
     </div>
-    <div class="switch textoverflow border-bottom">
+    <div class="filter-item ">
         <label class="label">
         <div>Wakanim</div>
         <input class="toggle toggle-wakanim" :checked="isWakanimOn" type="checkbox" v-on:click="toggleServices('wakanim')">
 
         </label>
     </div>
-    <div class="switch textoverflow border-bottom">
+    <div class="filter-item ">
         <label class="label">
         <div>Amazon Prime Video</div>
         <input class="toggle toggle-prime" :checked="isPrimeVideoOn" type="checkbox" v-on:click="toggleServices('primevideo')">
 
         </label>
     </div>
-        <div class="switch textoverflow border-bottom">
+        <div class="filter-item ">
         <label class="label">
         <div>Netflix</div>
         <input class="toggle toggle-netflix" :checked="isNetflixOn" type="checkbox" v-on:click="toggleServices('netflix')">
 
         </label>
     </div>
-    <div class="switch textoverflow border-bottom">
+    <div class="filter-item ">
         <label class="label">
         <div>Vue compacte</div>
         <input class="toggle" :checked="isCompactModeOn" type="checkbox" v-on:click="toggleTitle()">
 
         </label>
     </div>
-        <div class="switch textoverflow">
+        <div class="filter-item">
         <label class="label">
         <div>Doublages</div>
         <input class="toggle" :checked="isDubbedOn" type="checkbox" v-on:click="toggleDubbed()">
@@ -53,9 +58,13 @@
 
 <script>
     import StoreFilter from "@/components/StoreFilter"
+    import SearchBox from "@/components/SearchBox";
 
     export default {
         name: "CheckboxFilters",
+        components: {
+            SearchBox
+        },
         data() {
             return {
                 Filter: StoreFilter,
@@ -112,39 +121,22 @@
         display: grid;
         grid-template-columns: max-content auto;
         gap: 8px;
-    }
-    
-    .switch label{
         float: right;
+        vertical-align: middle;
     }
 
-    .switch span{
+    span{
         margin-right: 0em;
         float: right
     }
 
-    .textoverflow{
+    .filter-item{
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.0em;
-        padding: 0.4em;
+        padding: 0.4em 0em 0.4em 0em;
         z-index: 1;
     }
-
-    .switch label {
-        vertical-align: middle;
-    }
-
-    .border-bottom {
-        border-bottom: solid 0px rgba(127,127,127, 1);
-    }
-
-    .border {
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
-        border-radius: 16px;
-        margin-top: 1em;
-    }
-
     
 .toggle {
   -webkit-appearance: none;
@@ -189,7 +181,7 @@
 
 .toggle:checked {
   background-color: #4CD964;
-  box-shadow: 0px 0px 11px rgba(255, 255, 255, 0.65);
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.70);
 }
 
 .toggle-crunchyroll:checked {

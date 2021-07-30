@@ -40,12 +40,15 @@ export default {
 </script>
 
 <style>
+
+:root {
+  --dark-mode-toggle-width: 3em;
+  --dark-mode-toggle-icon: 1.5em;
+}
+
 .dark-mode-widget {
   display: table;
   margin: 1em auto;
-  position: absolute;
-  right: 1em;
-  top: -0.2em;
 }
 
 #theme-toggle {
@@ -54,7 +57,7 @@ export default {
 #theme-toggle + label {
   font-size: 1rem;
   display: flex;
-  width: 4em;
+  width: var(--dark-mode-toggle-width);
   border-radius: 2em;
   background-size: auto 8em;
   background-position: bottom;
@@ -77,8 +80,8 @@ export default {
 #theme-toggle + label span {
   background: #fffad8;
   border-radius: 50%;
-  height: 2em;
-  width: 2em;
+  height: var(--dark-mode-toggle-icon);
+  width: var(--dark-mode-toggle-icon);
   transform: translateX(-0.125em) scale(0.65);
   transition: 0.2s;
   cursor: pointer;

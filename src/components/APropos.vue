@@ -49,7 +49,7 @@
 
 <style scoped>
     .logo {
-        width: 20%;
+        width: 5em;
         height: auto;
         margin-left: auto;
         margin-right: auto 

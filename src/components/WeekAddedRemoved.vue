@@ -44,7 +44,6 @@
               >
                 <p>Pas de changements.</p>
               </div>
-            <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
         </div>
         <div class="">
           <div align="left"> <!-- a bit of spacing -->
@@ -85,7 +84,6 @@
               v-if="computedRemoved.length <= 0  && !( (FilterResults.search.length === 0 || !(FilterResults.search.trim())))">
               <p>Pas de changements avec ces filtres.</p>
             </div>
-            <div style="margin-bottom: 0em;"/> <!-- a bit of spacing -->
           </div>
         </div>
       </div>
@@ -239,11 +237,11 @@ export default {
 }
 
 .added-title {
-  color: rgb(7, 147, 7);
+  color: rgba(35, 179, 35, 0.87);
 }
 
 .removed-title {
-  color: rgb(255, 82, 111);
+  color: rgba(226, 77, 102, 0.87);
 }
 
 .datetime{
