@@ -12,11 +12,12 @@
                 </div>
             </div>
         </div>
+        <CalendarList v-bind:calendar="full_calendar"/>
 </template>
 
 <script>
     import StoreFilter from '@/components/StoreFilter';
-
+    import CalendarList from '@/components/CalendarList'
     import { Calendar } from '@fullcalendar/core';
     import timeGridPlugin from "@fullcalendar/timegrid";
 
@@ -26,9 +27,9 @@
 
 
     export default {
-        // components: {
-        //     FullCalendar // make the <FullCalendar> tag available
-        // },
+        components: {
+            CalendarList // make the <FullCalendar> tag available
+        },
         props: {
             full_calendar_url: String
         },

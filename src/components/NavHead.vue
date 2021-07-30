@@ -52,16 +52,7 @@
     }
   },
   mounted() {
-    document.addEventListener("DOMContentLoaded", function() {
-      var elems = document.querySelector(".sidenav");
-      var options = { edge: "left" };
 
-      var el = document.querySelector(".tabs");
-      console.log(el);
-      options = {};
-      this.path = window.location.pathname;
-      console.log(this.path);
-    });
   },
   watch:{
     $route (to, from){

@@ -50,7 +50,6 @@
             } else {
                 this.state.tableServices.push(service);
             }
-            console.log(this.state.tableServices)
         },
         setItemsPerPage: function(number) {
             this.state.itemsPerPage = number
