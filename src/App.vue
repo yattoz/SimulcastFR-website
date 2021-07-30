@@ -72,30 +72,21 @@ export default {
 
 </script>
 
-<style>
-    #app {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      margin-top: 0px;
-    }
+<style scoped>
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  margin-top: 0px;
+}
 
-
-    a:visited {
-        color: inherit;
-    }
-    a:link {
-        background-color: transparent;
-        text-decoration: none;
-        color: inherit;
-    }
 
 @media (min-width: 768px) {
 
     .two-columns-asymetric {
         display: grid;
         grid-template-columns: 1fr 5fr;
-        gap: 1em;
+        gap: 1.7em;
         padding: 0.4em;
     }
 

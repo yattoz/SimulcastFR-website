@@ -185,7 +185,7 @@
 }
 
 .toggle-crunchyroll:checked {
-  background-color: #df6300;
+  background-color: #f47521;
 }
 
 .toggle-adn:checked {

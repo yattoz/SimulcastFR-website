@@ -52,11 +52,6 @@
                     // console.log(period);
                     self.week.push(period);
                 });
-                nextTick(function () {
-                    // Code that will run only after the
-                    // entire view has been rendered
-                    let instances = tippy('[data-tippy-content]');
-                })
                 self.week.forEach(week =>
                 {
                     let dateBegin = new Date(week.time_begin)
@@ -92,22 +87,10 @@
 
 
         },
+        activated() {
+            nextTick(function () { tippy('[data-tippy-content]') })
+        },
         methods:{
-            badgeColor(service) {
-                //let service = this.anime.service;
-                service = service.toLowerCase();
-                if (service === "crunchyroll")
-                    return "#df6300";
-                if (service === "adn")
-                    return "#0066ff";
-                if (service === "wakanim")
-                    return "#e0000a";
-                if (service == "primevideo")
-                    return "#00a8e0"
-                if (service == "netflix")
-                    return "#000000"
-                return "#fefefe";
-            },
             open_link_in_tab(url){
                 window.open(url);
             },
@@ -120,10 +103,7 @@
             computedWeek(){
                 var tmp = this.week;
                 let nextMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 1)
-                nextTick(function() {
-                    console.log("tippy")
-                    tippy('[data-tippy-content]')
-                })
+                nextTick(function() { tippy('[data-tippy-content]') })
                 return tmp.filter(x => {
                     let begin = new Date(x.time_begin)
                     let end = new Date(x.time_end)

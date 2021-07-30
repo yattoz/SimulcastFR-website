@@ -118,16 +118,6 @@ export default {
   mounted() {
   },
   methods: {
-    badgeColor(service) {
-      //let service = this.anime.service;
-      service = service.toLowerCase();
-      if (service === "crunchyroll") return "#df6300";
-      if (service === "adn") return "#0066ff";
-      if (service === "wakanim") return "#e0000a";
-      if (service == "primevideo") return "#00a8e0";
-      if (service == "netflix") return "#000000";
-      return "#fefefe";
-    },
     open_link_in_tab(url) {
       window.open(url);
     }

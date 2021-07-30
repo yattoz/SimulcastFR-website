@@ -69,9 +69,7 @@
         },
         computed: {
             computedIsTitleShown() {
-                nextTick(function () {
-                    let instances = tippy('[data-tippy-content]');
-                })
+                nextTick(function () { tippy('[data-tippy-content]') })
                 // empty watcher to relaunch tippy
                 return this.FilterResults.isTitleShown
             },
@@ -88,11 +86,7 @@
                         return ('' + a.title.toLocaleString()).localeCompare(b.title.toLocaleString());
                     });
                 }
-                nextTick(function () {
-                    // Code that will run only after the
-                    // entire view has been rendered
-                    let instances = tippy('[data-tippy-content]');
-                })
+                nextTick(function () { tippy('[data-tippy-content]') })
                 return tmp.filter(unit => {
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;

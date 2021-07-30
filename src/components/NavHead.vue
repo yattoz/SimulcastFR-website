@@ -4,27 +4,27 @@
         <div class="">
           <div class="logo-bar">
               <router-link to="/" >
-              <img class="logo-small" src="@/assets/logo_small.png"/>
+              <img class="logo-small" src="@/assets/logo-256.png"/>
                 <span class="" @click="setPath('/')" >SimulcastFR<span class="hide-subtitle"> —  le catalogue de l'animation simulcast</span></span>
               </router-link>
               <ToggleDarkMode class="toggle-dark-mode"/>
           </div>
 
           <div class="navbar">
-            <div class="tab" @click="setPath('/')" id="/">
+            <div class="tab" id="/">
               <router-link to="/">Saison en cours</router-link>
             </div>
-            <div class="tab" @click="setPath('/calendar')" id="/calendar">
+            <div class="tab" id="/calendar">
               <router-link to="/calendar"
               >Calendrier</router-link>
             </div>
-            <div class="tab" @click="setPath('/full-lineup')" id="/full-lineup">
+            <div class="tab" id="/full-lineup">
               <router-link to="/full-lineup">Catalogue</router-link>
             </div>
-            <div class="tab" @click="setPath('/added-removed')" id="/added-removed">
+            <div class="tab" id="/added-removed">
               <router-link to="/added-removed">Ajouts / Retraits</router-link>
             </div>
-            <div class="tab" @click="setPath('/about')" id="/about">
+            <div class="tab" id="/about">
               <router-link to="/about">A propos</router-link>
             </div>
           </div>
@@ -39,17 +39,6 @@
   name: "NavHead",
   components: {
     ToggleDarkMode
-  },
-  data() {
-    return {
-      path: ""
-    };
-  },
-  methods: {
-    setPath: function(str) {
-      this.path = str;
-      var el = document.querySelector(".tabs");
-    }
   },
   mounted() {
 
@@ -79,7 +68,7 @@
     text-decoration: underline;
     text-decoration-thickness: 0.15em;
     text-underline-offset: 0.4em;
-  }
+}
 
 @media (max-width: 768px) {
   .hide-subtitle {
@@ -107,12 +96,8 @@
     position: absolute;
     transform: translate(-1.2em, 0);
     content: '▶';
-    margin-left: 0em;
     width: max-content;
     height: max-content;
-    text-decoration: none;
-    text-decoration-thickness: 0px;
-    padding-right: 0.4em;
   }
 }
 

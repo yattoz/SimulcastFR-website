@@ -130,7 +130,7 @@
                 let service = anime.service;
                 service = service.toLowerCase();
                 if (service === "crunchyroll")
-                    return "#df6400d8";
+                    return "#df6300d8";
                 if (service === "adn")
                     return "#0066ffd8";
                 if (service === "wakanim")

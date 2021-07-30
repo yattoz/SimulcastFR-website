@@ -71,7 +71,6 @@
             var self = this;
             tippy.setDefaultProps( { delay: [300, 100] } )
             function fillCatalogue(json) {
-                
                 let data = json["data"]
                 self.full_lineup = data
             }
@@ -99,21 +98,6 @@
 
         },
         methods:{
-            badgeColor(service) {
-                //let service = this.anime.service;
-                service = service.toLowerCase();
-                if (service === "crunchyroll")
-                    return "#df6300";
-                if (service === "adn")
-                    return "#0066ff";
-                if (service === "wakanim")
-                    return "#e0000a";
-                if (service == "primevideo")
-                    return "#00a8e0"
-                if (service == "netflix")
-                    return "#000000"
-                return "#fefefe";
-            },
             open_link_in_tab(url){
                 window.open(url);
             },
@@ -124,6 +108,9 @@
                 let number = event.target.value
                 StoreFilter.setItemsPerPage(number)
             }
+        },
+        activated() {
+            nextTick(function () { tippy('[data-tippy-content]') })
         },
         computed: {
             computedFullCatalog(){
@@ -152,9 +139,7 @@
             },
             computedCatalog(){
                 let res = this.computedFullCatalog.slice(this.currentPage * this.FilterResults.itemsPerPage, (this.currentPage + 1) * this.FilterResults.itemsPerPage)
-                nextTick(function () {
-                    let instances = tippy('[data-tippy-content]');
-                })
+                nextTick(function () { tippy('[data-tippy-content]') })
                 return res
             },
             computedPages(){

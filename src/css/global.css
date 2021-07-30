@@ -96,3 +96,12 @@ a.true-link:visited {
 body.dark-mode a.true-link:visited {
   color: orchid;
 }
+
+a:visited {
+  color: inherit;
+}
+
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
