@@ -1,11 +1,15 @@
 <template>
     <div class="box">
-        <div v-for="unit in computedCalendarItems"
-             v-bind:key="unit">
-            <a :href="unit.ep_link">
-                <span>{{getHumanTime(unit.ep_time)}}</span>
-                <span>{{unit.title}}</span>
-            </a>
+        <div v-for="day in days"
+             v-bind:key="day">
+            <h3>{{day}}</h3>
+            <div v-for="unit in computedDays[day]"
+                v-bind:key="unit.ep_link">
+                <a :href="unit.ep_link">
+                    <span>{{unit.ep_time_date}}</span>
+                    <span>{{unit.title}}</span>
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -37,22 +41,36 @@ export default {
                     caught = caught && tableServices.includes(unit.service);
                     caught = caught && (isDubbedOn || unit.title.slice(-4) !== "Dub)")
                     return caught;
-                });
+            });
         })
+
+        let computedFuncs = Array.from([1, 2, 3, 4, 5, 6, 0], (c) => 
+            computed( () => {
+                return computedCalendarItems.value.filter(unit => {
+                    return unit.ep_time_date.getDay() == c
+                })
+            })
+        )
+        
+        // generate a hash of "human readable day": computed_function_for_day
+        // MAGIC!!
+        let intl = new Intl.DateTimeFormat('fr-FR', {weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'})
+        let prevMonday = new Date();
+        prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
+        let days = Array.from({length: 7}, (v, k) => intl.format(new Date(prevMonday.getTime()).setDate(prevMonday.getDate() + k)));
+        const computedDays = ref(Object.fromEntries(days.map((k, i) => [k, computedFuncs[i]])));
 
         let res =  {
             calendar,
             filter,
-            computedCalendarItems
+            computedCalendarItems,
+            computedDays,
+            days
         };
         return res;
     },
     methods: {
-        getHumanTime(date_string_utc) {
-            const intlDate = new Intl.DateTimeFormat('fr-FR', {month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'})
-            const intlTime = new Intl.DateTimeFormat('fr-FR', {hour: 'numeric', minute: 'numeric'})
-            return intlTime.format(new Date(date_string_utc))
-        }
+
     },
     data () {
         return {

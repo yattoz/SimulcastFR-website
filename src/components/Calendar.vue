@@ -53,19 +53,26 @@
             tippy.setDefaultProps( { delay: [0, 0] } )
             function fillCalendar(json) {
                 self.full_calendar = json["data"];
-                self.full_calendar.forEach(function(anime){
+
+                self.full_calendar.forEach(function(anime) {
                     let title_and_eps = anime.title
                     if (anime.ep_number.length == 1 && anime.ep_number[0].length > 0)
                         title_and_eps = anime.title + ' - épisode ' + anime.ep_number.join(', ')
                     else if (anime.ep_number.length > 1)
-                        title_and_eps = anime.title + ' - épisodes ' + anime.ep_number.join(', ')
+                        if (anime.ep_number.length == (anime.ep_number[anime.ep_number.length - 1] - anime.ep_number[0] + 1))
+                            title_and_eps = `${anime.title} - tous les épisodes de ${anime.ep_number[0]} à ${anime.ep_number[anime.ep_number.length - 1]}`
+                        else
+                            title_and_eps = anime.title + ' - épisodes ' + anime.ep_number.join(', ')
+                    
+                    anime.title = title_and_eps
+                    anime.ep_time_date = new Date(anime.ep_time)  // create a new field with a Date object. Easier for the child to display.
 
                     if (anime.title.slice(-4) !== "Dub)")
                     {
                         self.calendarEvents.push({
                             // add new event data
-                            title: title_and_eps,
-                            start: new Date(anime.ep_time),
+                            title: anime.title,
+                            start: anime.ep_time_date,
                             url: anime.ep_link,
                             backgroundColor: self.badgeColor(anime),
                             borderColor: self.badgeColor(anime),
