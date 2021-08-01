@@ -21,11 +21,11 @@
                 >
                   <a
                     :href="unit.link"
-                    @click.prevent="open_link_in_tab(unit.link)"
+                    target="_blank"
                     :data-tippy-content="unit.title"
                     style="color: #000000"
                   >
-                    <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
+                    <img class="service-icon" :src="'/icons/'+unit.service+'.png'" :alt="unit.service"/>
                     <span class="title">{{unit.title}}</span>
                   </a>
                 </span>
@@ -60,11 +60,11 @@
               >
                 <a
                   :href="unit.link"
-                  @click.prevent="open_link_in_tab(unit.link)"
+                  target="_blank"
                   :data-tippy-content="unit.title"
                   style="color: #000000"
                 >
-                  <img class="service-icon" :src="'/icons/'+unit.service+'.png'" />
+                  <img class="service-icon" :src="'/icons/'+unit.service+'.png'" :alt="unit.service"/>
                   <span class="title">{{unit.title}}</span>
                 </a>
               </span>

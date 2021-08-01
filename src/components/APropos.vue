@@ -2,7 +2,7 @@
     <div class="left container" align="left">
         <div style="text-align: center">
         <h2> SimulcastFR - 2021, Yattoz </h2>
-        <img class="logo" src="@/assets/logo.png"/>
+        <img class="logo" src="@/assets/logo.png" alt="logo"/>
         </div>
         <h3>A propos</h3>
         <p>
@@ -12,6 +12,19 @@
         <h3>Liste des changements</h3>
         <p>
             <ul>
+                <li><b>[02/08/2021]</b> <b>Réécriture majeure du site.</b></li>
+                <ul>
+                    <li>Le CSS a été intégralement réécrit pour une expérience visuelle cohérente.</li>
+                    <li>Le calendrier est désormais filtrable, il est rendu manuellement en vue liste et avec le plugin FullCalendar.js pour la vue agenda (comme avant)</li>
+                    <li>La vue agenda dispose de popups permettant de mieux lire le contenu des évènements.</li>
+                    <li>Le catalogue dispose d'une pagination réglable, ce qui lui permet de charger beaucoup plus vite.</li>
+                    <li>Les ajouts/retraits disposent d'une sélection de période par liste déroulante, ce qui lui permet de charger beaucoup plus vite.</li>
+                    <li>L'intégralité du site s'affiche désormais correctement avec le thème sombre.</li>
+                    <li>Le framework JS est passé à Vue 3 en mode Compatibilité Vue 2. Les composants sont toujours en Vue 2, sauf les 2 nouveaux composants "Vue Liste" et "Vue Agenda" du calendrier qui sont écrits en Vue 3.</li>
+                    <li>Le site a désormais un logo pour mieux le retrouve dans vos favoris, onglets, etc.</li>
+                    <li>Le lazy-load des images de la vue <em>Séries en cours</em> a l'air de mieux fonctionner (je crois qu'avant il ne marchait pas très bien).</li>
+                    <li>Le site présente des méta-données pour un affichage moins disgracieux sur les messageries (Discord, Whatsapp, Twitter...) ainsi que des textes uniques pour chaque page (meilleur SEO).</li>
+                </ul>
                 <li><b>[14/07/2020]</b> Ajustement de la densité d'affichage pour tablettes et smartphones dans la vue des simulcasts. Fix du calendrier qui affiche les épisodes d'une même série dans une même ligne (plus lisible).</li>
                 <li><b>[08/04/2020]</b> Nouvelle fonctionnalité : ajout de la page "Ajout/retraits" retraçant les nouvelles licences et licences expirées. Aussi: léger relooking de la navbar.</li>
                 <li><b>[11/01/2020]</b> Ajout d'un filtre pour cacher les simulcasts re-doublés (désactivé par défaut). Lisibilité améliorée pour les filtres. Message "Aucun résultat" affiché seulement si une recherche est entrée.</li>

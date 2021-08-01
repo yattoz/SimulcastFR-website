@@ -4,7 +4,7 @@
         <div class="">
           <div class="logo-bar">
               <router-link to="/" >
-              <img class="logo-small" src="@/assets/logo-256.png"/>
+              <img class="logo-small" src="@/assets/logo-256.png" alt="logo-small"/>
                 <span class="" @click="setPath('/')" >SimulcastFR<span class="hide-subtitle"> —  le catalogue de l'animation simulcast</span></span>
               </router-link>
               <ToggleDarkMode class="toggle-dark-mode"/>

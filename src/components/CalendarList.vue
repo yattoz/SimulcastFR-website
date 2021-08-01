@@ -13,10 +13,10 @@
                 <span class="hour">
                     {{unit.ep_localtime_str}}
                 </span>
-                <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
+                <img class="service-icon" :src="'/icons/'+unit.service+'.png'" :alt="unit.service">
 
                 <a :href="unit.link"
-                    @click.prevent="open_link_in_tab(unit.link)"
+                    target="_blank"
                     class=""
                     >                    
                     <span class="title">

@@ -1,5 +1,5 @@
 <template>
-    <a class="" :href="anime.link" @click.prevent="open_link_in_tab(anime.link)" >
+    <a class="" :href="anime.link" target="_blank" >
     <div class="card card-shadow">
         <div class="card-inside background-on">
         <div class="anime-poster-container">
@@ -7,7 +7,9 @@
             <span class="anime-service" :style="{ 'background-color': badgeColor} ">
                 {{anime.service}}
             </span>
-            <img class="" :data-src="anime.image" loading="lazy" :src="anime.image" :alt="anime.title">
+            <img class="" :data-src="anime.image" loading="lazy" 
+                :src="anime.image" 
+                :alt="anime.title">
         </div>
         <div class="anime-title" v-if="!FilterResults.isTitleShown">
             <span :data-tippy-content="anime.title">
