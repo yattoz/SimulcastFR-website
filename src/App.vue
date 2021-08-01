@@ -116,6 +116,7 @@ export default {
   border-radius: 99em;
   background-color: var(--primary);
   color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 </style>

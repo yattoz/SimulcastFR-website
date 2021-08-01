@@ -1,15 +1,29 @@
 <template>
     <div class="box">
+        <h2>Semaine du {{days[0].replace("lundi ", "")}} au {{days[days.length - 1].replace("dimanche ", "")}}</h2>
         <div v-for="day in days"
-             v-bind:key="day">
+             v-bind:key="day"
+             class="box">
             <h3>{{day}}</h3>
-            <div v-for="unit in computedDays[day]"
-                v-bind:key="unit.ep_link">
-                <a :href="unit.ep_link">
-                    <span>{{unit.ep_time_date}}</span>
-                    <span>{{unit.title}}</span>
+
+            <span v-for="unit in computedDays[day]" 
+                    v-bind:key="unit.title.concat('_').concat(unit.service)"  
+                class="time-slot"
+                :data-tippy-content="unit.title">
+                <span class="hour">
+                    {{unit.ep_localtime_str}}
+                </span>
+                <img class="service-icon" :src="'/icons/'+unit.service+'.png'">
+
+                <a :href="unit.link"
+                    @click.prevent="open_link_in_tab(unit.link)"
+                    class=""
+                    >                    
+                    <span class="title">
+                    {{unit.title_and_eps}}
+                    </span>
                 </a>
-            </div>
+            </span>
         </div>
     </div>
 </template>
@@ -18,6 +32,9 @@
 
 import StoreFilter from '@/components/StoreFilter'
 import { ref, computed, toRefs, onMounted } from 'vue'
+
+import "@/css/anime_single_line.css"
+
 
 export default {
     components: {
@@ -39,7 +56,8 @@ export default {
                     let caught = typedText === "";
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
                     caught = caught && tableServices.includes(unit.service);
-                    caught = caught && (isDubbedOn || unit.title.slice(-4) !== "Dub)")
+                    caught = caught && (isDubbedOn || (unit.title.slice(-4) !== "Dub)" && unit.title.slice(-4) !== "(VF)"))
+                    console.log(unit.title, unit.title.slice(-4) !== "(VF)")
                     return caught;
             });
         })
@@ -85,6 +103,15 @@ export default {
     display: grid;
     grid-template-rows: 1fr;
     text-align: left;
+    gap: 0.6em;
+}
+
+.time-slot {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: auto auto 1fr;
+    word-wrap: break-word;
+    align-items: center;
 }
 
 </style>

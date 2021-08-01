@@ -10,7 +10,8 @@ html {
     --white-background: #f1f1f1;
     --active-white: #fbfbfb;
     --active-black: #454545;
-    --primary: blue;
+    --primary: green;
+    
 }
 
 body {
@@ -104,4 +105,8 @@ a:visited {
 a:link {
   text-decoration: none;
   color: inherit;
+}
+
+a:link:hover {
+  text-decoration: underline;
 }

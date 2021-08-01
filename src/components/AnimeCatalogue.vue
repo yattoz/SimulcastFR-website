@@ -52,6 +52,7 @@
     import tippy from 'tippy.js'
     import { nextTick } from 'vue' 
     const proxy = '';
+    import "@/css/anime_single_line.css"
     
     export default {
         name: "AnimeCatalogue",
@@ -172,30 +173,6 @@
         gap: 16px;
         grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
         /* grid-template-rows: repeat(auto-fill, minmax(225px, 1fr)); */
-    }
-
-    .overflowhidden{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; /* Don't forget this one */
-    }
-
-    .service-icon{
-        width: 1.6em;
-        height: 1.6em;
-        margin-bottom: -0.3em;
-        margin-left: 0px;
-        margin-right: 2px;
-        position: relative;
-        display: inline-block;
-    }
-
-    .title{
-        font-size: 1.0em;
-        padding: 2px;
-        margin-left: 0em;
-        display: inline;
-
     }
 
     .no_result{

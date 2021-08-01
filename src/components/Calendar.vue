@@ -6,13 +6,18 @@
         <button class="" v-on:click="toggleCalendar('list')">Vue Liste</button>
 
         </div>
-            <div class="agenda-container" :class="{invisible: !FilterResults.isAgendaShown}">
-                <p> Cet agenda n'est pas filtrable. </p>
-                <div class="agenda" id="fullCalendarWidget">
-                </div>
+
+        <div class="agenda-container" :class="{invisible: !FilterResults.isAgendaShown}">
+            <p> Cet agenda n'est pas filtrable. </p>
+            <div class="agenda" id="fullCalendarWidget">
             </div>
         </div>
-        <CalendarList v-bind:calendar="full_calendar"/>
+        <div class="list-container" :class="{invisible: FilterResults.isAgendaShown}">
+            <CalendarList v-bind:calendar="full_calendar"/>
+        </div>
+        <span style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</span>
+
+    </div>
 </template>
 
 <script>
@@ -64,22 +69,19 @@
                         else
                             title_and_eps = anime.title + ' - épisodes ' + anime.ep_number.join(', ')
                     
-                    anime.title = title_and_eps
+                    anime.title_and_eps = title_and_eps
                     anime.ep_time_date = new Date(anime.ep_time)  // create a new field with a Date object. Easier for the child to display.
 
-                    if (anime.title.slice(-4) !== "Dub)")
-                    {
-                        self.calendarEvents.push({
-                            // add new event data
-                            title: anime.title,
-                            start: anime.ep_time_date,
-                            url: anime.ep_link,
-                            backgroundColor: self.badgeColor(anime),
-                            borderColor: self.badgeColor(anime),
-                            allDay: false,
-                            service: anime.service
-                        });
-                    }
+                    self.calendarEvents.push({
+                        // add new event data
+                        title: title_and_eps,
+                        start: anime.ep_time_date,
+                        url: anime.ep_link,
+                        backgroundColor: self.badgeColor(anime),
+                        borderColor: self.badgeColor(anime),
+                        allDay: false,
+                        service: anime.service
+                    });
                 });
                 let calendarEl = document.getElementById("fullCalendarWidget")
                 self.calendar = new Calendar(calendarEl, {
