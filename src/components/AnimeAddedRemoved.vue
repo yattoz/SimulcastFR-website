@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div class="selector-box">
+            <span class="text-right">
+                Période
+            </span>
         <select class="selector" name="whichMonth" v-on:change="setMonth($event)">
             <option 
                 v-for="unit in computedMonths"
@@ -8,6 +12,7 @@
                 {{unit.text}}
             </option>
         </select>
+        </div>
         <div id="week-added-removed">
         <WeekAddedRemoved 
             v-for="unit in computedWeek" 
@@ -166,6 +171,20 @@
     .no_result{
         font-size: large
     }
+    .selector-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4em;
+    }
 
+    .text-right {
+        text-align: right;
+        font-size: large;
+    }
+
+    .selector {
+        text-align: left;
+        width: min-content;
+    }
 
 </style>

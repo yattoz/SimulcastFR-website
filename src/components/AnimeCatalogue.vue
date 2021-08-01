@@ -197,6 +197,7 @@
 
     .text-right {
         text-align: right;
+        font-size: large;
     }
 
     .selector {
