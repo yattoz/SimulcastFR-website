@@ -3,13 +3,14 @@
     <div class="">
         <div class="button-box">
         
-        <span class="page-button" 
-            :class="{active: FilterResults.isAgendaShown}" 
-            v-on:click="toggleCalendar('agenda')">Vue Agenda
-        </span>
+
         <span class="page-button" 
             :class="{active: !FilterResults.isAgendaShown}" 
             v-on:click="toggleCalendar('list')">Vue Liste
+        </span>
+        <span class="page-button" 
+            :class="{active: FilterResults.isAgendaShown}" 
+            v-on:click="toggleCalendar('agenda')">Vue Agenda
         </span>
 
         </div>
