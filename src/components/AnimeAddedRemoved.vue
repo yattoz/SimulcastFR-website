@@ -52,12 +52,16 @@
                     // console.log(period);
                     self.week.push(period);
                 });
+                let endTodaysMonth = new Date((new Date).getFullYear(), new Date().getMonth(), 1)
+                self.months.push(endTodaysMonth)
                 self.week.forEach(week =>
                 {
                     let dateBegin = new Date(week.time_begin)
                     let dateEnd = new Date(week.time_end)
                     let beginMonth = new Date(dateBegin.getFullYear(), dateBegin.getMonth(), 1)
-                    // let endMonth = new Date(dateEnd.getFullYear(), dateEnd.getMonth(), 1)
+                    let endMonth = new Date(dateEnd.getFullYear(), dateEnd.getMonth(), 1)
+                    if (self.months.filter(x => x.getTime() == endMonth.getTime()).length == 0)
+                        self.months.push(endMonth)
                     if (self.months.filter(x => x.getTime() == beginMonth.getTime()).length == 0)
                         self.months.push(beginMonth)
                 })
