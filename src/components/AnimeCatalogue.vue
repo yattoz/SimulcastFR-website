@@ -14,9 +14,9 @@
         </div>
         <div class="pagination" v-if="computedPages.length > 1">
             <div v-for="page in computedPages" v-bind:key="page">
-                <button class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)">
+                <div class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)">
                     {{page + 1}}
-                </button>
+                </div>
             </div>
         </div>
         <div class="box">
@@ -38,9 +38,9 @@
         </div>
         <div class="pagination" v-if="computedPages.length > 1">
             <div v-for="page in computedPages" v-bind:key="page">
-                <button class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)" >
+                <div class="page-button" :class="{ active: page == currentPage }" :id="'button-page-' + page + 1" v-on:click="setPage(page)" >
                     {{page + 1}}
-                </button>
+                </div>
             </div>
         </div>
     </div>
@@ -187,10 +187,6 @@
 
     .pagination button {
         width: 100%
-    }
-
-    .active {
-        background-color: hotpink;
     }
 
     .selector-box {

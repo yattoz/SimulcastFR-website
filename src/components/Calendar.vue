@@ -1,9 +1,16 @@
 <template>
 
     <div class="">
-        <div>
-        <button class="" v-on:click="toggleCalendar('agenda')">Vue Agenda</button>
-        <button class="" v-on:click="toggleCalendar('list')">Vue Liste</button>
+        <div class="button-box">
+        
+        <span class="page-button" 
+            :class="{active: FilterResults.isAgendaShown}" 
+            v-on:click="toggleCalendar('agenda')">Vue Agenda
+        </span>
+        <span class="page-button" 
+            :class="{active: !FilterResults.isAgendaShown}" 
+            v-on:click="toggleCalendar('list')">Vue Liste
+        </span>
 
         </div>
 
@@ -15,7 +22,7 @@
         <div class="list-container" :class="{invisible: FilterResults.isAgendaShown}">
             <CalendarList v-bind:calendar="full_calendar"/>
         </div>
-        <span style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</span>
+        <div style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</div>
 
     </div>
 </template>
@@ -204,4 +211,5 @@
         visibility: hidden;
         height: 0px;
     }
+
 </style>

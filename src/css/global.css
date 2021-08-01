@@ -10,8 +10,9 @@ html {
     --white-background: #f1f1f1;
     --active-white: #fbfbfb;
     --active-black: #454545;
-    --primary: green;
-    
+    --primary: rgb(0, 105, 190);
+    --light-active-black: #323232;
+    --light-active-white: #e8e8e8
 }
 
 body {
@@ -70,6 +71,7 @@ body.dark-mode {
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
   padding: 0.4em;
+  margin-bottom: 2em;
 }
 
 select {
@@ -109,4 +111,46 @@ a:link {
 
 a:link:hover {
   text-decoration: underline;
+}
+
+.page-button {
+  font-size: large;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 0.2em;
+  margin: 0.2em;
+  padding: 0.4em;
+  background: var(--active-white);
+  cursor: pointer;
+}
+
+.page-button:hover {
+  background-color: var(--light-active-white);
+}
+
+body.dark-mode .page-button:hover {
+  background-color: var(--light-active-black);
+}
+
+body.dark-mode .page-button {
+  font-size: large;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 0.2em;
+  margin: 0.2em;
+  padding: 0.4em;
+  background: var(--active-black);
+  cursor: pointer;
+}
+
+.active,
+body.dark-mode .active {
+    background-color: var(--primary);
+    color: var(--white-text)
+}
+
+.active:hover {
+  background-color: var(--primary);
+}
+
+body.dark-mode .active:hover {
+  background-color: var(--primary);
 }
