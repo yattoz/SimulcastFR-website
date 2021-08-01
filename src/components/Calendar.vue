@@ -13,15 +13,10 @@
         </span>
 
         </div>
-
-        <div class="agenda-container" :class="{invisible: !FilterResults.isAgendaShown}">
-            <div class="agenda" id="fullCalendarWidget">
-            </div>
-            <div :computed="setCalendar(computedCalendarEvents)">
-                <!-- this simply forces the setCalendar to be re-run every time the computed changes. -->
-            </div>
+        <div class="agenda-container" v-if="FilterResults.isAgendaShown">
+            <CalendarAgenda v-bind:calendarEvents="calendarEvents"/>
         </div>
-        <div class="list-container" :class="{invisiblenone: FilterResults.isAgendaShown}">
+        <div class="list-container" v-if="!FilterResults.isAgendaShown">
             <CalendarList v-bind:calendar="full_calendar"/>
         </div>
         <div style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</div>
@@ -32,39 +27,30 @@
 <script>
     import StoreFilter from '@/components/StoreFilter';
     import CalendarList from '@/components/CalendarList'
-    import { Calendar } from '@fullcalendar/core';
-    import timeGridPlugin from "@fullcalendar/timegrid";
+    import CalendarAgenda from '@/components/CalendarAgenda'
 
-    import tippy from 'tippy.js'
 
     const proxy = '';
 
-
+ 
     export default {
         components: {
-            CalendarList // make the <FullCalendar> tag available
+            CalendarList, // make the <FullCalendar> tag available
+            CalendarAgenda
         },
         props: {
             full_calendar_url: String
         },
         data: function() {
             return {
-                calendarPlugins: [
-                    // plugins must be defined in the JS
-                    timeGridPlugin
-                ],
-                calendarWeekends: true,
-                calendarEvents: [
-                    // initial event dat
-                ],
                 full_calendar: [],
+                calendarEvents: [],
                 calendar: null,
                 FilterResults: StoreFilter.state
             };
         },
         mounted() {
             var self = this;
-            tippy.setDefaultProps( { delay: [0, 0] } )
             function fillCalendar(json) {
                 self.full_calendar = json["data"];
 
@@ -93,27 +79,6 @@
                         ex_title: anime.title
                     });
                 });
-                let calendarEl = document.getElementById("fullCalendarWidget")
-                self.calendar = new Calendar(calendarEl, {
-                        initialView: "timeGridWeek",
-                        weekNumberCalculation: "ISO",
-                        headerToolbar: {
-                            start: 'title', // will normally be on the left. if RTL, will be on the right
-                            center: '',
-                            end: '' //'today prev,next' // will normally be on the right. if RTL, will be on the left
-                          },
-                        eventDidMount: self.renderTooltip,
-                        viewClassNames: ["background-on"],
-                        plugins: self.calendarPlugins,
-                        weekends: self.calendarWeekends,
-                        events: [],
-                        locales: ['fr'],
-                        height: 'auto'
-                })
-                // self.calendarEvents.forEach(e => {
-                //     self.calendar.addEvent(e)
-                // })
-                self.calendar.render()
             }
             let request = new XMLHttpRequest();
             request.open('GET', proxy + self.full_calendar_url, true);
@@ -137,28 +102,9 @@
 
             request.send();
         },
-        activated() {
-            // if the calendar is created, the component is deactivated, the window resized, then re-activated,
-            // fullCalendar hasn't listened to window resizes so we should re-render it.
-            // if (this.calendar != null) {
-            //     this.calendar.render()
-            // }
-        },
         methods: {
-            setCalendar(newEvents) {
-                if (this.calendar) {
-                    let oldEvents = this.calendar.getEvents()
-                    oldEvents.forEach(e => {
-                        e.remove()
-                    })
-                    newEvents.forEach(e => {
-                        this.calendar.addEvent(e)
-                    })
-
-                }
-            },
-            toggleWeekends() {
-                this.calendarWeekends = !this.calendarWeekends; // update a property
+            toggleCalendar(type) {
+                StoreFilter.setAgendaShown(type === "agenda")
             },
             badgeColor(anime) {
                 let service = anime.service;
@@ -175,65 +121,13 @@
                     return "#000000d8"
                 // catch-all
                 return "#fefefe";
-            },
-            toggleCalendar(type) {
-                StoreFilter.setAgendaShown(type === "agenda")
-            },
-            renderTooltip(info) {
-                info.el.style.color = "white"
-                info.el.style.lineHeight = "1em"
-                info.el.style.fontSize = "10pt"
-                info.el.style.height = "4.2em"
-                let intl = new Intl.DateTimeFormat('fr-FR', {month: 'numeric', day: 'numeric', hour: 'numeric', 'minute': 'numeric'})
-
-                let tooltip = tippy(info.el, {
-                    content: `${intl.format(info.event.start)}<br/>${info.event.title}`,
-                    allowHTML: true,
-                })                
-            }
-        },
-        computed: {
-            computedCalendarEvents() {
-            let typedText = this.FilterResults.search;
-            let tableServices = this.FilterResults.tableServices
-            let isDubbedOn = this.FilterResults.isDubbedOn
-
-            let res = this.calendarEvents.filter(unit => {
-                        let caught = typedText === "";
-                        caught = caught || unit.ex_title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
-                        caught = caught && tableServices.includes(unit.ex_service);
-                        caught = caught && (isDubbedOn || (unit.ex_title.slice(-4) !== "Dub)" && unit.ex_title.slice(-4) !== "(VF)"))
-                        return caught;
-                });
-            return res;
             }
         }
     };
 </script>
 
 <style scoped>
-    .agenda {
-        width: 100%;
-        height: 1400px;
-    }
 
-    .demo-app {
-        font-size: 12px;
-    }
-
-    .demo-app-top {
-        margin: 0 0 3em;
-    }
-
-
-    .invisible {
-        visibility: hidden;
-        height: 0px;
-    }
-
-    .invisiblenone {
-        display: none;
-    }
 
     .button-box {
         margin-bottom: 1em;
