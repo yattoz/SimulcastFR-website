@@ -51,9 +51,6 @@ export default {
             let calendarPlugins = [ timeGridPlugin ]
             let calendarWeekends = true
             let calendarEl = cal.value// document.getElementById("fullCalendarWidget")
-            console.log(calendarEl)
-
-            
 
             calendarWidget.value = new Calendar(calendarEl, {
                     initialView: "timeGridWeek",
@@ -70,9 +67,7 @@ export default {
                     events: [],
                     locales: ['fr'],
                     height: 'auto'
-            })
-            console.log(calendarWidget)
-            
+            })            
         })
 
         onUpdated( () => {

@@ -10,7 +10,7 @@
             search: "",
             isTitleShown: false,
             isDubbedOn: false,
-            isAgendaShown: true,
+            isAgendaShown: false,
             cardScaling: 1.0,
             serviceSort: false,
             tableServices: ['crunchyroll', 'adn', 'wakanim', 'primevideo', 'netflix'],
