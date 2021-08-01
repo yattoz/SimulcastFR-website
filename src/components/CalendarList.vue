@@ -57,7 +57,6 @@ export default {
                     caught = caught || unit.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
                     caught = caught && tableServices.includes(unit.service);
                     caught = caught && (isDubbedOn || (unit.title.slice(-4) !== "Dub)" && unit.title.slice(-4) !== "(VF)"))
-                    console.log(unit.title, unit.title.slice(-4) !== "(VF)")
                     return caught;
             });
         })

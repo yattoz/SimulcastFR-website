@@ -15,11 +15,13 @@
         </div>
 
         <div class="agenda-container" :class="{invisible: !FilterResults.isAgendaShown}">
-            <p> Cet agenda n'est pas filtrable. </p>
             <div class="agenda" id="fullCalendarWidget">
             </div>
+            <div :computed="setCalendar(computedCalendarEvents)">
+                <!-- this simply forces the setCalendar to be re-run every time the computed changes. -->
+            </div>
         </div>
-        <div class="list-container" :class="{invisible: FilterResults.isAgendaShown}">
+        <div class="list-container" :class="{invisiblenone: FilterResults.isAgendaShown}">
             <CalendarList v-bind:calendar="full_calendar"/>
         </div>
         <div style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</div>
@@ -87,7 +89,8 @@
                         backgroundColor: self.badgeColor(anime),
                         borderColor: self.badgeColor(anime),
                         allDay: false,
-                        service: anime.service
+                        ex_service: anime.service, 
+                        ex_title: anime.title
                     });
                 });
                 let calendarEl = document.getElementById("fullCalendarWidget")
@@ -103,10 +106,13 @@
                         viewClassNames: ["background-on"],
                         plugins: self.calendarPlugins,
                         weekends: self.calendarWeekends,
-                        events: self.calendarEvents,
+                        events: [],
                         locales: ['fr'],
                         height: 'auto'
                 })
+                // self.calendarEvents.forEach(e => {
+                //     self.calendar.addEvent(e)
+                // })
                 self.calendar.render()
             }
             let request = new XMLHttpRequest();
@@ -134,11 +140,23 @@
         activated() {
             // if the calendar is created, the component is deactivated, the window resized, then re-activated,
             // fullCalendar hasn't listened to window resizes so we should re-render it.
-            if (this.calendar != null) {
-                this.calendar.render()
-            }
+            // if (this.calendar != null) {
+            //     this.calendar.render()
+            // }
         },
         methods: {
+            setCalendar(newEvents) {
+                if (this.calendar) {
+                    let oldEvents = this.calendar.getEvents()
+                    oldEvents.forEach(e => {
+                        e.remove()
+                    })
+                    newEvents.forEach(e => {
+                        this.calendar.addEvent(e)
+                    })
+
+                }
+            },
             toggleWeekends() {
                 this.calendarWeekends = !this.calendarWeekends; // update a property
             },
@@ -176,17 +194,18 @@
         },
         computed: {
             computedCalendarEvents() {
-                var typedText = this.FilterResults.search;
-                var tmp = this.calendarEvents;
-                
-                /*var tmp2 = */tmp.filter(event => {
-                    let caught = typedText === "";
-                    caught = caught || event.title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
-                    caught = caught && this.FilterResults.tableServices.includes(event.service);
-                    caught = caught && (this.FilterResults.isDubbedOn || unit.title.slice(-4) !== "Dub)");
-                    return caught;
+            let typedText = this.FilterResults.search;
+            let tableServices = this.FilterResults.tableServices
+            let isDubbedOn = this.FilterResults.isDubbedOn
+
+            let res = this.calendarEvents.filter(unit => {
+                        let caught = typedText === "";
+                        caught = caught || unit.ex_title.toLowerCase().indexOf(typedText.toLowerCase()) > -1;
+                        caught = caught && tableServices.includes(unit.ex_service);
+                        caught = caught && (isDubbedOn || (unit.ex_title.slice(-4) !== "Dub)" && unit.ex_title.slice(-4) !== "(VF)"))
+                        return caught;
                 });
-                return this.calendarEvents; 
+            return res;
             }
         }
     };
@@ -211,5 +230,14 @@
         visibility: hidden;
         height: 0px;
     }
+
+    .invisiblenone {
+        display: none;
+    }
+
+    .button-box {
+        margin-bottom: 1em;
+    }
+
 
 </style>
