@@ -102,15 +102,19 @@ export default {
     display: grid;
     grid-template-rows: 1fr;
     text-align: left;
-    gap: 0.6em;
+    gap: 0.8em;
 }
 
 .time-slot {
     display: grid;
-    gap: 1em;
+    gap: 0.8em;
     grid-template-columns: auto auto 1fr;
     word-wrap: break-word;
     align-items: center;
+}
+
+.hour {
+    width: max-content;
 }
 
 </style>
