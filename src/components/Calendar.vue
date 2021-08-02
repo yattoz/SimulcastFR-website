@@ -20,6 +20,8 @@
         <div class="list-container" v-if="!FilterResults.isAgendaShown">
             <CalendarList v-bind:calendar="full_calendar"/>
         </div>
+        <div style="font-style: italic; margin-top: 2em;">Crunchyroll n'affiche pas son calendrier en avance.<br/>SimulcastFR se met à jour périodiquement pour refléter les sorties quotidiennes.</div>
+
         <div style="font-style: italic; margin-top: 2em;">Note: toutes les heures sont données pour le fuseau horaire 'Europe/Paris'.</div>
 
     </div>

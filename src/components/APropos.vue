@@ -4,6 +4,10 @@
         <h2> SimulcastFR - 2021, Yattoz </h2>
         <img class="logo" src="@/assets/logo.png" alt="logo"/>
         </div>
+        <div style="text-align:center; margin: 2em;">
+        <div style="margin: 0.4em;">Vous pouvez m'offrir un thé ou un donut :   </div>
+        <div style="margin: 0.4em;"><a href='https://ko-fi.com/H2H05JIGB' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></div>
+        </div>
         <h3>A propos</h3>
         <p>
             Ceci est un site affichant les simulcasts des diffuseurs saisonniers principaux français.
