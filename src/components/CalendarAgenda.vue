@@ -41,11 +41,21 @@ export default {
             info.el.style.height = "4.2em"
             let intl = new Intl.DateTimeFormat('fr-FR', {month: 'numeric', day: 'numeric', hour: 'numeric', 'minute': 'numeric'})
 
+            let serviceFromColor = {
+                "#df6300d8" : "Crunchyroll",
+                "#0066ffd8" : "Anime Digital Network",
+                "#e0000ad8" : "Wakanim",
+                "#00a8e0d8" : "Amazon Prime Video",
+                "#000000d8" : "Netflix"
+            }
+            
             let tooltip = tippy(info.el, {
-                content: `${intl.format(info.event.start)}<br/>${info.event.title}`,
+                content: `${intl.format(info.event.start)}<br/>${info.event.title}<br/>Sur : ${serviceFromColor[info.event.backgroundColor]}`,
                 allowHTML: true,
             })            
         })
+
+
 
         onMounted( () => {
             let calendarPlugins = [ timeGridPlugin ]
