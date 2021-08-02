@@ -102,6 +102,11 @@
 </script>
 
 <style scoped>
+
+    *::before, *::after {
+        box-sizing: inherit;
+    }
+
     .card {
         width: auto;
         height: 100%;
@@ -121,6 +126,12 @@
         grid-gap: 0em;
         grid-template-rows: 1fr auto;
         overflow: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     
     .card img{
@@ -132,6 +143,7 @@
         width: 102%;
         z-index: 1;
         top: 0px;
+        box-sizing: border-box;
     }
 
     .card:hover img{
