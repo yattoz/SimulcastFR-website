@@ -107,8 +107,8 @@ export default {
 
 .time-slot {
     display: grid;
-    gap: 0.8em;
-    grid-template-columns: auto auto 1fr;
+    gap: 0.4em;
+    grid-template-columns: 3.2em 2em 1fr;
     word-wrap: break-word;
     align-items: center;
 }
