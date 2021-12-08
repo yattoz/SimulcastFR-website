@@ -15,7 +15,7 @@
                 </span>
                 <img class="service-icon" :src="'/icons/'+unit.service+'.png'" :alt="unit.service">
 
-                <a :href="unit.link"
+                <a :href="unit.ep_link"
                     target="_blank"
                     class=""
                     >                    
